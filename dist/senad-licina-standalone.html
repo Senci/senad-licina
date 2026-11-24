@@ -85,6 +85,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
   backdrop-filter: blur(10px);
 }
 .top__name { font-family: var(--display); font-size: 1.25rem; text-decoration: none; letter-spacing: .02em; }
+.top__id { display: flex; align-items: baseline; gap: .6rem; min-width: 0; white-space: nowrap; }
+.top__sec { font-family: var(--display); font-size: 1.25rem; letter-spacing: .02em; color: var(--olive); text-decoration: none; }
+.top__sec::before { content: "/"; margin-right: .6rem; color: var(--ink-soft); }
+.top__sec.swap { animation: swap .35s var(--ease) both; }
+/* scroll progress */
+.top::after { content: ""; position: absolute; inset: auto 0 0 0; height: 2px; background: var(--olive); transform-origin: left; transform: scaleX(var(--sp, 0)); }
+:root[data-uv="on"] .top::after { box-shadow: 0 0 12px var(--olive); }
 .top__nav { display: flex; align-items: center; gap: clamp(.7rem, 2vw, 1.6rem); font-size: .95rem; font-weight: 500; }
 .top__nav a { text-decoration: none; padding: .7rem .5rem; margin: -.7rem -.5rem; }
 .top__nav a:hover { text-decoration: underline; }
@@ -176,7 +183,7 @@ a:hover > .ico--down .mv, a:focus-visible > .ico--down .mv { transform: translat
 .note--portrait { left: 30%; top: 74%; transform: rotate(-7deg); color: var(--olive); }
 .note--stack { right: 0; bottom: -.5rem; color: var(--cool); transform: rotate(3deg); }
 .note--origin { right: 0; bottom: -2.5rem; }
-.note--path { right: var(--pad); top: 1rem; color: var(--cool); transform: rotate(4deg); }
+.note--path { right: var(--pad); top: calc(clamp(5rem, 12vh, 9rem) + 1.5rem); color: var(--cool); transform: rotate(4deg); }
 .note--talk { right: var(--pad); top: 40%; transform: rotate(-7deg); }
 
 /* ------------------------------------------------------------- stack */
@@ -206,7 +213,7 @@ section { position: relative; }
   transition: background .25s, color .25s, transform .25s var(--ease);
 }
 .layer { grid-column: 2; z-index: 1; }
-.layer small { font: 500 .8rem/1.2 var(--text); color: var(--ink-soft); text-align: right; max-width: 55%; transition: color .25s; }
+.layer small { font: 500 .8rem/1.2 var(--text); color: var(--ink-soft); text-align: right; max-width: 55%; text-wrap: balance; transition: color .25s; }
 .rail { grid-row: 1 / -1; writing-mode: vertical-rl; justify-content: center; padding: 0; font-size: clamp(1.1rem, 1.6vw, 1.4rem); letter-spacing: .04em; }
 .rail--l { grid-column: 1; transform: rotate(180deg); }
 .rail--r { grid-column: 3; }
@@ -217,7 +224,7 @@ section { position: relative; }
 :root[data-uv="on"] .layer[aria-pressed="true"] small { color: #10062A; }
 
 /* tokens travelling up the stack */
-.tokens { grid-column: 2; grid-row: 1 / -1; position: relative; pointer-events: none; z-index: 2; overflow: hidden; }
+.tokens { grid-column: 2; grid-row: 1 / -1; position: relative; pointer-events: none; z-index: 0; overflow: hidden; }
 .tokens i {
   position: absolute; bottom: -10px; left: var(--x);
   width: 6px; height: 6px; background: var(--olive);
@@ -255,7 +262,7 @@ section { position: relative; }
 .timeline::after { background: var(--olive); transform-origin: top; transform: scaleY(var(--p, 0)); }
 :root[data-uv="on"] .timeline::after { box-shadow: 0 0 14px var(--olive); }
 .job { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem 2.5rem; padding-block: 1.8rem; border-bottom: 1.5px solid var(--line); position: relative; }
-.job::before { content: ""; position: absolute; left: calc(-1 * clamp(1.4rem, 3vw, 2.5rem) - 5px); top: 2.35rem; width: 13px; height: 13px; background: var(--paper); border: 3px solid var(--olive); }
+.job::before { content: ""; position: absolute; left: calc(-1 * clamp(1.4rem, 3vw, 2.5rem) - 5px); top: 2.35rem; width: 13px; height: 13px; background: var(--paper); border: 3px solid var(--olive); z-index: 1; }
 .job__when { font-family: var(--display); font-size: 1.5rem; line-height: 1.2; }
 .job__org { font-family: var(--display); font-size: clamp(1.6rem, 2.8vw, 2.4rem); }
 .job__role { font-weight: 600; color: var(--olive); margin: .25rem 0 .8rem; }
@@ -299,8 +306,9 @@ section { position: relative; }
 .talk__mail:hover, .talk__mail:focus-visible { background-size: 100% .09em; }
 :root[data-uv="on"] .talk__mail { color: var(--olive); text-shadow: 0 0 30px rgba(200, 255, 46, .45); }
 
-.foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 2rem; padding-block: 1.6rem; border-top: 1.5px solid var(--ink); font-size: .9rem; color: var(--ink-soft); }
+.foot { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: .5rem 2rem; padding-block: 1.6rem; border-top: 1.5px solid var(--ink); font-size: .9rem; color: var(--ink-soft); }
 .foot__links { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; }
+.foot > :last-child { justify-self: end; text-align: right; }
 .foot a { display: inline-flex; padding: .6rem .5rem; margin: -.6rem -.5rem; transition: color .2s; }
 .foot a:hover, .foot a:focus-visible { color: var(--olive); }
 
@@ -316,13 +324,16 @@ section { position: relative; }
 /* ------------------------------------------------------------ mobile */
 @media (max-width: 800px) {
   body { font-size: 1.05rem; }
-  .top__nav a[href="#talk"] { display: none; }
+  .top__nav a[href="#talk"], .top__sec { display: none; }
   .uvswitch > span[data-t] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .top { padding-block: .7rem; }
   .hero { padding-top: 5.5rem; align-items: start; }
   .hero__inner { padding-bottom: 0; }
   .hero__sub { max-width: none; }
-  .hero__h { font-size: clamp(2.9rem, 15.5vw, 6rem); }
+  .hero__h { font-size: clamp(2.7rem, 14.4vw, 6rem); }
+  .hero__cta .btn { flex: 1 1 100%; justify-content: center; }
+  .foot { grid-template-columns: 1fr; }
+  .foot > :last-child { justify-self: start; text-align: left; }
   .hero__portrait { position: relative; right: auto; width: min(88vw, 26rem); margin: 1.5rem auto 0; }
   .stack__body { grid-template-columns: 1fr; }
   .diagram { grid-template-columns: 2.6rem minmax(0, 1fr) 2.6rem; }
@@ -339,6 +350,10 @@ section { position: relative; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .tokens { display: none; }
+}
+
+@media (max-width: 360px) {
+  #nav-cv { display: none; }
 }
 </style>
 </head>
@@ -363,7 +378,10 @@ section { position: relative; }
 </svg>
 
 <header class="top">
-  <a class="top__name" href="#top">Senad Ličina</a>
+  <div class="top__id">
+    <a class="top__name" href="#top">Senad Ličina</a>
+    <a class="top__sec" id="sec" href="#top" hidden></a>
+  </div>
   <nav class="top__nav" aria-label="Main">
     <a href="cv.html" id="nav-cv" data-t="ui.cv">CV</a>
     <a href="#talk" data-t="ui.contact">Contact</a>
@@ -431,7 +449,7 @@ section { position: relative; }
       <p class="lede" data-t="weird.intro"></p>
       <div class="weird__list" id="weird-list"></div>
       <p class="weird__cta">
-        <button type="button" class="btn btn--uv" id="uv2" aria-pressed="false"><span data-t="weird.cta"></span></button>
+        <button type="button" class="btn btn--uv" id="uv2" aria-pressed="false"><span></span></button>
       </p>
     </div>
   </section>
@@ -451,7 +469,7 @@ section { position: relative; }
 <footer class="foot wrap">
   <span>Senad Ličina, Hamburg</span>
   <nav class="foot__links" id="links" aria-label="Profiles"></nav>
-  <span>No trackers. No cookies. No framework.</span>
+  <span data-t="ui.foot">No trackers. No cookies. No framework.</span>
 </footer>
 
 <script>/*
@@ -489,7 +507,9 @@ window.CONTENT = {
       writeMe: "Write to me",
       print: "Print or save as PDF",
       back: "Back to the website",
+      foot: "No trackers. No cookies. No framework.",
     },
+    sections: { stack: "Stack", origin: "2012", path: "Path", weird: "Weird", talk: "Contact" }, // short names for the top bar
     title: "AI Platform and Infrastructure Lead",
     hero: {
       headline: ["I run AI where", "the cloud isn't", "allowed."],
@@ -643,6 +663,7 @@ window.CONTENT = {
         { h: "Six languages", t: "German, English, Bosnian/Croatian/Serbian, French, Spanish, some Portuguese. Plus the ones with compilers." },
       ],
       cta: "There is a second layer to this page. Switch on the blacklight.",
+      ctaOff: "Enough. Lights back on.",
     },
     talk: {
       title: "Talk to me if",
@@ -707,7 +728,9 @@ window.CONTENT = {
       writeMe: "Schreib mir",
       print: "Drucken oder als PDF sichern",
       back: "Zurück zur Website",
+      foot: "Keine Tracker. Keine Cookies. Kein Framework.",
     },
+    sections: { stack: "Stack", origin: "2012", path: "Weg", weird: "Weird", talk: "Kontakt" },
     title: "AI Platform und Infrastructure Lead",
     hero: {
       headline: ["Ich betreibe KI,", "wo die Cloud", "nicht hin darf."],
@@ -861,6 +884,7 @@ window.CONTENT = {
         { h: "Sechs Sprachen", t: "Deutsch, Englisch, Bosnisch/Kroatisch/Serbisch, Französisch, Spanisch, etwas Portugiesisch. Dazu die mit Compiler." },
       ],
       cta: "Diese Seite hat eine zweite Ebene. Mach das Schwarzlicht an.",
+      ctaOff: "Genug. Licht wieder an.",
     },
     talk: {
       title: "Schreib mir, wenn",
@@ -930,6 +954,7 @@ window.CONTENT = {
   const pick = (l) => ["de", "en"].find((x) => String(l || "").toLowerCase().startsWith(x));
   let lang = pick(params.get("lang")) || pick(navigator.language) || "en";
   let selected = "platform"; // which part of the stack is open
+  let uv = false;
 
   function render() {
     const t = C[lang];
@@ -944,6 +969,7 @@ window.CONTENT = {
 
     $("#hero-h").innerHTML = t.hero.headline.map((l) => `<span class="ln"><span>${esc(l)}</span></span>`).join("");
     $("#hero-sub").textContent = t.hero.sub;
+    $("#uv2 span").textContent = t.weird[uv ? "ctaOff" : "cta"];
 
     const mail = `mailto:${C.meta.email}`;
     $("#cta-mail").href = mail;
@@ -983,6 +1009,7 @@ window.CONTENT = {
 
     $("#talk-list").innerHTML = t.talk.items.map((i) => `<li>${esc(i)}</li>`).join("");
     measureTokens();
+    if (sec) setSection(sec, true);
   }
 
   /* -------------------------------------------------------- the stack */
@@ -1019,13 +1046,13 @@ window.CONTENT = {
   }
 
   /* -------------------------------------------------------- blacklight */
-  let uv = false;
   function setUV(on, ev) {
     const apply = () => {
       uv = on;
       root.dataset.uv = on ? "on" : "off";
       $("#uv").setAttribute("aria-checked", String(on));
       $("#uv2").setAttribute("aria-pressed", String(on));
+      $("#uv2 span").textContent = C[lang].weird[on ? "ctaOff" : "cta"];
       if (reduced) requestAnimationFrame(frame);
       $('meta[name="theme-color"]').content = on ? "#10062A" : "#D9D5D0";
       const ico = $('link[rel="icon"]'); // absent in the standalone build
@@ -1112,10 +1139,25 @@ window.CONTENT = {
 
   /* ------------------------------------------------- scroll-linked bits */
   const tl = $("#timeline");
+  const secEl = $("#sec");
+  const secs = ["stack", "origin", "path", "weird", "talk"].map((id) => document.getElementById(id));
+  let sec = null;
   function onScroll() {
     const r = tl.getBoundingClientRect();
     const p = Math.min(1, Math.max(0, (innerHeight * 0.6 - r.top) / r.height));
     tl.style.setProperty("--p", p.toFixed(4));
+    root.style.setProperty("--sp", Math.min(1, scrollY / Math.max(1, root.scrollHeight - innerHeight)).toFixed(4));
+    const cur = secs.filter((s) => s.getBoundingClientRect().top < innerHeight * 0.4).pop();
+    setSection(cur ? cur.id : null);
+  }
+  function setSection(id, force) {
+    if (id === sec && !force) return;
+    sec = id;
+    secEl.hidden = !id;
+    if (!id) return;
+    secEl.textContent = C[lang].sections[id];
+    secEl.href = "#" + id;
+    if (!reduced && !force) { secEl.classList.remove("swap"); void secEl.offsetWidth; secEl.classList.add("swap"); }
   }
   addEventListener("scroll", onScroll, { passive: true });
 

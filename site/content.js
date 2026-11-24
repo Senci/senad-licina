@@ -33,6 +33,7 @@ window.CONTENT = {
       writeMe: "Write to me",
       print: "Print or save as PDF",
       back: "Back to the website",
+      foot: "No trackers. No cookies. No framework.",
     },
     sections: { stack: "Stack", origin: "2012", path: "Path", weird: "Weird", talk: "Contact" }, // short names for the top bar
     title: "AI Platform and Infrastructure Lead",
@@ -188,6 +189,7 @@ window.CONTENT = {
         { h: "Six languages", t: "German, English, Bosnian/Croatian/Serbian, French, Spanish, some Portuguese. Plus the ones with compilers." },
       ],
       cta: "There is a second layer to this page. Switch on the blacklight.",
+      ctaOff: "Enough. Lights back on.",
     },
     talk: {
       title: "Talk to me if",
@@ -252,6 +254,7 @@ window.CONTENT = {
       writeMe: "Schreib mir",
       print: "Drucken oder als PDF sichern",
       back: "Zurück zur Website",
+      foot: "Keine Tracker. Keine Cookies. Kein Framework.",
     },
     sections: { stack: "Stack", origin: "2012", path: "Weg", weird: "Weird", talk: "Kontakt" },
     title: "AI Platform und Infrastructure Lead",
@@ -407,6 +410,7 @@ window.CONTENT = {
         { h: "Sechs Sprachen", t: "Deutsch, Englisch, Bosnisch/Kroatisch/Serbisch, Französisch, Spanisch, etwas Portugiesisch. Dazu die mit Compiler." },
       ],
       cta: "Diese Seite hat eine zweite Ebene. Mach das Schwarzlicht an.",
+      ctaOff: "Genug. Licht wieder an.",
     },
     talk: {
       title: "Schreib mir, wenn",

@@ -13,6 +13,7 @@
   const pick = (l) => ["de", "en"].find((x) => String(l || "").toLowerCase().startsWith(x));
   let lang = pick(params.get("lang")) || pick(navigator.language) || "en";
   let selected = "platform"; // which part of the stack is open
+  let uv = false;
 
   function render() {
     const t = C[lang];
@@ -27,6 +28,7 @@
 
     $("#hero-h").innerHTML = t.hero.headline.map((l) => `<span class="ln"><span>${esc(l)}</span></span>`).join("");
     $("#hero-sub").textContent = t.hero.sub;
+    $("#uv2 span").textContent = t.weird[uv ? "ctaOff" : "cta"];
 
     const mail = `mailto:${C.meta.email}`;
     $("#cta-mail").href = mail;
@@ -103,13 +105,13 @@
   }
 
   /* -------------------------------------------------------- blacklight */
-  let uv = false;
   function setUV(on, ev) {
     const apply = () => {
       uv = on;
       root.dataset.uv = on ? "on" : "off";
       $("#uv").setAttribute("aria-checked", String(on));
       $("#uv2").setAttribute("aria-pressed", String(on));
+      $("#uv2 span").textContent = C[lang].weird[on ? "ctaOff" : "cta"];
       if (reduced) requestAnimationFrame(frame);
       $('meta[name="theme-color"]').content = on ? "#10062A" : "#D9D5D0";
       const ico = $('link[rel="icon"]'); // absent in the standalone build
