@@ -32,6 +32,7 @@ scripts/
   serve.mjs               static dev server for site/
   build-pdf.mjs           renders cv.html to PDF in both languages
   build-standalone.mjs    packs the website into one HTML file
+  package.mjs             zips site/ for a Cloudflare Pages upload
   make-favicon.py         regenerates the SL favicons from the Anton font
 dist/                     output of `bun run standalone`, not tracked
 ```
@@ -45,6 +46,7 @@ dist/                     output of `bun run standalone`, not tracked
 | `bun run pdf` | Writes `site/cv/Senad_Licina_CV_{DE,EN}.pdf`. |
 | `bun run standalone` | Writes `dist/senad-licina-standalone.html`, fonts and portrait inlined. Good as a mail attachment. |
 | `bun run build` | `pdf`, then `standalone`. |
+| `bun run package` | `pdf`, then zips `site/` to `dist/senad-licina-cloudflare.zip` for a Cloudflare Pages upload. Needs `zip`. |
 
 Without Bun: open `site/cv.html?lang=de` in Chrome and print to PDF (margins: none, background graphics: on).
 
@@ -86,7 +88,9 @@ A `\n` in a section title forces a line break there.
 
 ## Deploy
 
-`site/` is static: GitHub Pages, Netlify, Cloudflare Pages or any web server. Before it goes public:
+`site/` is static, so any web server works. For Cloudflare Pages: `bun run package`, then in the dashboard create a Pages project with "Upload assets" and drop in `dist/senad-licina-cloudflare.zip`. `site/_headers` sets the response headers there.
+
+Before it goes public:
 
 - **Impressum.** A public site run from Germany needs one. There is none yet.
 - **Domain.** Set `meta.website`, and make `og:image` in `index.html` an absolute URL, otherwise link previews show no image.

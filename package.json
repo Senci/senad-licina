@@ -8,7 +8,8 @@
     "setup": "playwright install chromium-headless-shell",
     "pdf": "bun scripts/build-pdf.mjs",
     "standalone": "bun scripts/build-standalone.mjs",
-    "build": "bun run pdf && bun run standalone"
+    "build": "bun run pdf && bun run standalone",
+    "package": "bun run pdf && bun scripts/package.mjs"
   },
   "devDependencies": {
     "playwright": "^1.50.0"
