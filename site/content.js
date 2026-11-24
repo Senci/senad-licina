@@ -202,7 +202,7 @@ window.CONTENT = {
       ],
     },
     weird: {
-      title: "Weird is a feature, not a bug.",
+      title: "Weird.\nIt's a feature, not a bug!",
       intro: "Normal people built the systems everyone now wants to replace. Here is what you get with me.",
       neuro: {
         h: "AuDHD",
@@ -449,7 +449,7 @@ window.CONTENT = {
       ],
     },
     weird: {
-      title: "Weird ist ein Feature, kein Bug.",
+      title: "Weird.\nIt's a feature, not a bug!",
       intro: "Normale Leute haben die Systeme gebaut, die jetzt alle ersetzen wollen. Das hier bekommst du mit mir.",
       neuro: {
         h: "AuDHS",

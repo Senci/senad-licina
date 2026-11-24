@@ -352,6 +352,7 @@ section { position: relative; }
 
 /* ------------------------------------------------------------- weird */
 .weird { padding-block: clamp(5rem, 12vh, 9rem); border-block: 1.5px solid var(--ink); background: var(--paper-2); }
+.weird h2 { max-width: none; font-size: clamp(1.3rem, 8.6vw, 5rem); text-wrap: nowrap; } /* two fixed lines; sized so the second fits a phone */
 .weird__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5vw, 4.5rem) clamp(2rem, 6vw, 6rem); margin-top: clamp(2.5rem, 6vh, 4.5rem); }
 .odd h3 { font-size: clamp(2.2rem, 5vw, 4.4rem); margin-bottom: .6rem; transition: color .4s, text-shadow .4s; }
 .odd p { max-width: 26em; margin: 0; }
@@ -780,7 +781,7 @@ window.CONTENT = {
       ],
     },
     weird: {
-      title: "Weird is a feature, not a bug.",
+      title: "Weird.\nIt's a feature, not a bug!",
       intro: "Normal people built the systems everyone now wants to replace. Here is what you get with me.",
       neuro: {
         h: "AuDHD",
@@ -1027,7 +1028,7 @@ window.CONTENT = {
       ],
     },
     weird: {
-      title: "Weird ist ein Feature, kein Bug.",
+      title: "Weird.\nIt's a feature, not a bug!",
       intro: "Normale Leute haben die Systeme gebaut, die jetzt alle ersetzen wollen. Das hier bekommst du mit mir.",
       neuro: {
         h: "AuDHS",
@@ -1130,7 +1131,8 @@ window.CONTENT = {
     // section headings rise word by word when they scroll in
     $$("main h2[data-t]").forEach((h) => {
       h.classList.add("rise");
-      h.innerHTML = h.textContent.split(" ").map((w, i) => `<span class="w"><span style="--i:${i}">${esc(w)}</span></span>`).join(" ");
+      let i = 0; // "\n" in a title is a forced line break
+      h.innerHTML = h.textContent.split("\n").map((ln) => ln.split(" ").map((w) => `<span class="w"><span style="--i:${i++}">${esc(w)}</span></span>`).join(" ")).join("<br>");
       if (reduced) h.classList.add("in");
       else riseIO.observe(h);
     });

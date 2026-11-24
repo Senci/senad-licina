@@ -31,7 +31,8 @@
     // section headings rise word by word when they scroll in
     $$("main h2[data-t]").forEach((h) => {
       h.classList.add("rise");
-      h.innerHTML = h.textContent.split(" ").map((w, i) => `<span class="w"><span style="--i:${i}">${esc(w)}</span></span>`).join(" ");
+      let i = 0; // "\n" in a title is a forced line break
+      h.innerHTML = h.textContent.split("\n").map((ln) => ln.split(" ").map((w) => `<span class="w"><span style="--i:${i++}">${esc(w)}</span></span>`).join(" ")).join("<br>");
       if (reduced) h.classList.add("in");
       else riseIO.observe(h);
     });

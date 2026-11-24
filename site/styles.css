@@ -341,6 +341,7 @@ section { position: relative; }
 
 /* ------------------------------------------------------------- weird */
 .weird { padding-block: clamp(5rem, 12vh, 9rem); border-block: 1.5px solid var(--ink); background: var(--paper-2); }
+.weird h2 { max-width: none; font-size: clamp(1.3rem, 8.6vw, 5rem); text-wrap: nowrap; } /* two fixed lines; sized so the second fits a phone */
 .weird__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5vw, 4.5rem) clamp(2rem, 6vw, 6rem); margin-top: clamp(2.5rem, 6vh, 4.5rem); }
 .odd h3 { font-size: clamp(2.2rem, 5vw, 4.4rem); margin-bottom: .6rem; transition: color .4s, text-shadow .4s; }
 .odd p { max-width: 26em; margin: 0; }
