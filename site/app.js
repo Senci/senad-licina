@@ -34,6 +34,9 @@
     $("#mail").textContent = C.meta.email;
     $("#cta-cv").href = $("#cta-cv2").href = C.meta.cvFiles[lang];
     $("#nav-cv").href = `cv.html?lang=${lang}`;
+    const li = $("#linkedin");
+    if (C.meta.linkedin) li.href = `https://www.${C.meta.linkedin}/`;
+    else li.hidden = true;
 
     renderStack(t);
 

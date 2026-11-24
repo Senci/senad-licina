@@ -29,7 +29,9 @@
   const block = (title, body) => `<section class="block"><h2>${e(title)}</h2>${body}</section>`;
   const foot = (n) => `<footer class="pfoot"><span>${e(M.name)}${M.website ? ", " + e(M.website) : ""}</span><span>${e(t.cv.page)} ${n}/2</span></footer>`;
 
-  const contact = [M.city, M.email, M.phone, M.website].filter(Boolean).map((x) => `<span>${e(x)}</span>`).join("");
+  const contact =
+    [M.city, M.email, M.phone, M.website].filter(Boolean).map((x) => `<span>${e(x)}</span>`).join("") +
+    (M.linkedin ? `<a href="https://www.${e(M.linkedin)}/">${e(M.linkedin)}</a>` : "");
   const jobs = t.path.jobs;
 
   const page1 = `

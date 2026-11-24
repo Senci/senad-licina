@@ -82,3 +82,5 @@ aside { font-size: 9pt; line-height: 1.42; }
 .fig__rail--r { grid-column: 3; }
 .fig__rail span { writing-mode: vertical-rl; font-family: "Anton", sans-serif; font-size: 9pt; letter-spacing: .05em; }
 .fig__rail--l span { transform: rotate(180deg); }
+
+.head__contact a { color: inherit; text-decoration: none; }

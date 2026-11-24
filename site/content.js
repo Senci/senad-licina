@@ -10,6 +10,7 @@ window.CONTENT = {
     phone: "+49 151 506 705 19", // shown on the CV only, never on the website
     city: "Hamburg",
     website: "", // e.g. "licina.eu". If set, it is printed on the CV.
+    linkedin: "linkedin.com/in/senad-licina", // linked on the website and in the CV header
     showNeuro: true, // false removes the AuDHD lines from site and CV
     cvFiles: { en: "cv/Senad_Licina_CV_EN.pdf", de: "cv/Senad_Licina_CV_DE.pdf" },
   },
