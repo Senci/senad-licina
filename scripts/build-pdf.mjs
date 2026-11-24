@@ -1,5 +1,5 @@
 // Renders site/cv.html to PDF in both languages.
-// Usage: bun install && bunx playwright install chromium && bun run pdf
+// Usage: bun install && bun run setup (once), then bun run pdf
 import { chromium } from "playwright";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";

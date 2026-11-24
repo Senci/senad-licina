@@ -1,2 +1,16 @@
+# dependencies
 node_modules/
+
+# build output, regenerate with `bun run standalone`
+# (site/cv/*.pdf is build output too, but the website links to it, so it is tracked)
+dist/
+
+# local files
+.env
+.env.*
+*.log
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

@@ -1,11 +1,14 @@
 {
   "name": "senad-licina",
+  "description": "Personal website and two-page CV of Senad Ličina, German and English, rendered from one content file.",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "bun --watch scripts/serve.mjs",
+    "setup": "playwright install chromium-headless-shell",
     "pdf": "bun scripts/build-pdf.mjs",
-    "standalone": "bun scripts/build-standalone.mjs"
+    "standalone": "bun scripts/build-standalone.mjs",
+    "build": "bun run pdf && bun run standalone"
   },
   "devDependencies": {
     "playwright": "^1.50.0"
