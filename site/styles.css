@@ -93,6 +93,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .uvswitch__track { width: 2.5rem; height: 1.35rem; border: 1.5px solid var(--ink); border-radius: 99px; position: relative; display: inline-block; transition: background .3s; }
 .uvswitch__knob { position: absolute; top: 2px; left: 2px; width: calc(1.35rem - 7px); aspect-ratio: 1; border-radius: 50%; background: var(--hot); transition: transform .35s var(--ease); }
 .uvswitch[aria-checked="true"] .uvswitch__knob { transform: translateX(1.15rem); box-shadow: 0 0 12px var(--hot), 0 0 2px #fff; }
+/* label stays for screen readers; visually the switch speaks for itself */
+.uvswitch > span[data-t] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
 /* -------------------------------------------------------------- hero */
 .hero {
@@ -389,7 +391,6 @@ section { position: relative; }
 @media (max-width: 800px) {
   body { font-size: 1.05rem; }
   .top__nav a[href="#talk"], .top__sec { display: none; }
-  .uvswitch > span[data-t] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .top { padding-block: .7rem; }
   .hero { padding-top: 5.5rem; align-items: start; }
   .hero__inner { padding-bottom: 0; }

@@ -43,6 +43,7 @@
     $("#uv2 span").textContent = t.weird[uv ? "ctaOff" : "cta"];
     $("#nums").innerHTML = t.numbers.map((x) => `<div class="num"><b data-n="${Number(x.n)}">${Number(x.n)}</b><span>${esc(x.l)}</span></div>`).join("");
     $("#ask-q").placeholder = t.stack.ask.placeholder;
+    $("#uv").title = t.ui.blacklight;
 
     const mail = `mailto:${C.meta.email}`;
     $("#cta-mail").href = mail;
