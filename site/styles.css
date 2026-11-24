@@ -102,7 +102,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   min-height: 100svh;
   display: grid;
   align-items: end;
-  padding: 6.5rem var(--pad) 0;
+  padding: 8.5rem var(--pad) 0; /* keeps a band above the headline for the dot lyrics */
   overflow: hidden;
   border-bottom: 1.5px solid var(--ink);
 }
@@ -138,10 +138,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @keyframes fade { from { opacity: 0; } }
 
 /* ----------------------------------------------- hero pin (chaos to order) */
-@media (min-width: 801px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
-  .pin { height: calc(100svh + 70vh); }
+@media (min-width: 801px) and (min-height: 800px) and (prefers-reduced-motion: no-preference), (min-width: 801px) and (max-width: 1100px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  .pin { height: calc(100svh + 50vh); }
   .pin .hero { position: sticky; top: 0; height: 100svh; }
+  .pin .hero__scroll { display: flex; }
 }
+/* scroll cue: the pinned hero fills the screen, so nothing else says there is more below */
+.hero__scroll { display: none; position: absolute; left: 50%; bottom: .6rem; z-index: 2; transform: translateX(-50%); flex-direction: column; align-items: center; gap: .5rem; padding: .5rem 1rem; font-family: var(--display); font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: opacity .3s; }
+.hero__scroll::after { content: ""; width: 1.5px; height: 2.6rem; background: linear-gradient(currentColor 50%, transparent 0) no-repeat 0 100% / 100% 200%; animation: cue 1.7s var(--ease) infinite; }
+@keyframes cue { to { background-position: 0 -100%; } }
+.scrolled .hero__scroll { opacity: 0; pointer-events: none; }
 .hero__hint { display: none; margin: 1.4rem 0 0; font-size: .85rem; font-weight: 500; color: var(--ink-soft); align-items: center; gap: .5rem; transition: opacity .3s; }
 .hero__hint::before { content: ""; width: .7rem; height: .7rem; border-radius: 50%; background: var(--hot); box-shadow: 0 0 10px var(--hot); }
 @media (hover: hover) and (pointer: fine) and (min-width: 801px) { .hero__hint { display: flex; } }
@@ -162,7 +168,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .torching { user-select: none; -webkit-user-select: none; cursor: none; }
 
 /* ------------------------------------------------------------ numbers */
-.nums { border-bottom: 1.5px solid var(--ink); }
+.nums { border-bottom: 1.5px solid var(--ink); scroll-margin-top: 3.75rem; }
 .nums__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .num { padding: clamp(1.8rem, 5vh, 3.2rem) clamp(1rem, 2.4vw, 2.4rem); border-left: 1.5px solid var(--line); display: flex; flex-direction: column; gap: .7rem; }
 .num:first-child { border-left: 0; padding-left: 0; }
@@ -392,11 +398,12 @@ section { position: relative; }
   body { font-size: 1.05rem; }
   .top__nav a[href="#talk"], .top__sec { display: none; }
   .top { padding-block: .7rem; }
-  .hero { padding-top: 5.5rem; align-items: start; }
+  .hero { align-items: start; }
   .hero__inner { padding-bottom: 0; }
   .hero__sub { max-width: none; }
   .hero__h { font-size: clamp(2.7rem, 14.4vw, 6rem); }
   .hero__cta .btn { flex: 1 1 100%; justify-content: center; }
+  .note--hero { top: auto; bottom: -1.9rem; } /* the band above the headline belongs to the dot lyrics */
   .foot { grid-template-columns: 1fr; }
   .foot > :last-child { justify-self: start; text-align: left; }
   .hero__portrait { position: relative; right: auto; width: min(88vw, 26rem); margin: 1.5rem auto 0; }

@@ -79,7 +79,8 @@ A `\n` in a section title forces a line break there.
 
 - **Two states.** Calm is studio grey and olive, taken from the portrait. Blacklight is the same page in fluorescent inks, with side notes that only show there. The switch is in the top bar and again in the Weird section.
 - **Torch.** In the calm state, holding the mouse button anywhere shows the blacklight version in a circle around the pointer. Mouse only.
-- **Hero.** The dot field starts scattered and settles into a lattice while the hero stays pinned for the first stretch of scrolling. The pointer disturbs it.
+- **Hero.** The dot field starts scattered and settles into a lattice while the hero stays pinned for the first stretch of scrolling. The pointer disturbs it. A "Scroll" cue at the bottom shows there is more below.
+- **Dot lyrics.** At the top of the page the dots write the Free Software Song (lyrics: Richard Stallman, 1993) line by line, typed letter by letter behind a block cursor. Each new line pushes the older ones up and out, like scrolling lyrics. With the sound on, lines start on the beat. The pointer pushes the letters apart. The text is `SONG` in `app.js`; `GLYPHS` has A to Z and basic punctuation.
 - **Ask the stack.** A scripted animation. It sends nothing anywhere and says so in its answer.
 - **Sound.** Under blacklight, a Sound button starts a 145 bpm loop synthesized with Web Audio. There is no audio file, and it never starts by itself.
 - **Top bar.** A progress line and the name of the current section.
