@@ -58,4 +58,8 @@ These came from your old CV and from what I know about your current work. Confir
 
 - Grey is the studio backdrop of the portrait, olive is the shirt. The portrait is cut out (`assets/img/portrait.webp`).
 - Blacklight is the second state: same page, fluorescent inks, side notes that only show under UV, and a 145 bpm pulse in the dot field.
-- The hero field is a lattice (order) with turbulence passing through it (chaos). The pointer disturbs it.
+- The hero field is a lattice (order). It starts scattered (chaos) and settles while you scroll the pinned hero. The pointer disturbs it.
+- Torch: in the calm state, holding the mouse button anywhere shows the blacklight layer in a circle around the pointer.
+- Sound: under blacklight a Sound button starts a synthesized 145 bpm loop (Web Audio in `app.js`, no audio file). It never starts by itself.
+- "Ask the stack" is a scripted animation (`stack.ask` in `content.js`). It calls nothing.
+- The numbers band under the hero reads `numbers` in `content.js`. Swap in real figures when you have them.

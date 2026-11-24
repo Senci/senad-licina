@@ -33,10 +33,19 @@ window.CONTENT = {
       writeMe: "Write to me",
       print: "Print or save as PDF",
       back: "Back to the website",
+      sound: "Sound",
+      torch: "Hold the mouse button anywhere: blacklight torch",
       foot: "No trackers. No cookies. No framework.",
     },
     sections: { stack: "Stack", origin: "2012", path: "Path", weird: "Weird", talk: "Contact" }, // short names for the top bar
     title: "AI Platform and Infrastructure Lead",
+    // the band under the hero. Replace with real figures (GPUs, users, tokens per second) when you have them.
+    numbers: [
+      { n: 0, l: "cloud APIs. No data leaves the building." },
+      { n: 7, l: "layers of the stack, one person responsible." },
+      { n: 2012, l: "the year I started studying AI." },
+      { n: 6, l: "languages, not counting the ones with compilers." },
+    ],
     hero: {
       headline: ["I run AI where", "the cloud isn't", "allowed."],
       sub: "Senad Ličina, Hamburg. I build and operate private AI platforms: language models on our own GPUs, on Kubernetes, behind single sign-on, in networks that never see the internet. I studied AI in 2012. It is not a rebrand.",
@@ -44,6 +53,23 @@ window.CONTENT = {
     stack: {
       title: "The stack I run",
       intro: "Most people in AI work on one of these layers. I am responsible for all of them, from the rack to the person typing a question. Pick a layer.",
+      ask: {
+        label: "Ask the stack",
+        placeholder: "Type any question",
+        send: "Send",
+        title: "Request path",
+        // [layer id, what happens there]; played top to bottom
+        steps: [
+          ["people", "A colleague types a question."],
+          ["identity", "Signed in through Keycloak. Groups checked."],
+          ["platform", "Retrieval over the knowledge bases. Tools chosen."],
+          ["inference", "A quantized open-weight model starts streaming tokens."],
+          ["cluster", "Scheduled on Kubernetes. No internet involved."],
+          ["metal", "Our own GPUs do the work, in our own rack."],
+          ["observability", "Throughput lands on the dashboard."],
+        ],
+        answer: "This one is scripted. The real assistant runs where this website cannot reach it: on our own hardware, behind single sign-on. That is the point.",
+      },
       layers: [
         {
           id: "people",
@@ -254,10 +280,18 @@ window.CONTENT = {
       writeMe: "Schreib mir",
       print: "Drucken oder als PDF sichern",
       back: "Zurück zur Website",
+      sound: "Sound",
+      torch: "Maustaste irgendwo gedrückt halten: Schwarzlicht-Lampe",
       foot: "Keine Tracker. Keine Cookies. Kein Framework.",
     },
     sections: { stack: "Stack", origin: "2012", path: "Weg", weird: "Weird", talk: "Kontakt" },
     title: "AI Platform und Infrastructure Lead",
+    numbers: [
+      { n: 0, l: "Cloud-APIs. Keine Daten verlassen das Haus." },
+      { n: 7, l: "Ebenen im Stack, eine verantwortliche Person." },
+      { n: 2012, l: "das Jahr, in dem ich mit dem KI-Studium begann." },
+      { n: 6, l: "Sprachen, die mit Compiler nicht mitgezählt." },
+    ],
     hero: {
       headline: ["Ich betreibe KI,", "wo die Cloud", "nicht hin darf."],
       sub: "Senad Ličina, Hamburg. Ich baue und betreibe private KI-Plattformen: Sprachmodelle auf eigenen GPUs, auf Kubernetes, hinter Single Sign-on, in Netzen, die das Internet nie sehen. KI habe ich 2012 studiert. Das ist kein Rebranding.",
@@ -265,6 +299,22 @@ window.CONTENT = {
     stack: {
       title: "Der Stack, den ich betreibe",
       intro: "Die meisten in der KI arbeiten auf einer dieser Ebenen. Ich verantworte alle, vom Rack bis zum Menschen, der eine Frage tippt. Wähl eine Ebene.",
+      ask: {
+        label: "Frag den Stack",
+        placeholder: "Irgendeine Frage tippen",
+        send: "Senden",
+        title: "Weg der Anfrage",
+        steps: [
+          ["people", "Jemand im Team tippt eine Frage."],
+          ["identity", "Über Keycloak angemeldet. Gruppen geprüft."],
+          ["platform", "Suche in den Wissensdatenbanken. Tools gewählt."],
+          ["inference", "Ein quantisiertes Open-Weight-Modell streamt die ersten Tokens."],
+          ["cluster", "Auf Kubernetes eingeplant. Ganz ohne Internet."],
+          ["metal", "Unsere eigenen GPUs rechnen, im eigenen Rack."],
+          ["observability", "Der Durchsatz landet auf dem Dashboard."],
+        ],
+        answer: "Das hier ist ein Skript. Der echte Assistent läuft dort, wo diese Website nicht hinkommt: auf eigener Hardware, hinter Single Sign-on. Genau darum geht es.",
+      },
       layers: [
         {
           id: "people",
