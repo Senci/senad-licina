@@ -281,6 +281,8 @@ section { position: relative; }
 .rail { grid-row: 1 / -1; writing-mode: vertical-rl; justify-content: center; padding: 0; font-size: clamp(1.1rem, 1.6vw, 1.4rem); letter-spacing: .04em; }
 .rail--l { grid-column: 1; transform: rotate(180deg); }
 .rail--r { grid-column: 3; }
+/* security: the bar under the whole stack */
+.rail--b { grid-column: 1 / -1; grid-row: 6; writing-mode: horizontal-tb; min-height: 3.4rem; letter-spacing: .3em; }
 .layer:hover, .rail:hover { background: var(--paper-2); }
 .layer[aria-pressed="true"], .rail[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .layer[aria-pressed="true"] small { color: var(--paper); opacity: .75; }

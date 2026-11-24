@@ -98,11 +98,12 @@
     askRun++;
     stackBody.append(detail); // it may sit inside the diagram (mobile accordion)
     const d = $("#diagram");
-    const [idn, obs] = t.stack.rails;
+    const [idn, obs, sec] = t.stack.rails;
     d.innerHTML =
       `<button type="button" class="rail rail--l" data-id="${idn.id}">${esc(idn.name)}</button>` +
       t.stack.layers.map((l, i) => `<button type="button" class="layer" style="grid-row:${i + 1}" data-id="${l.id}"><span>${esc(l.name)}</span><small>${esc(l.tech.split(",").slice(0, 2).join(","))}</small></button>`).join("") +
       `<button type="button" class="rail rail--r" data-id="${obs.id}">${esc(obs.name)}</button>` +
+      `<button type="button" class="rail rail--b" data-id="${sec.id}">${esc(sec.name)}</button>` +
       `<div class="tokens" aria-hidden="true">${Array.from({ length: 14 }, (_, i) => {
         const c = ["var(--olive)", "var(--hot)", "var(--cool)"][i % 3];
         return `<i style="--x:${4 + ((i * 37) % 92)}%;--d:${3.2 + (i % 5) * 0.7}s;--delay:${-(i * 0.61).toFixed(2)}s;--c:${c}"></i>`;

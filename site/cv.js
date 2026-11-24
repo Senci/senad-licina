@@ -17,7 +17,7 @@
       <ul>${j.points.map((p) => `<li>${e(p)}</li>`).join("")}</ul>${extra}
     </article>`;
   // the same stack diagram as on the website, as a figure
-  const [idn, obs] = t.stack.rails;
+  const [idn, obs, sec] = t.stack.rails;
   const fig = `
     <figure class="fig">
       <figcaption>${e(t.stack.title)}</figcaption>
@@ -25,6 +25,7 @@
         <div class="fig__rail fig__rail--l"><span>${e(idn.name)}</span></div>
         ${t.stack.layers.map((l, i) => `<div class="fig__row" style="grid-row:${i + 1}"><b>${e(l.name)}</b><span>${e(l.tech.split(", ").slice(0, 4).join(", "))}</span></div>`).join("")}
         <div class="fig__rail fig__rail--r"><span>${e(obs.name)}</span></div>
+        <div class="fig__rail fig__rail--b"><span>${e(sec.name)}</span></div>
       </div>
     </figure>`;
   const block = (title, body) => `<section class="block"><h2>${e(title)}</h2>${body}</section>`;
