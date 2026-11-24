@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senad Ličina. AI platform and infrastructure lead, Hamburg</title>
+<meta name="description" content="Senad Ličina builds and runs private AI platforms: language models on own GPUs, on Kubernetes, behind single sign-on, in air-gapped networks.">
+<meta property="og:title" content="Senad Ličina. I run AI where the cloud isn't allowed.">
+<meta property="og:image" content="assets/img/headshot.jpg">
+<meta name="theme-color" content="#D9D5D0">
+<link rel="icon" href="assets/img/headshot.jpg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main" data-t="ui.skip">Skip to content</a>
+
+<!-- duotone filter for the portrait in blacklight mode -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <filter id="uv-tone" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values=".33 .5 .17 0 0  .33 .5 .17 0 0  .33 .5 .17 0 0  0 0 0 1 0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.07 0.55 1.00 0.80"/>
+      <feFuncG type="table" tableValues="0.02 0.08 0.30 1.00"/>
+      <feFuncB type="table" tableValues="0.20 0.75 0.78 0.25"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+<header class="top">
+  <a class="top__name" href="#top">Senad Ličina</a>
+  <nav class="top__nav" aria-label="Main">
+    <a href="cv.html" id="nav-cv" data-t="ui.cv">CV</a>
+    <a href="#talk" data-t="ui.contact">Contact</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    </div>
+    <button type="button" class="uvswitch" id="uv" role="switch" aria-checked="false">
+      <span class="uvswitch__track" aria-hidden="true"><span class="uvswitch__knob"></span></span>
+      <span data-t="ui.blacklight">Blacklight</span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <canvas class="hero__field" id="field" aria-hidden="true"></canvas>
+    <div class="hero__inner">
+      <h1 class="hero__h" id="hero-h"></h1>
+      <p class="hero__sub" id="hero-sub"></p>
+      <p class="hero__cta">
+        <a class="btn btn--solid" id="cta-cv" href="#" download data-t="ui.downloadCv">Download CV (PDF)</a>
+        <a class="btn" id="cta-mail" href="#" data-t="ui.writeMe">Write to me</a>
+      </p>
+      <span class="note note--hero" data-t="notes.hero" aria-hidden="true"></span>
+    </div>
+    <figure class="hero__portrait">
+      <img src="assets/img/portrait.webp" srcset="assets/img/portrait-640.webp 640w, assets/img/portrait.webp 1200w" sizes="(max-width: 800px) 80vw, 44vw" width="1200" height="1160" alt="Portrait of Senad Ličina">
+      <span class="note note--portrait" data-t="notes.portrait" aria-hidden="true"></span>
+    </figure>
+  </section>
+
+  <section class="stack wrap" id="stack">
+    <div class="stack__head">
+      <h2 data-t="stack.title"></h2>
+      <p class="lede" data-t="stack.intro"></p>
+      <span class="note note--stack" data-t="notes.stack" aria-hidden="true"></span>
+    </div>
+    <div class="stack__body">
+      <div class="diagram" id="diagram"></div>
+      <article class="detail" id="detail" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section class="origin" id="origin">
+    <div class="wrap origin__grid">
+      <div class="origin__year" id="year" aria-hidden="true">2012</div>
+      <div class="origin__text">
+        <h2 data-t="origin.title"></h2>
+        <div id="origin-text"></div>
+        <span class="note note--origin" data-t="notes.origin" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="path wrap" id="path">
+    <h2 data-t="path.title"></h2>
+    <span class="note note--path" data-t="notes.path" aria-hidden="true"></span>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <section class="weird" id="weird">
+    <div class="wrap">
+      <h2 data-t="weird.title"></h2>
+      <p class="lede" data-t="weird.intro"></p>
+      <div class="weird__list" id="weird-list"></div>
+      <p class="weird__cta">
+        <button type="button" class="btn btn--uv" id="uv2"><span data-t="weird.cta"></span></button>
+      </p>
+    </div>
+  </section>
+
+  <section class="talk wrap" id="talk">
+    <h2 data-t="talk.title"></h2>
+    <ul class="talk__list" id="talk-list"></ul>
+    <p class="talk__closing" data-t="talk.closing"></p>
+    <a class="talk__mail" id="mail" href="#"></a>
+    <span class="note note--talk" data-t="notes.talk" aria-hidden="true"></span>
+    <p class="hero__cta">
+      <a class="btn btn--solid" id="cta-cv2" href="#" download data-t="ui.downloadCv"></a>
+    </p>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  <span>Senad Ličina, Hamburg</span>
+  <span>No trackers. No cookies. No framework.</span>
+</footer>
+
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
