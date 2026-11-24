@@ -43,7 +43,7 @@ window.CONTENT = {
     numbers: [
       { n: 0, l: "cloud APIs. No data leaves the building." },
       { n: 7, l: "layers of the stack, one person responsible." },
-      { n: 2012, l: "the year I started studying AI." },
+      { n: 2007, l: "the year I moved to Linux. Still there." },
       { n: 6, l: "languages, not counting the ones with compilers." },
     ],
     hero: {
@@ -107,7 +107,7 @@ window.CONTENT = {
           id: "identity",
           name: "Identity",
           tech: "Keycloak, OIDC, SAML, Active Directory, RADIUS, OpenBao",
-          text: "Keycloak federated with Active Directory is the single front door to the AI platform and internal apps. I am extending it to network access through Fortinet and RADIUS. Secrets live in OpenBao, not in wikis.",
+          text: "Keycloak federated with Active Directory is the single front door to the AI platform and internal apps. I am extending it to network access through Fortinet and RADIUS. Secrets live in OpenBao, not in wikis. I have done this since my bachelor thesis: an OAuth 2.0 single sign-on for the university's Active Directory, started when the RFC was barely out.",
         },
         {
           id: "observability",
@@ -191,28 +191,30 @@ window.CONTENT = {
         { period: "2013 – 2016", org: "Star Finanz GmbH", what: "Banking software in Java and JavaScript, plus Objective-C and C++" },
         { period: "2012 – 2013", org: "Digital Pioneers N.V.", what: "First backend of the Stuffle marketplace app (Symfony)" },
         { period: "2011 – 2012", org: "Renewable Energy Technology Centre", what: "Funding database for renewable energy projects (Django)" },
-        { period: "2010 – 2011", org: "Universität Hamburg", what: "Tutor for software engineering courses (Java)" },
+        { period: "2010 – 2011", org: "Universität Hamburg", what: "Led exercise groups in software engineering (Java)" },
       ],
     },
     education: {
       title: "Education",
       items: [
         { period: "2012 – 2016", title: "M.Sc. Intelligent Adaptive Systems", org: "Universität Hamburg, international programme", note: "Neural networks, machine learning, robotics, big data" },
-        { period: "2007 – 2013", title: "B.Sc. Informatik", org: "Universität Hamburg", note: "" },
+        { period: "2007 – 2013", title: "B.Sc. Informatik", org: "Universität Hamburg", note: "Thesis: oauth-infrz, OAuth 2.0 single sign-on for the department's Active Directory" },
       ],
     },
     weird: {
-      title: "Weird is a feature",
+      title: "Weird is a feature, not a bug.",
       intro: "Normal people built the systems everyone now wants to replace. Here is what you get with me.",
       neuro: {
         h: "AuDHD",
         t: "My brain collects patterns, locks on to a problem for hours and refuses vague instructions. Language models need exactly that from whoever steers them.",
       },
       items: [
-        { h: "Psytrance", t: "I produce and DJ it. Arranging eight minutes at 145 bpm is systems design with a kick drum." },
+        { h: "Psytrance", t: "I produce and DJ it, and I write audio and signal-processing code on the side. Arranging eight minutes at 145 bpm is systems design with a kick drum." },
         { h: "A Tetris cabinet", t: "Two players, laser-cut, RP2040 and a wall of WS2812B LEDs. I am building it because it should exist." },
         { h: "Jungle ops", t: "I have run servers and networks in the Panamanian rainforest. Your data centre has air conditioning. You will be fine." },
         { h: "Six languages", t: "German, English, Bosnian/Croatian/Serbian, French, Spanish, some Portuguese. Plus the ones with compilers." },
+        { h: "Chaos since 2009", t: "Chaos events since Hacking at Random in 2009, and FOSDEM for the free software. Crypto and security are a habit for me, not a compliance checkbox." },
+        { h: "Jack of all trades", t: "More than a decade of writing it all by hand: backend, frontend, mobile, firmware, audio and signal processing. Coding agents do the typing now. I still know when they are wrong." },
       ],
       cta: "There is a second layer to this page. Switch on the blacklight.",
       ctaOff: "Enough. Lights back on.",
@@ -242,10 +244,10 @@ window.CONTENT = {
       skillsTitle: "Skills",
       skills: [
         { h: "AI platform", t: "LLM serving (vLLM, SGLang), Open WebUI, RAG, tool calling, MCP, coding agents and agent skills, quantization, benchmarking" },
-        { h: "Infrastructure", t: "Kubernetes (RKE2, Helm), Harvester, Docker, Ansible, Linux, GitLab CI/CD, Azure" },
-        { h: "Identity and security", t: "Keycloak, OIDC, SAML, Active Directory, LDAP, RADIUS, OpenBao, GDPR, PSD2" },
+        { h: "Infrastructure", t: "Kubernetes (RKE2, Helm), Harvester, Docker, Ansible, Linux (since 2007), GitLab CI/CD, Azure" },
+        { h: "Identity and security", t: "Keycloak, OAuth 2.0, OIDC, SAML, Active Directory, LDAP, RADIUS, OpenBao, GDPR, PSD2" },
         { h: "Observability", t: "Prometheus, Loki, Grafana, Alloy" },
-        { h: "Software", t: "TypeScript (Vue, React, Node), Python (Django), Java (Spring Boot), PHP (Symfony, Laravel), PostgreSQL" },
+        { h: "Software", t: "TypeScript (Vue, React, Node), Python (Django), Java (Spring Boot), PHP (Symfony, Laravel), C++ (audio, signal processing), PostgreSQL" },
       ],
       languagesTitle: "Languages",
       languages: [
@@ -259,7 +261,7 @@ window.CONTENT = {
       howTitle: "How I work",
       how: "AuDHD. I see patterns fast, go deep for hours and have no patience for vague. It makes me very good with systems, and with the language models that now run on them.",
       offTitle: "Off the clock",
-      off: "Psytrance producer and DJ. Hydroponics, drones, long road trips.",
+      off: "Psytrance producer and DJ. Chaos events since 2009, FOSDEM. Hydroponics, drones, long road trips.",
       buildTitle: "Currently building",
       building: [
         ["LOOPWAR", "Browser game in which music producers battle with the same samples. I build it with coding agents."],
@@ -289,7 +291,7 @@ window.CONTENT = {
     numbers: [
       { n: 0, l: "Cloud-APIs. Keine Daten verlassen das Haus." },
       { n: 7, l: "Ebenen im Stack, eine verantwortliche Person." },
-      { n: 2012, l: "das Jahr, in dem ich mit dem KI-Studium begann." },
+      { n: 2007, l: "das Jahr, in dem ich zu Linux gewechselt bin. Bin geblieben." },
       { n: 6, l: "Sprachen, die mit Compiler nicht mitgezählt." },
     ],
     hero: {
@@ -352,7 +354,7 @@ window.CONTENT = {
           id: "identity",
           name: "Identität",
           tech: "Keycloak, OIDC, SAML, Active Directory, RADIUS, OpenBao",
-          text: "Keycloak mit Active-Directory-Föderation ist die eine Eingangstür zur KI-Plattform und zu internen Anwendungen. Ich erweitere sie gerade auf den Netzwerkzugang über Fortinet und RADIUS. Secrets liegen in OpenBao, nicht im Wiki.",
+          text: "Keycloak mit Active-Directory-Föderation ist die eine Eingangstür zur KI-Plattform und zu internen Anwendungen. Ich erweitere sie gerade auf den Netzwerkzugang über Fortinet und RADIUS. Secrets liegen in OpenBao, nicht im Wiki. Das mache ich seit meiner Bachelorarbeit: ein OAuth-2.0-Single-Sign-on für das Active Directory der Uni, begonnen, als der RFC gerade erschienen war.",
         },
         {
           id: "observability",
@@ -436,28 +438,30 @@ window.CONTENT = {
         { period: "2013 – 2016", org: "Star Finanz GmbH", what: "Banking-Software in Java und JavaScript, dazu Objective-C und C++" },
         { period: "2012 – 2013", org: "Digital Pioneers N.V.", what: "Erstes Backend der Marktplatz-App Stuffle (Symfony)" },
         { period: "2011 – 2012", org: "Renewable Energy Technology Centre", what: "Förderdatenbank für Projekte der erneuerbaren Energien (Django)" },
-        { period: "2010 – 2011", org: "Universität Hamburg", what: "Tutor für Softwareentwicklung (Java)" },
+        { period: "2010 – 2011", org: "Universität Hamburg", what: "Übungsgruppenleiter für Softwareentwicklung (Java)" },
       ],
     },
     education: {
       title: "Ausbildung",
       items: [
         { period: "2012 – 2016", title: "M.Sc. Intelligent Adaptive Systems", org: "Universität Hamburg, internationaler Studiengang", note: "Neuronale Netze, maschinelles Lernen, Robotik, Big Data" },
-        { period: "2007 – 2013", title: "B.Sc. Informatik", org: "Universität Hamburg", note: "" },
+        { period: "2007 – 2013", title: "B.Sc. Informatik", org: "Universität Hamburg", note: "Abschlussarbeit: oauth-infrz, OAuth-2.0-Single-Sign-on für das Active Directory des Fachbereichs" },
       ],
     },
     weird: {
-      title: "Seltsam ist ein Feature",
+      title: "Weird ist ein Feature, kein Bug.",
       intro: "Normale Leute haben die Systeme gebaut, die jetzt alle ersetzen wollen. Das hier bekommst du mit mir.",
       neuro: {
         h: "AuDHS",
         t: "Mein Kopf sammelt Muster, verbeißt sich stundenlang in ein Problem und verweigert vage Ansagen. Genau das brauchen Sprachmodelle von dem, der sie steuert.",
       },
       items: [
-        { h: "Psytrance", t: "Ich produziere und lege auf. Acht Minuten bei 145 bpm zu arrangieren ist Systemdesign mit Kickdrum." },
+        { h: "Psytrance", t: "Ich produziere und lege auf, und nebenbei programmiere ich Audio und Signalverarbeitung. Acht Minuten bei 145 bpm zu arrangieren ist Systemdesign mit Kickdrum." },
         { h: "Ein Tetris-Automat", t: "Zwei Spieler, lasergeschnitten, RP2040 und eine Wand aus WS2812B-LEDs. Ich baue ihn, weil es ihn geben sollte." },
         { h: "Dschungel-Ops", t: "Ich habe Server und Netzwerke im Regenwald von Panama betrieben. Dein Rechenzentrum hat eine Klimaanlage. Das wird schon." },
         { h: "Sechs Sprachen", t: "Deutsch, Englisch, Bosnisch/Kroatisch/Serbisch, Französisch, Spanisch, etwas Portugiesisch. Dazu die mit Compiler." },
+        { h: "Chaos seit 2009", t: "Chaos-Events seit der Hacking at Random 2009, dazu die FOSDEM für freie Software. Krypto und Security sind für mich Gewohnheit, kein Compliance-Häkchen." },
+        { h: "Generalist", t: "Mehr als ein Jahrzehnt alles von Hand geschrieben: Backend, Frontend, Mobile, Firmware, Audio und Signalverarbeitung. Heute tippen Coding Agents. Ich merke trotzdem, wenn sie falsch liegen." },
       ],
       cta: "Diese Seite hat eine zweite Ebene. Mach das Schwarzlicht an.",
       ctaOff: "Genug. Licht wieder an.",
@@ -487,10 +491,10 @@ window.CONTENT = {
       skillsTitle: "Kenntnisse",
       skills: [
         { h: "KI-Plattform", t: "LLM-Serving (vLLM, SGLang), Open WebUI, RAG, Tool Calling, MCP, Coding Agents und Agent Skills, Quantisierung, Benchmarking" },
-        { h: "Infrastruktur", t: "Kubernetes (RKE2, Helm), Harvester, Docker, Ansible, Linux, GitLab CI/CD, Azure" },
-        { h: "Identität und Sicherheit", t: "Keycloak, OIDC, SAML, Active Directory, LDAP, RADIUS, OpenBao, DSGVO, PSD2" },
+        { h: "Infrastruktur", t: "Kubernetes (RKE2, Helm), Harvester, Docker, Ansible, Linux (seit 2007), GitLab CI/CD, Azure" },
+        { h: "Identität und Sicherheit", t: "Keycloak, OAuth 2.0, OIDC, SAML, Active Directory, LDAP, RADIUS, OpenBao, DSGVO, PSD2" },
         { h: "Observability", t: "Prometheus, Loki, Grafana, Alloy" },
-        { h: "Software", t: "TypeScript (Vue, React, Node), Python (Django), Java (Spring Boot), PHP (Symfony, Laravel), PostgreSQL" },
+        { h: "Software", t: "TypeScript (Vue, React, Node), Python (Django), Java (Spring Boot), PHP (Symfony, Laravel), C++ (Audio, Signalverarbeitung), PostgreSQL" },
       ],
       languagesTitle: "Sprachen",
       languages: [
@@ -504,7 +508,7 @@ window.CONTENT = {
       howTitle: "Wie ich arbeite",
       how: "AuDHS. Ich erkenne Muster schnell, gehe stundenlang in die Tiefe und habe keine Geduld für Vages. Das macht mich sehr gut mit Systemen und mit den Sprachmodellen, die jetzt darauf laufen.",
       offTitle: "Nach Feierabend",
-      off: "Psytrance-Produzent und DJ. Hydroponik, Drohnen, lange Roadtrips.",
+      off: "Psytrance-Produzent und DJ. Chaos-Events seit 2009, FOSDEM. Hydroponik, Drohnen, lange Roadtrips.",
       buildTitle: "Baue ich gerade",
       building: [
         ["LOOPWAR", "Browserspiel, in dem Musikproduzenten mit denselben Samples gegeneinander antreten. Ich baue es mit Coding Agents."],
