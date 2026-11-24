@@ -34,6 +34,7 @@ window.CONTENT = {
       print: "Print or save as PDF",
       back: "Back to the website",
     },
+    sections: { stack: "Stack", origin: "2012", path: "Path", weird: "Weird", talk: "Contact" }, // short names for the top bar
     title: "AI Platform and Infrastructure Lead",
     hero: {
       headline: ["I run AI where", "the cloud isn't", "allowed."],
@@ -252,6 +253,7 @@ window.CONTENT = {
       print: "Drucken oder als PDF sichern",
       back: "Zurück zur Website",
     },
+    sections: { stack: "Stack", origin: "2012", path: "Weg", weird: "Weird", talk: "Kontakt" },
     title: "AI Platform und Infrastructure Lead",
     hero: {
       headline: ["Ich betreibe KI,", "wo die Cloud", "nicht hin darf."],

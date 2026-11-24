@@ -66,6 +66,7 @@
 
     $("#talk-list").innerHTML = t.talk.items.map((i) => `<li>${esc(i)}</li>`).join("");
     measureTokens();
+    if (sec) setSection(sec, true);
   }
 
   /* -------------------------------------------------------- the stack */
@@ -195,10 +196,25 @@
 
   /* ------------------------------------------------- scroll-linked bits */
   const tl = $("#timeline");
+  const secEl = $("#sec");
+  const secs = ["stack", "origin", "path", "weird", "talk"].map((id) => document.getElementById(id));
+  let sec = null;
   function onScroll() {
     const r = tl.getBoundingClientRect();
     const p = Math.min(1, Math.max(0, (innerHeight * 0.6 - r.top) / r.height));
     tl.style.setProperty("--p", p.toFixed(4));
+    root.style.setProperty("--sp", Math.min(1, scrollY / Math.max(1, root.scrollHeight - innerHeight)).toFixed(4));
+    const cur = secs.filter((s) => s.getBoundingClientRect().top < innerHeight * 0.4).pop();
+    setSection(cur ? cur.id : null);
+  }
+  function setSection(id, force) {
+    if (id === sec && !force) return;
+    sec = id;
+    secEl.hidden = !id;
+    if (!id) return;
+    secEl.textContent = C[lang].sections[id];
+    secEl.href = "#" + id;
+    if (!reduced && !force) { secEl.classList.remove("swap"); void secEl.offsetWidth; secEl.classList.add("swap"); }
   }
   addEventListener("scroll", onScroll, { passive: true });
 
