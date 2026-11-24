@@ -32,7 +32,7 @@
 
   const contact =
     [M.city, M.email, M.phone, M.website].filter(Boolean).map((x) => `<span>${e(x)}</span>`).join("") +
-    (M.linkedin ? `<a href="https://www.${e(M.linkedin)}/">${e(M.linkedin)}</a>` : "");
+    M.links.filter((l) => l.cv).map((l) => `<a href="${e(l.url)}">${e(l.url.replace(/^https:\/\/(www\.)?|\/$/g, ""))}</a>`).join("");
   const jobs = t.path.jobs;
 
   const page1 = `

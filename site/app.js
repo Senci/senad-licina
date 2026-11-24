@@ -34,9 +34,7 @@
     $("#mail").textContent = C.meta.email;
     $("#cta-cv").href = $("#cta-cv2").href = C.meta.cvFiles[lang];
     $("#nav-cv").href = `cv.html?lang=${lang}`;
-    const li = $("#linkedin");
-    if (C.meta.linkedin) li.href = `https://www.${C.meta.linkedin}/`;
-    else li.hidden = true;
+    $("#links").innerHTML = C.meta.links.map((l) => `<a href="${esc(l.url)}" rel="me noopener" aria-label="${esc(l.label)}" title="${esc(l.label)}"><svg class="ico ico--brand" viewBox="0 0 24 24" aria-hidden="true"><use href="#b-${esc(l.icon)}"/></svg></a>`).join("");
 
     renderStack(t);
 
@@ -111,10 +109,10 @@
       root.dataset.uv = on ? "on" : "off";
       $("#uv").setAttribute("aria-checked", String(on));
       $("#uv2").setAttribute("aria-pressed", String(on));
-      const ico = $('link[rel="icon"]'); // absent in the standalone build
-      if (ico) ico.href = `assets/img/favicon${on ? "-uv" : ""}.svg`;
       if (reduced) requestAnimationFrame(frame);
       $('meta[name="theme-color"]').content = on ? "#10062A" : "#D9D5D0";
+      const ico = $('link[rel="icon"]'); // absent in the standalone build
+      if (ico) ico.href = `assets/img/favicon${on ? "-uv" : ""}.svg`;
     };
     if (document.startViewTransition && !reduced) {
       const r = ev && ev.currentTarget ? ev.currentTarget.getBoundingClientRect() : null;

@@ -10,7 +10,14 @@ window.CONTENT = {
     phone: "+49 151 506 705 19", // shown on the CV only, never on the website
     city: "Hamburg",
     website: "", // e.g. "licina.eu". If set, it is printed on the CV.
-    linkedin: "linkedin.com/in/senad-licina", // linked on the website and in the CV header
+    // profile links in the website footer (icon = a b-<name> symbol in index.html); cv: true also prints the link in the CV header
+    links: [
+      { label: "LinkedIn", icon: "linkedin", url: "https://www.linkedin.com/in/senad-licina/", cv: true },
+      { label: "GitHub", icon: "github", url: "https://github.com/senci", cv: true },
+      { label: "Stack Overflow", icon: "stackoverflow", url: "https://stackoverflow.com/users/1139383/sen%C4%8Di" },
+      { label: "Hugging Face", icon: "huggingface", url: "https://huggingface.co/s3nci" },
+      { label: "SoundCloud", icon: "soundcloud", url: "https://soundcloud.com/s3nci" },
+    ],
     showNeuro: true, // false removes the AuDHD lines from site and CV
     cvFiles: { en: "cv/Senad_Licina_CV_EN.pdf", de: "cv/Senad_Licina_CV_DE.pdf" },
   },

@@ -289,7 +289,9 @@ section { position: relative; }
 :root[data-uv="on"] .talk__mail { color: var(--olive); text-shadow: 0 0 30px rgba(200, 255, 46, .45); }
 
 .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 2rem; padding-block: 1.6rem; border-top: 1.5px solid var(--ink); font-size: .9rem; color: var(--ink-soft); }
-.foot a { padding: .6rem .5rem; margin: -.6rem -.5rem; }
+.foot__links { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; }
+.foot a { display: inline-flex; padding: .6rem .5rem; margin: -.6rem -.5rem; transition: color .2s; }
+.foot a:hover, .foot a:focus-visible { color: var(--olive); }
 
 /* ------------------------------------------- blacklight reveal (View Transitions) */
 ::view-transition-old(root) { animation: none; }

@@ -37,7 +37,7 @@ Switches in `content.js > meta`:
 
 - `showNeuro: false` removes the AuDHD lines from the website and the CV.
 - `website: "licina.eu"` prints your URL in the CV footer and header.
-- `linkedin` is linked in the website footer and the CV header. Empty string removes it.
+- `links` are the profile icons in the website footer. `cv: true` also prints the link in the CV header. A new icon needs a `b-<name>` symbol in `index.html` (outlines from Simple Icons, CC0).
 - The phone number is only ever used in the CV, never on the website.
 
 ## Check before you send it anywhere
