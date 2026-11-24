@@ -51,7 +51,7 @@
     $("#mail").textContent = C.meta.email;
     $("#cta-cv").href = $("#cta-cv2").href = C.meta.cvFiles[lang];
     $("#nav-cv").href = `cv.html?lang=${lang}`;
-    $("#links").innerHTML = C.meta.links.map((l) => `<a href="${esc(l.url)}" rel="me noopener" aria-label="${esc(l.label)}" title="${esc(l.label)}"><svg class="ico ico--brand" viewBox="0 0 24 24" aria-hidden="true"><use href="#b-${esc(l.icon)}"/></svg></a>`).join("");
+    $("#links").innerHTML = C.meta.links.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="me noopener" aria-label="${esc(l.label)}" title="${esc(l.label)}"><svg class="ico ico--brand" viewBox="0 0 24 24" aria-hidden="true"><use href="#b-${esc(l.icon)}"/></svg></a>`).join("");
 
     renderStack(t);
 

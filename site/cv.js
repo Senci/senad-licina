@@ -32,7 +32,7 @@
 
   const contact =
     [M.city, M.email, M.phone, M.website].filter(Boolean).map((x) => `<span>${e(x)}</span>`).join("") +
-    M.links.filter((l) => l.cv).map((l) => `<a href="${e(l.url)}">${e(l.url.replace(/^https:\/\/(www\.)?|\/$/g, ""))}</a>`).join("");
+    M.links.filter((l) => l.cv).map((l) => `<a href="${e(l.url)}" target="_blank" rel="noopener">${e(l.url.replace(/^https:\/\/(www\.)?|\/$/g, ""))}</a>`).join("");
   const jobs = t.path.jobs;
 
   const page1 = `
