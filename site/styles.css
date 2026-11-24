@@ -143,6 +143,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .btn--uv { border-color: var(--hot); color: var(--hot); }
 .btn--uv:hover { box-shadow: 4px 4px 0 var(--hot); }
 
+/* ------------------------------------------------------------- icons */
+.ico { width: 1em; height: 1em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; }
+.ico--brand { width: 1.35rem; height: 1.35rem; fill: currentColor; stroke: none; }
+.ico--down .mv { transition: transform .2s var(--ease); }
+a:hover > .ico--down .mv, a:focus-visible > .ico--down .mv { transform: translateY(2px); }
+
 /* ------------------------------------------- blacklight-only side notes */
 .note {
   position: absolute;

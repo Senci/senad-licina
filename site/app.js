@@ -111,6 +111,8 @@
       root.dataset.uv = on ? "on" : "off";
       $("#uv").setAttribute("aria-checked", String(on));
       $("#uv2").setAttribute("aria-pressed", String(on));
+      const ico = $('link[rel="icon"]'); // absent in the standalone build
+      if (ico) ico.href = `assets/img/favicon${on ? "-uv" : ""}.svg`;
       if (reduced) requestAnimationFrame(frame);
       $('meta[name="theme-color"]').content = on ? "#10062A" : "#D9D5D0";
     };
