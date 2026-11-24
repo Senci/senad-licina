@@ -1,9 +1,10 @@
 /* Renders the two-page A4 CV from content.js. Print it from the browser,
-   or run `npm run pdf` to write both language versions to site/cv/. */
+   or run `bun run pdf` to write both language versions to site/cv/. */
 (() => {
   const C = window.CONTENT, M = C.meta;
   const q = new URLSearchParams(location.search);
-  const lang = C[q.get("lang")] ? q.get("lang") : (navigator.language || "en").toLowerCase().startsWith("de") ? "de" : "en";
+  const pick = (l) => ["de", "en"].find((x) => String(l || "").toLowerCase().startsWith(x));
+  const lang = pick(q.get("lang")) || pick(navigator.language) || "en";
   const t = C[lang];
   const e = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   document.documentElement.lang = lang;
@@ -42,7 +43,7 @@
         <p class="head__title">${e(t.title)}</p>
         <p class="head__contact">${contact}</p>
       </div>
-      <img class="head__img" src="assets/img/portrait.webp" alt="">
+      <img class="head__img" src="assets/img/portrait-640.webp" alt="">
     </header>
     <div class="cols">
       <main>

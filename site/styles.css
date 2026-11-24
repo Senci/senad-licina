@@ -75,7 +75,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .top__name { font-family: var(--display); font-size: 1.25rem; text-decoration: none; letter-spacing: .02em; }
 .top__nav { display: flex; align-items: center; gap: clamp(.7rem, 2vw, 1.6rem); font-size: .95rem; font-weight: 500; }
-.top__nav a { text-decoration: none; }
+.top__nav a { text-decoration: none; padding: .7rem .5rem; margin: -.7rem -.5rem; }
 .top__nav a:hover { text-decoration: underline; }
 
 .lang { display: inline-flex; border: 1.5px solid var(--ink); }
@@ -106,7 +106,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .hero__h .ln { display: block; overflow: hidden; padding-block: .06em; margin-block: -.06em; white-space: nowrap; }
 .hero__h .ln > span { display: block; }
-.hero__sub { max-width: 31em; font-size: clamp(1.05rem, 1.35vw, 1.3rem); }
+.hero__sub { max-width: min(31em, 46vw); font-size: clamp(1.05rem, 1.35vw, 1.3rem); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1.6rem 0 0; }
 
 .hero__portrait {
@@ -283,6 +283,7 @@ section { position: relative; }
 :root[data-uv="on"] .talk__mail { color: var(--olive); text-shadow: 0 0 30px rgba(200, 255, 46, .45); }
 
 .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 2rem; padding-block: 1.6rem; border-top: 1.5px solid var(--ink); font-size: .9rem; color: var(--ink-soft); }
+.foot a { padding: .6rem .5rem; margin: -.6rem -.5rem; }
 
 /* ------------------------------------------- blacklight reveal (View Transitions) */
 ::view-transition-old(root) { animation: none; }
@@ -301,6 +302,7 @@ section { position: relative; }
   .top { padding-block: .7rem; }
   .hero { padding-top: 5.5rem; align-items: start; }
   .hero__inner { padding-bottom: 0; }
+  .hero__sub { max-width: none; }
   .hero__h { font-size: clamp(2.9rem, 15.5vw, 6rem); }
   .hero__portrait { position: relative; right: auto; width: min(88vw, 26rem); margin: 1.5rem auto 0; }
   .stack__body { grid-template-columns: 1fr; }

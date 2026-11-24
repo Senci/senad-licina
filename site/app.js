@@ -10,8 +10,8 @@
 
   /* ---------------------------------------------------------- language */
   const params = new URLSearchParams(location.search);
-  let lang = params.get("lang") || ((navigator.language || "en").toLowerCase().startsWith("de") ? "de" : "en");
-  if (!C[lang]) lang = "en";
+  const pick = (l) => ["de", "en"].find((x) => String(l || "").toLowerCase().startsWith(x));
+  let lang = pick(params.get("lang")) || pick(navigator.language) || "en";
   let selected = "platform"; // which part of the stack is open
 
   function render() {
@@ -110,6 +110,8 @@
       uv = on;
       root.dataset.uv = on ? "on" : "off";
       $("#uv").setAttribute("aria-checked", String(on));
+      $("#uv2").setAttribute("aria-pressed", String(on));
+      if (reduced) requestAnimationFrame(frame);
       $('meta[name="theme-color"]').content = on ? "#10062A" : "#D9D5D0";
     };
     if (document.startViewTransition && !reduced) {
