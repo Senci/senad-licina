@@ -1,5 +1,5 @@
 // Packs the website into one self-contained HTML file (fonts and images inlined).
-// Handy for sending the page as an attachment. Usage: npm run standalone
+// Handy for sending the page as an attachment. Usage: bun run standalone
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";

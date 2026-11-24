@@ -1,5 +1,5 @@
 // Renders site/cv.html to PDF in both languages.
-// Usage: npm install && npx playwright install chromium && npm run pdf
+// Usage: bun install && bunx playwright install chromium && bun run pdf
 import { chromium } from "playwright";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";

@@ -1,6 +1,6 @@
 /*
  * Single source of truth. The website (index.html) and the CV (cv.html)
- * both render from this file. Edit text here, then run `npm run pdf`
+ * both render from this file. Edit text here, then run `bun run pdf`
  * to rebuild the PDFs.
  */
 window.CONTENT = {

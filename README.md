@@ -10,6 +10,7 @@ site/
   cv/                                 the rendered PDFs
   assets/                             fonts (Anton, Fira Sans, both OFL) and the portrait
 scripts/
+  serve.mjs                           static dev server for site/
   build-pdf.mjs                       renders cv.html to PDF in both languages
   build-standalone.mjs                packs the website into a single HTML file
 dist/senad-licina-standalone.html     the packed website
@@ -18,7 +19,8 @@ dist/senad-licina-standalone.html     the packed website
 ## Run it
 
 ```
-npm run dev            # serves site/ on localhost
+bun install
+bun run dev            # serves site/ on http://127.0.0.1:3000 (PORT= to change)
 ```
 
 Or just open `site/index.html`. Useful URLs: `?lang=de`, `?lang=en`, `?uv` (starts with the blacklight on).
@@ -26,10 +28,10 @@ Or just open `site/index.html`. Useful URLs: `?lang=de`, `?lang=en`, `?uv` (star
 ## Change something
 
 1. Edit `site/content.js`. Website and CV both read from it.
-2. `npm install && npx playwright install chromium` (once), then `npm run pdf`.
-3. `npm run standalone` if you want the single-file version again.
+2. `bunx playwright install chromium` (once), then `bun run pdf`.
+3. `bun run standalone` if you want the single-file version again.
 
-Without Node: open `site/cv.html?lang=de` in Chrome and print to PDF (margins: none, background graphics: on).
+Without Bun: open `site/cv.html?lang=de` in Chrome and print to PDF (margins: none, background graphics: on).
 
 Switches in `content.js > meta`:
 
