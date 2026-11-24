@@ -73,7 +73,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   background: color-mix(in srgb, var(--paper) 82%, transparent);
   backdrop-filter: blur(10px);
 }
-.top__name { font-family: var(--display); font-size: 1.25rem; text-decoration: none; letter-spacing: .02em; }
+.top__name { font-family: var(--display); font-size: 1.25rem; text-decoration: none; letter-spacing: .02em; padding-block: .3rem; margin-block: -.3rem; }
 .top__id { display: flex; align-items: baseline; gap: .6rem; min-width: 0; white-space: nowrap; }
 .top__sec { font-family: var(--display); font-size: 1.25rem; letter-spacing: .02em; color: var(--olive); text-decoration: none; }
 .top__sec::before { content: "/"; margin-right: .6rem; color: var(--ink-soft); }
@@ -85,11 +85,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .top__nav a { text-decoration: none; padding: .7rem .5rem; margin: -.7rem -.5rem; }
 .top__nav a:hover { text-decoration: underline; }
 
-.lang { display: inline-flex; border: 1.5px solid var(--ink); }
-.lang button { background: none; border: 0; padding: .2rem .55rem; font-weight: 600; font-size: .85rem; }
+.lang { display: inline-flex; border: 1.5px solid var(--ink); margin-block: -.15rem; }
+.lang button { background: none; border: 0; padding: .35rem .6rem; font-weight: 600; font-size: .85rem; }
 .lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 
-.uvswitch { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; padding: .2rem 0; font-weight: 600; font-size: .9rem; }
+.uvswitch { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; padding: .5rem 0; margin-block: -.3rem; font-weight: 600; font-size: .9rem; }
 .uvswitch__track { width: 2.5rem; height: 1.35rem; border: 1.5px solid var(--ink); border-radius: 99px; position: relative; display: inline-block; transition: background .3s; }
 .uvswitch__knob { position: absolute; top: 2px; left: 2px; width: calc(1.35rem - 7px); aspect-ratio: 1; border-radius: 50%; background: var(--hot); transition: transform .35s var(--ease); }
 .uvswitch[aria-checked="true"] .uvswitch__knob { transform: translateX(1.15rem); box-shadow: 0 0 12px var(--hot), 0 0 2px #fff; }
@@ -138,14 +138,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @keyframes fade { from { opacity: 0; } }
 
 /* ----------------------------------------------- hero pin (chaos to order) */
-@media (min-width: 801px) and (min-height: 800px) and (prefers-reduced-motion: no-preference), (min-width: 801px) and (max-width: 1100px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 801px) and (min-height: 800px) and (min-aspect-ratio: 1/1) and (prefers-reduced-motion: no-preference), (min-width: 801px) and (max-width: 1100px) and (min-height: 700px) and (min-aspect-ratio: 1/1) and (prefers-reduced-motion: no-preference) {
   .pin { height: calc(100svh + 50vh); }
   .pin .hero { position: sticky; top: 0; height: 100svh; }
   .pin .hero__scroll { display: flex; }
 }
-/* scroll cue: the pinned hero fills the screen, so nothing else says there is more below */
-.hero__scroll { display: none; position: absolute; left: 50%; bottom: .6rem; z-index: 2; transform: translateX(-50%); flex-direction: column; align-items: center; gap: .5rem; padding: .5rem 1rem; font-family: var(--display); font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: opacity .3s; }
-.hero__scroll::after { content: ""; width: 1.5px; height: 2.6rem; background: linear-gradient(currentColor 50%, transparent 0) no-repeat 0 100% / 100% 200%; animation: cue 1.7s var(--ease) infinite; }
+@media (min-width: 801px) and (max-aspect-ratio: 1/1) { .hero { min-height: 0; } }
+/* scroll cue: the pinned hero fills the screen, so nothing else says there is more below. Bottom left, clear of the portrait */
+.hero__scroll { display: none; position: absolute; left: calc(var(--pad) - .6rem); bottom: .1rem; z-index: 2; align-items: center; gap: .6rem; padding: .3rem .6rem; font-family: var(--display); font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: opacity .3s; }
+.hero__scroll::after { content: ""; width: 1.5px; height: 1.3rem; background: linear-gradient(currentColor 50%, transparent 0) no-repeat 0 100% / 100% 200%; animation: cue 1.7s var(--ease) infinite; }
 @keyframes cue { to { background-position: 0 -100%; } }
 .scrolled .hero__scroll { opacity: 0; pointer-events: none; }
 .hero__hint { display: none; margin: 1.4rem 0 0; font-size: .85rem; font-weight: 500; color: var(--ink-soft); align-items: center; gap: .5rem; transition: opacity .3s; }
@@ -385,6 +386,19 @@ section { position: relative; }
 .foot > :last-child { justify-self: end; text-align: right; }
 .foot a { display: inline-flex; padding: .6rem .5rem; margin: -.6rem -.5rem; transition: color .2s; }
 .foot a:hover, .foot a:focus-visible { color: var(--olive); }
+.foot__end { display: flex; flex-direction: column; align-items: flex-end; gap: .15rem; }
+.foot__about { font: inherit; color: inherit; background: none; border: 0; padding: .6rem .5rem; margin: -.6rem -.5rem; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
+.foot__about:hover, .foot__about:focus-visible { color: var(--olive); }
+
+/* --------------------------------------------------------- about dialog */
+.about { border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); padding: 0; width: min(44rem, calc(100vw - 2rem)); max-height: min(86vh, 52rem); }
+.about::backdrop { background: rgba(0, 0, 0, .6); }
+.about__in { padding: clamp(1.25rem, 4vw, 2.5rem); }
+.about h2 { font-size: clamp(2rem, 5vw, 3rem); }
+.about h3 { font-size: 1.25rem; margin-top: 1.6rem; color: var(--olive); }
+.about ul { margin: .5rem 0 0; padding-left: 1.1rem; }
+.about li { margin: .3rem 0; line-height: 1.45; }
+.about form { margin-top: 2rem; }
 
 /* ------------------------------------------- blacklight reveal (View Transitions) */
 ::view-transition-old(root) { animation: none; }
@@ -407,7 +421,7 @@ section { position: relative; }
   .hero__cta .btn { flex: 1 1 100%; justify-content: center; }
   .note--hero { top: auto; bottom: -1.9rem; } /* the band above the headline belongs to the dot lyrics */
   .foot { grid-template-columns: 1fr; }
-  .foot > :last-child { justify-self: start; text-align: left; }
+  .foot > :last-child { justify-self: start; text-align: left; align-items: flex-start; }
   .hero__portrait { position: relative; right: auto; width: min(88vw, 26rem); margin: 1.5rem auto 0; }
   .stack__body { grid-template-columns: minmax(0, 1fr); }
   .diagram { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }

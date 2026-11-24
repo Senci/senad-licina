@@ -36,7 +36,33 @@ window.CONTENT = {
       sound: "Sound",
       scroll: "Scroll",
       torch: "Hold the mouse button anywhere: blacklight torch",
-      foot: "No trackers. No cookies. No framework. The dots type the Free Software Song by Richard Stallman.",
+      foot: "No cookies. No tracking scripts. No framework.",
+    },
+    about: {
+      link: "About this site",
+      title: "About this site",
+      close: "Close",
+      sections: [
+        { h: "Made with", items: [
+          "Hand-written HTML, CSS and JavaScript. No framework, no build step, no libraries in the page.",
+          "Bun serves it during development. Playwright prints the CV PDFs from the same content file as this page.",
+          "Written together with coding agents (Claude). I decide, they type.",
+        ] },
+        { h: "Type and icons", items: [
+          "Anton and Fira Sans, both under the SIL Open Font License, served from this site.",
+          "Interface icons are drawn by hand for this page.",
+          "Profile logos: outlines from Simple Icons (CC0). The logos belong to their owners.",
+        ] },
+        { h: "Dots and sound", items: [
+          "The dots type the Free Software Song. Words by Richard Stallman, to the Bulgarian folk tune Sadi moma bela loza. He and the Free Software Foundation claim no copyright on it.",
+          "The beat under blacklight is synthesized in your browser. No audio file is loaded.",
+        ] },
+        { h: "Photo and text", items: ["Portrait and all text: Senad Ličina."] },
+        { h: "Hosting and statistics", items: [
+          "Hosted on Cloudflare. To deliver the page, Cloudflare processes your IP address and counts requests. I look at those totals.",
+          "The page sets no cookies, runs no tracking script and loads nothing from other domains.",
+        ] },
+      ],
     },
     sections: { stack: "Stack", origin: "2012", path: "Path", weird: "Weird", talk: "Contact" }, // short names for the top bar
     title: "AI Platform and Infrastructure Lead",
@@ -294,7 +320,33 @@ window.CONTENT = {
       sound: "Sound",
       scroll: "Scrollen",
       torch: "Maustaste irgendwo gedrückt halten: Schwarzlicht-Lampe",
-      foot: "Keine Tracker. Keine Cookies. Kein Framework. Die Punkte tippen den Free Software Song von Richard Stallman.",
+      foot: "Keine Cookies. Keine Tracking-Skripte. Kein Framework.",
+    },
+    about: {
+      link: "Über diese Seite",
+      title: "Über diese Seite",
+      close: "Schließen",
+      sections: [
+        { h: "Gebaut mit", items: [
+          "Handgeschriebenes HTML, CSS und JavaScript. Kein Framework, kein Build-Schritt, keine Bibliotheken in der Seite.",
+          "Bun liefert sie während der Entwicklung aus. Playwright druckt die Lebenslauf-PDFs aus derselben Inhaltsdatei wie diese Seite.",
+          "Zusammen mit Coding Agents (Claude) geschrieben. Ich entscheide, sie tippen.",
+        ] },
+        { h: "Schrift und Icons", items: [
+          "Anton und Fira Sans, beide unter der SIL Open Font License, von dieser Seite ausgeliefert.",
+          "Die Icons der Oberfläche sind für diese Seite von Hand gezeichnet.",
+          "Profil-Logos: Umrisse aus Simple Icons (CC0). Die Logos gehören ihren Inhabern.",
+        ] },
+        { h: "Punkte und Sound", items: [
+          "Die Punkte tippen den Free Software Song. Text von Richard Stallman, zur bulgarischen Volksmelodie Sadi moma bela loza. Er und die Free Software Foundation beanspruchen kein Urheberrecht daran.",
+          "Der Beat im Schwarzlicht wird in deinem Browser erzeugt. Es wird keine Audiodatei geladen.",
+        ] },
+        { h: "Foto und Text", items: ["Porträt und alle Texte: Senad Ličina."] },
+        { h: "Hosting und Statistik", items: [
+          "Gehostet bei Cloudflare. Um die Seite auszuliefern, verarbeitet Cloudflare deine IP-Adresse und zählt Anfragen. Diese Summen sehe ich mir an.",
+          "Die Seite setzt keine Cookies, führt kein Tracking-Skript aus und lädt nichts von anderen Domains.",
+        ] },
+      ],
     },
     sections: { stack: "Stack", origin: "2012", path: "Weg", weird: "Weird", talk: "Kontakt" },
     title: "AI Platform und Infrastructure Lead",

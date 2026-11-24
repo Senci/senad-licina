@@ -144,8 +144,16 @@
 <footer class="foot wrap">
   <span>Senad Ličina, Hamburg</span>
   <nav class="foot__links" id="links" aria-label="Profiles"></nav>
-  <span data-t="ui.foot">No trackers. No cookies. No framework.</span>
+  <div class="foot__end"><span data-t="ui.foot">No cookies. No tracking scripts. No framework.</span> <button type="button" class="foot__about" id="about-open" data-t="about.link">About this site</button></div>
 </footer>
+
+<dialog class="about" id="about" aria-labelledby="about-h">
+  <div class="about__in">
+    <h2 id="about-h"></h2>
+    <div id="about-body"></div>
+    <form method="dialog"><button class="btn" data-t="about.close">Close</button></form>
+  </div>
+</dialog>
 
 <script src="content.js"></script>
 <script src="app.js"></script>

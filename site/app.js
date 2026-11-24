@@ -19,6 +19,9 @@
   let sec = null; // section named in the top bar
   let jobs = [];
 
+  $("#about-open").addEventListener("click", () => { $("#about").showModal(); $("#about").scrollTop = 0; }); // focus lands on Close at the end, so scroll back up
+  $("#about").addEventListener("click", (e) => { if (e.target === e.currentTarget) e.currentTarget.close(); }); // click on the backdrop
+
   function render() {
     const t = C[lang];
     root.lang = lang;
@@ -28,6 +31,8 @@
       const v = get(t, el.dataset.t);
       if (v != null) el.textContent = v;
     });
+    $("#about-h").textContent = t.about.title;
+    $("#about-body").innerHTML = t.about.sections.map((s) => `<h3>${esc(s.h)}</h3><ul>${s.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`).join("");
     // section headings rise word by word when they scroll in
     $$("main h2[data-t]").forEach((h) => {
       h.classList.add("rise");

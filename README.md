@@ -86,7 +86,7 @@ A `\n` in a section title forces a line break there.
 - **Sound.** Under blacklight, a Sound button starts a 145 bpm loop synthesized with Web Audio. There is no audio file, and it never starts by itself.
 - **Top bar.** A progress line and the name of the current section.
 - **Reduced motion.** With the system setting on, all animation is off and the hero is not pinned.
-- **No trackers, no cookies, no external requests.** Fonts and icons are served from `site/`.
+- **No cookies, no tracking scripts, no external requests.** Fonts and icons are served from `site/`. The footer says so, and its "About this site" dialog lists what the page is made with, the credits, and the hosting (`about` in `content.js`). If an analytics script is ever added, both texts must change.
 
 ## Deploy
 
@@ -113,4 +113,5 @@ Facts that were estimated or carried over from an older CV and are not confirmed
 
 - Fonts: Anton and Fira Sans, both under the SIL Open Font License. The licence texts are in `site/assets/fonts/`.
 - Brand icons in the footer: outlines from Simple Icons (CC0).
+- Dot lyrics: the Free Software Song, words by Richard Stallman. He and the FSF claim no copyright on it.
 - Everything else, including the portrait and all text: Senad Ličina.
