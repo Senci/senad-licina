@@ -98,7 +98,7 @@ window.CONTENT = {
           ["metal", "Our own GPUs in our own rack. There is no cloud API to fall back on."],
           ["observability", "Tokens per second land on the same dashboard as disk space."],
         ],
-        answer: "This one is scripted. The real assistant runs where this website cannot reach it: on our own hardware, behind single sign-on. That is the point.",
+        answer: "No model answered this. The trace above is a script. The real assistant sits on our own hardware behind single sign-on, and this website cannot reach it. That is the point.",
       },
       layers: [
         {
@@ -375,7 +375,7 @@ window.CONTENT = {
           ["metal", "Eigene GPUs im eigenen Rack. Es gibt keine Cloud-API als Rückfallebene."],
           ["observability", "Tokens pro Sekunde landen auf demselben Dashboard wie der Plattenplatz."],
         ],
-        answer: "Das hier ist ein Skript. Der echte Assistent läuft dort, wo diese Website nicht hinkommt: auf eigener Hardware, hinter Single Sign-on. Genau darum geht es.",
+        answer: "Diese Frage hat kein Modell beantwortet. Der Weg oben ist ein Skript. Der echte Assistent steht auf eigener Hardware hinter Single Sign-on, und diese Website kommt nicht an ihn heran. Genau darum geht es.",
       },
       layers: [
         {
