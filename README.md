@@ -26,7 +26,7 @@ site/                     everything that gets deployed
   index.html styles.css app.js    the website
   cv.html    cv.css     cv.js     the CV page
   cv/                     the rendered CV PDFs (linked from the website)
-  assets/fonts/           Anton, Fira Sans
+  assets/fonts/           Anton, Fira Sans, Caveat
   assets/img/             portrait, favicons, link-preview image
 scripts/
   serve.mjs               static dev server for site/
@@ -81,7 +81,7 @@ A `\n` in a section title forces a line break there.
 - **Torch.** In the calm state, holding the mouse button anywhere shows the blacklight version in a circle around the pointer. Mouse only.
 - **Hero.** The dot field starts scattered and settles into a lattice while the hero stays pinned for the first stretch of scrolling. The pointer disturbs it. A "Scroll" cue at the bottom shows there is more below.
 - **Security.** The stack diagram has a third cross-cutting entry, the Security bar under all layers (third item in `stack.rails`). It is also in the CV figure, the request trace and the contact list.
-- **Dot lyrics.** At the top of the page the dots write the Free Software Song (lyrics: Richard Stallman, 1993) line by line, typed letter by letter behind a block cursor. Each new line pushes the older ones up and out, like scrolling lyrics. With the sound on, lines start on the beat. The pointer pushes the letters apart. The text is `SONG` in `app.js`; `GLYPHS` has A to Z and basic punctuation.
+- **Invisible ink.** Everything that only shows under blacklight or in the torch is set in a handwriting font (Caveat): the side notes (`notes` in `content.js`) and five couplets of the Free Software Song (words: Richard Stallman) scribbled under the sections (`meta.song`).
 - **Ask the stack.** A scripted animation. It sends nothing anywhere and says so in its answer.
 - **Sound.** Under blacklight, a Sound button starts a 145 bpm loop synthesized with Web Audio. There is no audio file, and it never starts by itself.
 - **Top bar.** A progress line and the name of the current section.
@@ -111,7 +111,7 @@ Facts that were estimated or carried over from an older CV and are not confirmed
 
 ## Credits
 
-- Fonts: Anton and Fira Sans, both under the SIL Open Font License. The licence texts are in `site/assets/fonts/`.
+- Fonts: Anton, Fira Sans and Caveat, all under the SIL Open Font License. The licence texts are in `site/assets/fonts/`. Caveat is the 700 weight of the variable font from google/fonts, cut to Latin with `fonttools varLib.instancer` and `pyftsubset --flavor=woff`.
 - Brand icons in the footer: outlines from Simple Icons (CC0).
-- Dot lyrics: the Free Software Song, words by Richard Stallman. He and the FSF claim no copyright on it.
+- Handwritten lyrics: the Free Software Song, words by Richard Stallman. He and the FSF claim no copyright on it.
 - Everything else, including the portrait and all text: Senad Ličina.

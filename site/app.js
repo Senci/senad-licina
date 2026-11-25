@@ -31,6 +31,7 @@
       const v = get(t, el.dataset.t);
       if (v != null) el.textContent = v;
     });
+    $$("[data-song]").forEach((el) => { el.innerHTML = C.meta.song[el.dataset.song].map(esc).join("<br>"); }); // esc() output only
     $("#about-h").textContent = t.about.title;
     $("#about-body").innerHTML = t.about.sections.map((s) => `<h3>${esc(s.h)}</h3><ul>${s.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`).join("");
     // section headings rise word by word when they scroll in
@@ -196,7 +197,8 @@
       const r = ev && ev.currentTarget ? ev.currentTarget.getBoundingClientRect() : null;
       root.style.setProperty("--vx", (r ? r.left + r.width / 2 : innerWidth - 60) + "px");
       root.style.setProperty("--vy", (r ? r.top + r.height / 2 : 30) + "px");
-      document.startViewTransition(apply).finished.catch(() => {}); // an aborted transition still applies the state
+      const vt = document.startViewTransition(apply); // an aborted transition (resize, tab switch) still applies the state
+      for (const k of ["ready", "finished", "updateCallbackDone"]) vt[k].catch(() => {});
     } else apply();
   }
   $("#uv").addEventListener("click", (e) => setUV(!uv, e));
@@ -225,7 +227,7 @@
     layer.dataset.uv = "on";
     layer.setAttribute("aria-hidden", "true");
     layer.inert = true;
-    for (const ch of main.children) layer.append(ch.cloneNode(true));
+    for (const ch of [...main.children, $(".foot"), $(".top")]) layer.append(ch.cloneNode(true)); // the footer follows main in the flow, the bar is fixed
     $$("[id]", layer).forEach((el) => el.removeAttribute("id"));
     $$("[aria-live]", layer).forEach((el) => el.removeAttribute("aria-live"));
     $$(".swap", layer).forEach((el) => el.classList.remove("swap"));
@@ -369,126 +371,17 @@
       for (let x = gap / 2; x < W; x += gap) {
         // scattered start: the lattice has to be earned
         const sx = boot ? x + (Math.random() - 0.5) * 220 : x, sy = boot ? y + (Math.random() - 0.5) * 220 : y;
-        pts.push({ hx: x, hy: y, x: sx, y: sy, vx: 0, vy: 0, k: (Math.random() * 3) | 0, c: 0, ds: 1.5, ma: 1 });
+        pts.push({ hx: x, hy: y, x: sx, y: sy, vx: 0, vy: 0, k: (Math.random() * 3) | 0, c: 0 });
       }
-    mPts = []; mChars = []; mNext = performance.now() + 1800; mBeats = 0;
-  }
-
-  // The scattered dots keep writing the Free Software Song (lyrics: Richard Stallman, 1993) line by line,
-  // typed letter by letter, in a 5x7 dot matrix between the top bar and the headline. Lines scroll up like lyrics.
-  const GLYPHS = {
-    A: "01110100011000111111100011000110001", B: "11110100011000111110100011000111110", C: "01110100011000010000100001000101110",
-    D: "11110100011000110001100011000111110", E: "11111100001000011110100001000011111", F: "11111100001000011110100001000010000",
-    G: "01110100011000010111100011000101111", H: "10001100011000111111100011000110001", I: "11111001000010000100001000010011111",
-    J: "00111000100001000010000101001001100", K: "10001100101010011000101001001010001", L: "10000100001000010000100001000011111",
-    M: "10001110111010110101100011000110001", N: "10001110011010110011100011000110001", O: "01110100011000110001100011000101110",
-    P: "11110100011000111110100001000010000", Q: "01110100011000110001101011001001101", R: "11110100011000111110101001001010001",
-    S: "01111100001000001110000010000111110", T: "11111001000010000100001000010000100", U: "10001100011000110001100011000101110",
-    V: "10001100011000110001100010101000100", W: "10001100011000110101101011101110001", X: "10001100010101000100010101000110001",
-    Y: "10001100010101000100001000010000100", Z: "11111000010001000100010001000011111", "'": "00100001000100000000000000000000000",
-    ",": "00000000000000000000001000010001000", ".": "00000000000000000000000000000000100", "!": "00100001000010000100001000000000100",
-    ";": "00000001000000000000001000010001000",
-  };
-  const SONG = `Join us now and share the software;
-You'll be free, hackers, you'll be free.
-Join us now and share the software;
-You'll be free, hackers, you'll be free.
-
-Hoarders can get piles of money,
-That is true, hackers, that is true.
-But they cannot help their neighbors;
-That's not good, hackers, that's not good.
-
-When we have enough free software
-At our call, hackers, at our call,
-We'll kick out those dirty licenses
-Ever more, hackers, ever more.
-
-Join us now and share the software;
-You'll be free, hackers, you'll be free.
-Join us now and share the software;
-You'll be free, hackers, you'll be free.
-`.toUpperCase().split("\n"); // an empty entry is a pause between verses
-  const CHAR_MS = 42; // typewriter pace
-  let mPts = [], mIdx = 0, mNext = 0, mBeats = 0, mChars = [], mLineT = 0, mStep = 0;
-  function messageTick(t) {
-    if (t < mNext) { mBeats = 0; return; }
-    if (sndOn && !mBeats) return; // with the sound on, a line starts on the beat
-    if (mIdx === 0 && mPts.length) release(mPts, 1); // the song starts over
-    const text = SONG[mIdx];
-    if (text) compose(text, t);
-    mIdx = (mIdx + 1) % SONG.length;
-    mNext = t + (text ? text.length * CHAR_MS + 2400 : mIdx ? 1200 : 4500); // time to read a line before the next one pushes it up
-    mBeats = 0;
-  }
-  // Lays one line out at the bottom of the band between top bar and headline; older lines scroll up and leave.
-  function compose(text, t) {
-    const words = text.split(" ");
-    const small = W < 700;
-    const pad = parseFloat(getComputedStyle(hero).paddingLeft) || 20;
-    const avail = W - 2 * pad;
-    const top = $(".top").offsetHeight + 6, bottom = $("#hero-h").getBoundingClientRect().top - hero.getBoundingClientRect().top - 10;
-    const step = Math.min(7, avail / (small ? 125 : 251), (bottom - top) / 6); // desktop: every line fits one row. phone: lines wrap
-    const pitch = step * (small ? 9 : 10);
-    if (step < 2.1) return;
-    const max = avail / step, rows = [[]];
-    let used = -1;
-    words.forEach((w, i) => {
-      const u = w.length * 6;
-      if (used + u > max && rows[rows.length - 1].length) { rows.push([]); used = -1; }
-      rows[rows.length - 1].push(i);
-      used += u + 4;
-    });
-    // scroll what is there up by the height of the new line
-    for (const p of mPts) { p.my -= rows.length * pitch; p.ry -= rows.length * pitch; p.ma = 0.4; }
-    release(mPts.filter((p) => p.ry < top - 1), 2);
-    const ink = uv ? mIdx % 3 : 1; // olive in the calm state, a different fluorescent ink per line under blacklight
-    const free = pts.filter((p) => !p.m).map((p) => [Math.random(), p]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
-    mChars = []; mLineT = t; mStep = step;
-    rows.forEach((row, r) => {
-      const y = bottom - (rows.length - 1 - r) * pitch - 6 * step;
-      let x = pad;
-      for (const wi of row) {
-        [...words[wi]].forEach((ch) => {
-          const at = t + mChars.length * CHAR_MS;
-          mChars.push([x, y]);
-          [...(GLYPHS[ch] || "")].forEach((bit, i) => {
-            const p = bit === "1" && free.pop();
-            if (!p) return;
-            p.m = true; p.k0 = p.k; p.k = ink; p.ma = 1;
-            p.mx = x + (i % 5) * step; p.my = y + ((i / 5) | 0) * step; p.ry = y; p.cx = x; p.sp = step; p.on = false;
-            p.ms = Math.max(1.6, step * 0.52);
-            p.t0 = at + Math.random() * 50;
-            mPts.push(p);
-          });
-          x += 6 * step;
-        });
-        mChars.push([x, y]); // the space
-        x += 4 * step;
-      }
-    });
-  }
-  // how: 0 = just let go, 1 = burst outward, 2 = drift off upward
-  function release(list, how) {
-    const cx = list.reduce((s, p) => s + p.mx, 0) / (list.length || 1), cy = list.reduce((s, p) => s + p.my, 0) / (list.length || 1);
-    for (const p of list) {
-      p.m = false; p.k = p.k0; p.ma = 1;
-      if (how === 1) {
-        const a = Math.atan2(p.my - cy, (p.mx - cx) * 0.35) + (Math.random() - 0.5) * 1.2, v = 5 + Math.random() * 10;
-        p.vx += Math.cos(a) * v; p.vy += Math.sin(a) * v;
-      } else if (how === 2) { p.vx += (Math.random() - 0.5) * 9; p.vy -= 2 + Math.random() * 7; }
-    }
-    mPts = mPts.filter((p) => p.m);
   }
 
   function frame(t) {
     if (running) {
       ctx.clearRect(0, 0, W, H);
-      if (!reduced) messageTick(t);
       const base = Math.max(uv ? 0.55 : 0, boot);
       const wave = ((t * 0.00007) % 1.7) - 0.35;
       let kick = 0;
-      if (sndOn) { while (due.length && due[0] <= ac.currentTime) { due.shift(); kick = 1.6; mBeats++; } }
+      if (sndOn) { while (due.length && due[0] <= ac.currentTime) { due.shift(); kick = 1.6; } }
       else if (uv && t - lastBeat > 60000 / 145) { lastBeat = t; kick = 1.6; }
       const cols = uv ? UVCOLS : ["#191B14", "#4A5632", "#191B14"];
       const calm = 1 - boot * 0.85; // while scattered: weak pull home, fainter dots so the headline stays readable
@@ -499,35 +392,19 @@ You'll be free, hackers, you'll be free.
           if (p.k !== k) continue;
           const u = (p.hx / W) * 0.75 + (p.hy / H) * 0.25;
           const dw = (u - wave) / 0.11;
-          const dx = p.x - mx, dy = p.y - my, d2p = dx * dx + dy * dy;
+          const dx = p.x - mx, dy = p.y - my;
           let c = base + Math.exp(-dw * dw) * 0.9 + Math.exp(-(dx * dx + dy * dy) / 16000) * 1.2;
           if (c > 1) c = 1;
           p.c += (c - p.c) * 0.08;
           const a = Math.sin(p.x * 0.006 + t * 0.0004) * Math.cos(p.y * 0.007 - t * 0.0003) * 6.283;
-          // message dots are held on their letter at the top and released to the lattice as the hero settles
-          const hold = p.m && t >= p.t0 ? 1 : 0;
-          if (hold && !p.on) { p.on = true; p.x = p.cx + Math.random() * 5 * p.sp; p.y = p.ry + Math.random() * 7 * p.sp; p.vx = p.vy = 0; } // the cursor sprays the letter out
-          const gx = hold ? p.hx + (p.mx - p.hx) * hold : p.hx, gy = hold ? p.hy + (p.my - p.hy) * hold : p.hy;
-          const pull = hold ? 0.2 : (0.012 + 0.07 * (1 - p.c)) * calm;
-          const turb = p.c * 0.42 * (1 - hold);
-          p.vx = (p.vx + Math.cos(a) * turb + (gx - p.x) * pull) * 0.9;
-          p.vy = (p.vy + Math.sin(a) * turb + (gy - p.y) * pull) * 0.9;
-          if (hold && d2p < 8100) { const d = Math.sqrt(d2p) + 1, f = (1 - d / 90) * 2.4; p.vx += (dx / d) * f; p.vy += (dy / d) * f; } // the pointer pushes letters apart
+          const pull = (0.012 + 0.07 * (1 - p.c)) * calm;
+          p.vx = (p.vx + Math.cos(a) * p.c * 0.42 + (p.hx - p.x) * pull) * 0.9;
+          p.vy = (p.vy + Math.sin(a) * p.c * 0.42 + (p.hy - p.y) * pull) * 0.9;
           if (kick) { const ex = p.x - W * 0.5, ey = p.y - H * 0.55, d = Math.hypot(ex, ey) + 1; p.vx += (ex / d) * kick; p.vy += (ey / d) * kick; }
           p.x += p.vx; p.y += p.vy;
-          const s = hold ? 1.5 + (p.ms - 1.5) * hold * (0.8 + 0.2 * Math.sin(t * 0.006 - p.mx * 0.02)) : 1.5 + p.c * 1.9 * (1 - boot * 0.6);
-          p.ds = s;
-          ctx.globalAlpha = Math.max(uv ? 0.35 + p.c * 0.55 : 0.26 + p.c * 0.5 * (1 - boot * 0.7), hold * p.ma);
+          const s = 1.5 + p.c * 1.9 * (1 - boot * 0.6);
+          ctx.globalAlpha = uv ? 0.35 + p.c * 0.55 : 0.26 + p.c * 0.5 * (1 - boot * 0.7);
           ctx.fillRect(p.x - s / 2, p.y - s / 2, s, s);
-        }
-      }
-      if (mChars.length) {
-        const i = Math.floor((t - mLineT) / CHAR_MS), end = i >= mChars.length;
-        const [cx, cy] = mChars[Math.min(i, mChars.length - 1)];
-        if (!end || Math.floor(t / 260) % 2) {
-          ctx.globalAlpha = 0.8;
-          ctx.fillStyle = uv ? UVCOLS[1] : "#4A5632";
-          ctx.fillRect(cx + (end ? 4 * mStep : 0) - mStep * 0.3, cy - mStep * 0.3, 4.6 * mStep, 6.6 * mStep);
         }
       }
       ctx.globalAlpha = 1;
@@ -538,7 +415,7 @@ You'll be free, hackers, you'll be free.
           ctx2.fillStyle = UVCOLS[k];
           for (const p of pts) {
             if (p.k !== k) continue;
-            const s = Math.max(1.5 + p.c * 1.9, p.ds);
+            const s = 1.5 + p.c * 1.9;
             ctx2.globalAlpha = 0.45 + p.c * 0.45;
             ctx2.fillRect(p.x - s / 2, p.y - s / 2, s, s);
           }

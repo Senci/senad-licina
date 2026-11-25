@@ -4,6 +4,7 @@
    chaos  = blacklight: deep violet, fluorescent inks
 ------------------------------------------------------------------- */
 
+@font-face { font-family: "Caveat"; font-weight: 700; src: url("assets/fonts/Caveat-Bold.woff") format("woff"); font-display: swap; }
 @font-face { font-family: "Anton"; src: url("assets/fonts/Anton-Regular.woff") format("woff"); font-display: swap; }
 @font-face { font-family: "Fira Sans"; font-weight: 400; src: url("assets/fonts/FiraSans-Regular.woff") format("woff"); font-display: swap; }
 @font-face { font-family: "Fira Sans"; font-weight: 400; font-style: italic; src: url("assets/fonts/FiraSans-Italic.woff") format("woff"); font-display: swap; }
@@ -24,6 +25,7 @@
 
   --display: "Anton", "Haettenschweiler", "Impact", sans-serif;
   --text: "Fira Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive; /* the invisible ink */
   --pad: clamp(1.25rem, 4vw, 4rem);
   --ease: cubic-bezier(.2, .8, .2, 1);
   color-scheme: light;
@@ -102,7 +104,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   min-height: 100svh;
   display: grid;
   align-items: end;
-  padding: 8.5rem var(--pad) 0; /* keeps a band above the headline for the dot lyrics */
+  padding: 6.5rem var(--pad) 0;
   overflow: hidden;
   border-bottom: 1.5px solid var(--ink);
 }
@@ -158,13 +160,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
    A blacklight copy of the page, clipped to a circle around the pointer. */
 @property --tr { syntax: "<length>"; inherits: true; initial-value: 0px; }
 .uvlayer {
-  position: absolute; inset: 0 0 auto 0; z-index: 10; pointer-events: none;
+  position: absolute; inset: 0 0 auto 0; z-index: 21; pointer-events: none;
   background: var(--paper); color: var(--ink);
   clip-path: circle(var(--tr) at var(--tx, 50%) var(--ty, 0));
   transition: --tr .3s var(--ease);
 }
 .uvlayer.on { --tr: 190px; }
-.torch { position: fixed; left: -190px; top: -190px; width: 380px; height: 380px; border-radius: 50%; z-index: 11; pointer-events: none; opacity: 0; transition: opacity .3s; box-shadow: 0 0 0 1.5px #C8FF2E, 0 0 46px 4px rgba(200, 255, 46, .4), inset 0 0 70px rgba(255, 62, 200, .22); }
+.torch { position: fixed; left: -190px; top: -190px; width: 380px; height: 380px; border-radius: 50%; z-index: 22; pointer-events: none; opacity: 0; transition: opacity .3s; box-shadow: 0 0 0 1.5px #C8FF2E, 0 0 46px 4px rgba(200, 255, 46, .4), inset 0 0 70px rgba(255, 62, 200, .22); }
 .torch.on { opacity: 1; }
 .torching { user-select: none; -webkit-user-select: none; cursor: none; }
 
@@ -235,7 +237,7 @@ a:hover > .ico--down .mv, a:focus-visible > .ico--down .mv { transform: translat
 /* ------------------------------------------- blacklight-only side notes */
 .note {
   position: absolute;
-  font: italic 700 clamp(.95rem, 1.3vw, 1.2rem)/1.2 var(--text);
+  font: 700 clamp(1.2rem, 1.6vw, 1.5rem)/1.05 var(--hand);
   color: var(--note);
   transform: rotate(-4deg);
   opacity: 0; pointer-events: none; user-select: none;
@@ -250,6 +252,10 @@ a:hover > .ico--down .mv, a:focus-visible > .ico--down .mv { transform: translat
 .note--origin { right: 0; bottom: -2.5rem; }
 .note--path { right: var(--pad); top: calc(clamp(5rem, 12vh, 9rem) + 1.5rem); color: var(--cool); transform: rotate(4deg); }
 .note--talk { right: var(--pad); top: 40%; transform: rotate(-7deg); }
+@media (max-width: 1000px) { .note--talk, .note--stack { position: static; display: block; margin-top: 1rem; white-space: normal; } }
+/* song couplets: scribbled into the empty space under each section */
+.note--song { left: var(--pad); bottom: .9rem; transform: rotate(-2deg); transform-origin: 0 100%; color: var(--hot); font-size: clamp(1.1rem, 1.7vw, 1.6rem); }
+.note--song[data-song="1"], .note--song[data-song="3"] { transform: rotate(1.5deg); color: var(--cool); }
 
 /* ------------------------------------------------------------- stack */
 section { position: relative; }
@@ -414,12 +420,11 @@ section { position: relative; }
   body { font-size: 1.05rem; }
   .top__nav a[href="#talk"], .top__sec { display: none; }
   .top { padding-block: .7rem; }
-  .hero { align-items: start; }
+  .hero { padding-top: 5.5rem; align-items: start; }
   .hero__inner { padding-bottom: 0; }
   .hero__sub { max-width: none; }
   .hero__h { font-size: clamp(2.7rem, 14.4vw, 6rem); }
   .hero__cta .btn { flex: 1 1 100%; justify-content: center; }
-  .note--hero { top: auto; bottom: -1.9rem; } /* the band above the headline belongs to the dot lyrics */
   .foot { grid-template-columns: 1fr; }
   .foot > :last-child { justify-self: start; text-align: left; align-items: flex-start; }
   .hero__portrait { position: relative; right: auto; width: min(88vw, 26rem); margin: 1.5rem auto 0; }
@@ -441,7 +446,9 @@ section { position: relative; }
   .job { grid-template-columns: 1fr; gap: .2rem; }
   .row { grid-template-columns: 1fr; gap: 0; }
   .weird__list { grid-template-columns: 1fr; }
-  .note--path, .note--talk, .note--stack { position: static; display: block; margin-top: 1rem; white-space: normal; }
+  .note--path { position: static; display: block; margin-top: 1rem; white-space: normal; }
+  .note--hero { top: -1.8rem; }
+  .origin { padding-bottom: 7.5rem; } /* room for the side note and the song couplet */
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -18,6 +18,14 @@ window.CONTENT = {
       { label: "Hugging Face", icon: "huggingface", url: "https://huggingface.co/s3nci" },
       { label: "SoundCloud", icon: "soundcloud", url: "https://soundcloud.com/s3nci" },
     ],
+    // the Free Software Song (words: Richard Stallman), handwritten into the page margins, visible under blacklight only
+    song: [
+      ["Join us now and share the software;", "You'll be free, hackers, you'll be free."],
+      ["Hoarders can get piles of money,", "That is true, hackers, that is true."],
+      ["But they cannot help their neighbors;", "That's not good, hackers, that's not good."],
+      ["When we have enough free software", "At our call, hackers, at our call,"],
+      ["We'll kick out those dirty licenses", "Ever more, hackers, ever more."],
+    ],
     showNeuro: true, // false removes the AuDHD lines from site and CV
     cvFiles: { en: "cv/Senad_Licina_CV_EN.pdf", de: "cv/Senad_Licina_CV_DE.pdf" },
   },
@@ -49,12 +57,12 @@ window.CONTENT = {
           "Written together with coding agents (Claude). I decide, they type.",
         ] },
         { h: "Type and icons", items: [
-          "Anton and Fira Sans, both under the SIL Open Font License, served from this site.",
+          "Anton, Fira Sans and the handwriting Caveat, all under the SIL Open Font License, served from this site.",
           "Interface icons are drawn by hand for this page.",
           "Profile logos: outlines from Simple Icons (CC0). The logos belong to their owners.",
         ] },
-        { h: "Dots and sound", items: [
-          "The dots type the Free Software Song. Words by Richard Stallman, to the Bulgarian folk tune Sadi moma bela loza. He and the Free Software Foundation claim no copyright on it.",
+        { h: "Lyrics and sound", items: [
+          "The handwriting you find under blacklight is the Free Software Song. Words by Richard Stallman, to the Bulgarian folk tune Sadi moma bela loza. He and the Free Software Foundation claim no copyright on it.",
           "The beat under blacklight is synthesized in your browser. No audio file is loaded.",
         ] },
         { h: "Photo and text", items: ["Portrait and all text: Senad Ličina."] },
@@ -333,12 +341,12 @@ window.CONTENT = {
           "Zusammen mit Coding Agents (Claude) geschrieben. Ich entscheide, sie tippen.",
         ] },
         { h: "Schrift und Icons", items: [
-          "Anton und Fira Sans, beide unter der SIL Open Font License, von dieser Seite ausgeliefert.",
+          "Anton, Fira Sans und die Handschrift Caveat, alle unter der SIL Open Font License, von dieser Seite ausgeliefert.",
           "Die Icons der Oberfläche sind für diese Seite von Hand gezeichnet.",
           "Profil-Logos: Umrisse aus Simple Icons (CC0). Die Logos gehören ihren Inhabern.",
         ] },
-        { h: "Punkte und Sound", items: [
-          "Die Punkte tippen den Free Software Song. Text von Richard Stallman, zur bulgarischen Volksmelodie Sadi moma bela loza. Er und die Free Software Foundation beanspruchen kein Urheberrecht daran.",
+        { h: "Liedtext und Sound", items: [
+          "Die Handschrift, die du im Schwarzlicht findest, ist der Free Software Song. Text von Richard Stallman, zur bulgarischen Volksmelodie Sadi moma bela loza. Er und die Free Software Foundation beanspruchen kein Urheberrecht daran.",
           "Der Beat im Schwarzlicht wird in deinem Browser erzeugt. Es wird keine Audiodatei geladen.",
         ] },
         { h: "Foto und Text", items: ["Porträt und alle Texte: Senad Ličina."] },
