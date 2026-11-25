@@ -47,7 +47,6 @@
     $("#hero-h").innerHTML = t.hero.headline.map((l) => `<span class="ln"><span>${esc(l)}</span></span>`).join("");
     $("#hero-sub").textContent = t.hero.sub;
     $("#uv2 span").textContent = t.weird[uv ? "ctaOff" : "cta"];
-    $("#nums").innerHTML = t.numbers.map((x) => `<div class="num"><b data-n="${Number(x.n)}">${Number(x.n)}</b><span>${esc(x.l)}</span></div>`).join("");
     $("#ask-q").placeholder = t.stack.ask.placeholder;
     $("#uv").title = t.ui.blacklight;
 
@@ -143,13 +142,12 @@
     if (tk) tk.style.setProperty("--h", tk.offsetHeight + "px");
   }
 
-  // "Ask the stack": a scripted request travels through every layer, then an answer streams back
+  // "Follow one question": a scripted request travels through every layer, one decision per stop, then an answer streams back
   const wait = (ms) => new Promise((r) => setTimeout(r, reduced ? 0 : ms));
   $("#ask").addEventListener("submit", async (e) => {
     e.preventDefault();
     const input = $("#ask-q");
-    const q = input.value.trim();
-    if (!q) return;
+    const q = input.value.trim() || input.placeholder; // empty field: follow the sample question
     const run = ++askRun;
     const t = C[lang].stack;
     const names = Object.fromEntries([...t.layers, ...t.rails].map((x) => [x.id, x.name]));
@@ -479,10 +477,6 @@
     new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); if (!reduced) fn(); } }, { threshold }).observe(el);
   // the year rewinds from today to 2012
   once(yearEl, 0.5, () => { const from = new Date().getFullYear(); tween(1500, (k) => { yearEl.textContent = Math.round(from + (2012 - from) * k); }); });
-  // the numbers count in (zero counts down)
-  once($("#nums"), 0.4, () =>
-    tween(1200, (k) => $$("#nums b").forEach((b) => { const n = +b.dataset.n, from = n ? Math.max(0, n - 24) : 12; b.textContent = Math.round(from + (n - from) * k); }))
-  );
 
   /* --------------------------------------------------------------- go */
   render();

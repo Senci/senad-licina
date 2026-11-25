@@ -66,7 +66,6 @@ What lives where in `content.js`:
 | `meta.phone` | CV only, never on the website. |
 | `meta.links` | Profile icons in the website footer. `cv: true` also prints the link in the CV header. A new icon needs a `b-<name>` symbol in `index.html`. |
 | `<lang>.sections` | Short section names for the top bar. |
-| `<lang>.numbers` | The band of large figures under the hero. |
 | `<lang>.stack` | The stack diagram. `stack.ask` is the script for "Ask the stack". |
 | `<lang>.path`, `<lang>.education` | Jobs, earlier roles, degrees. Website timeline and CV. |
 | `<lang>.weird`, `<lang>.talk` | Website only. |
@@ -107,7 +106,7 @@ Facts that were estimated or carried over from an older CV and are not confirmed
 - [ ] Sparkassen Innovation Hub is 2016 to 2020. An older draft said 2020 to 2022.
 - [ ] Plath details (hardware, Harvester/RKE2, the internal assistant) may be named publicly.
 - [ ] The thesis is described as single sign-on for "the department's Active Directory".
-- [ ] The numbers band has no platform figures yet (GPUs, users, tokens per second). Real ones would be stronger than the current four.
+- [ ] The page has no platform figures (GPUs, users, tokens per second). Real ones would strengthen the stack section.
 
 ## Credits
 

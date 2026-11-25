@@ -94,6 +94,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .uvswitch { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; padding: .5rem 0; margin-block: -.3rem; font-weight: 600; font-size: .9rem; }
 .uvswitch__track { width: 2.5rem; height: 1.35rem; border: 1.5px solid var(--ink); border-radius: 99px; position: relative; display: inline-block; transition: background .3s; }
 .uvswitch__knob { position: absolute; top: 2px; left: 2px; width: calc(1.35rem - 7px); aspect-ratio: 1; border-radius: 50%; background: var(--hot); transition: transform .35s var(--ease); }
+/* nothing labels the switch, so it calls for attention three times after load */
+@media (prefers-reduced-motion: no-preference) { .uvswitch[aria-checked="false"] .uvswitch__track { animation: lure 2s ease-out 3.5s 3; } }
+@keyframes lure { from { box-shadow: 0 0 0 0 var(--hot); } to { box-shadow: 0 0 0 .9rem transparent; } }
 .uvswitch[aria-checked="true"] .uvswitch__knob { transform: translateX(1.15rem); box-shadow: 0 0 12px var(--hot), 0 0 2px #fff; }
 /* label stays for screen readers; visually the switch speaks for itself */
 .uvswitch > span[data-t] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -170,17 +173,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .torch.on { opacity: 1; }
 .torching { user-select: none; -webkit-user-select: none; cursor: none; }
 
-/* ------------------------------------------------------------ numbers */
-.nums { border-bottom: 1.5px solid var(--ink); scroll-margin-top: 3.75rem; }
-.nums__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.num { padding: clamp(1.8rem, 5vh, 3.2rem) clamp(1rem, 2.4vw, 2.4rem); border-left: 1.5px solid var(--line); display: flex; flex-direction: column; gap: .7rem; }
-.num:first-child { border-left: 0; padding-left: 0; }
-.num b { font-family: var(--display); font-weight: 400; font-size: clamp(3.4rem, 8.5vw, 8rem); line-height: .85; font-variant-numeric: tabular-nums; transition: color .4s, text-shadow .4s; }
-.num span { font-size: .98rem; line-height: 1.35; color: var(--ink-soft); max-width: 17em; }
-[data-uv="on"] .num:nth-child(4n+1) b { color: var(--olive); text-shadow: 0 0 26px rgba(200, 255, 46, .55); }
-[data-uv="on"] .num:nth-child(4n+2) b { color: var(--hot); text-shadow: 0 0 26px rgba(255, 62, 200, .55); }
-[data-uv="on"] .num:nth-child(4n+3) b { color: var(--cool); text-shadow: 0 0 26px rgba(55, 232, 255, .55); }
-[data-uv="on"] .num:nth-child(4n+4) b { color: #FF9A3D; text-shadow: 0 0 26px rgba(255, 154, 61, .55); }
 
 /* --------------------------------------------- headings rise word by word */
 .rise .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-block: .08em; margin-block: -.08em; }
@@ -259,7 +251,7 @@ a:hover > .ico--down .mv, a:focus-visible > .ico--down .mv { transform: translat
 
 /* ------------------------------------------------------------- stack */
 section { position: relative; }
-.stack { padding-block: clamp(5rem, 12vh, 9rem); }
+.stack { padding-block: clamp(5rem, 12vh, 9rem); scroll-margin-top: -1rem; }
 .stack__head { position: relative; }
 .stack__body {
   display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -438,9 +430,6 @@ section { position: relative; }
   .diagram .detail h3 { display: none; }
   .trace li { grid-template-columns: 1.4rem minmax(0, 1fr); }
   .trace li span { grid-column: 2; }
-  .nums__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .num:nth-child(odd) { border-left: 0; padding-left: 0; }
-  .num:nth-child(n+3) { border-top: 1.5px solid var(--line); }
   .snd span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .origin__grid { grid-template-columns: 1fr; }
   .job { grid-template-columns: 1fr; gap: .2rem; }

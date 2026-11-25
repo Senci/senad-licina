@@ -6,7 +6,7 @@
 <title>Senad Ličina. AI platform and infrastructure lead, Hamburg</title>
 <meta name="description" content="Senad Ličina builds and runs private AI platforms: language models on own GPUs, on Kubernetes, behind single sign-on, in air-gapped networks, with security built into every layer.">
 <meta property="og:title" content="Senad Ličina. I run AI where the cloud isn't allowed.">
-<meta property="og:image" content="assets/img/headshot.jpg">
+<meta property="og:image" content="https://licina.eu/assets/img/headshot.jpg">
 <meta name="theme-color" content="#D9D5D0">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css">
@@ -62,7 +62,8 @@
       <h1 class="hero__h" id="hero-h"></h1>
       <p class="hero__sub" id="hero-sub"></p>
       <p class="hero__cta">
-        <a class="btn btn--solid" id="cta-cv" href="#" download target="_blank" rel="noopener"><span data-t="ui.downloadCv">Download CV (PDF)</span><svg class="ico ico--down" viewBox="0 0 16 16" aria-hidden="true"><path class="mv" d="M8 1.5v9M4 7l4 4 4-4"/><path d="M2.5 14.25h11"/></svg></a>
+        <a class="btn btn--solid" href="#stack"><span data-t="ui.explore">Explore the stack</span><svg class="ico ico--down" viewBox="0 0 16 16" aria-hidden="true"><path class="mv" d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></a>
+        <a class="btn" id="cta-cv" href="#" download target="_blank" rel="noopener"><span data-t="ui.downloadCv">Download CV (PDF)</span><svg class="ico ico--down" viewBox="0 0 16 16" aria-hidden="true"><path class="mv" d="M8 1.5v9M4 7l4 4 4-4"/><path d="M2.5 14.25h11"/></svg></a>
         <a class="btn" id="cta-mail" href="#"><span data-t="ui.writeMe">Write to me</span><svg class="ico ico--mail" viewBox="0 0 16 16" aria-hidden="true"><path class="mv" d="M1.75 3.75h12.5v8.5H1.75zM1.75 4L8 9l6.25-5"/></svg></a>
       </p>
       <p class="hero__hint" data-t="ui.torch" aria-hidden="true"></p>
@@ -72,13 +73,9 @@
       <img src="assets/img/portrait.webp" srcset="assets/img/portrait-640.webp 640w, assets/img/portrait.webp 1200w" sizes="(max-width: 800px) 80vw, 44vw" width="1200" height="1160" alt="Portrait of Senad Ličina">
       <span class="note note--portrait" data-t="notes.portrait" aria-hidden="true"></span>
     </figure>
-    <a class="hero__scroll" href="#numbers" data-t="ui.scroll">Scroll</a>
+    <a class="hero__scroll" href="#stack" data-t="ui.scroll">Scroll</a>
   </section>
   </div>
-
-  <section class="nums" id="numbers">
-    <div class="wrap nums__grid" id="nums"></div>
-  </section>
 
   <section class="stack wrap" id="stack">
     <div class="stack__head">
@@ -92,7 +89,7 @@
         <form class="ask" id="ask">
           <label class="ask__label" for="ask-q" data-t="stack.ask.label"></label>
           <div class="ask__row">
-            <input id="ask-q" type="text" autocomplete="off" maxlength="120" required>
+            <input id="ask-q" type="text" autocomplete="off" maxlength="120">
             <button type="submit" class="btn btn--solid" data-t="stack.ask.send"></button>
           </div>
         </form>
