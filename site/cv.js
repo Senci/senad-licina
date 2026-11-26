@@ -53,7 +53,7 @@
       </main>
       <aside>
         ${block(t.education.title, t.education.items.map((x) => `<div class="edu"><b>${e(x.title)}</b><span>${e(x.org)}</span><span class="when">${e(x.period)}</span>${x.note ? `<span class="muted">${e(x.note)}</span>` : ""}</div>`).join(""))}
-        ${block(t.cv.skillsTitle, t.cv.skills.map((s) => `<div class="skill"><b>${e(s.h)}</b><span>${e(s.t)}</span></div>`).join(""))}
+        ${block(t.cv.skillsTitle, t.cv.skills.filter((s) => !s.page2).map((s) => `<div class="skill"><b>${e(s.h)}</b><span>${e(s.t)}</span></div>`).join(""))}
       </aside>
     </div>
     ${foot(1)}
@@ -64,9 +64,10 @@
     <div class="cols">
       <main>
         <section class="block"><h2>${e(t.cv.experience)}</h2>${jobs.slice(1).map((j) => job(j)).join("")}</section>
-        ${block(t.path.earlierTitle, t.path.earlier.map((x) => `<div class="row"><span class="when">${e(x.period)}</span><span><b>${e(x.org)}</b>. ${e(x.what)}</span></div>`).join(""))}
+        ${block(t.path.earlierTitle, t.path.earlier.map((x) => `<div class="row"><span class="when">${e(x.period)}</span><span><b>${e(x.org)}</b>${x.org.endsWith(".") ? "" : "."} ${e(x.what)}</span></div>`).join(""))}
       </main>
       <aside>
+        ${t.cv.skills.filter((s) => s.page2).map((s) => block(s.h, `<p>${e(s.t)}</p>`)).join("")}
         ${block(t.cv.languagesTitle, t.cv.languages.map(([a, b]) => `<div class="lng"><b>${e(a)}</b><span>${e(b)}</span></div>`).join(""))}
         ${M.showNeuro ? block(t.cv.howTitle, `<p>${e(t.cv.how)}</p>`) : ""}
         ${block(t.cv.buildTitle, t.cv.building.map(([a, b]) => `<div class="skill"><b>${e(a)}</b><span>${e(b)}</span></div>`).join(""))}

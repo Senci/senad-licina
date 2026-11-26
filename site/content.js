@@ -313,7 +313,7 @@ window.CONTENT = {
         { h: "Infrastructure", t: "Linux since 2007 (RHEL/Rocky, Ubuntu, Debian, SUSE), Kubernetes (RKE2, Rancher, Fleet, Helm), Harvester, Podman, Docker, Ansible, Packer, OpenTofu (Terraform), GitLab CI/CD, Azure" },
         { h: "Security and identity", t: "SELinux, rootless containers, PKI, OpenBao (Vault), hardening (BSI, CIS, STIG), risk analysis (BSI 200-3), CVE triage, Keycloak, OAuth 2.0, OIDC, SAML, Active Directory, RADIUS, GDPR, PSD2" },
         { h: "Observability", t: "Prometheus, Alertmanager, Loki, Grafana, Grafana Alloy" },
-        { h: "Software", t: "TypeScript (Vue, React, Node), Python (Django), Java (Spring Boot), PHP (Symfony, Laravel), C++ (audio, signal processing), PostgreSQL" },
+        { h: "Software", t: "TypeScript (Vue, React, Node), Python (Django), Java (Spring Boot), PHP (Symfony, Laravel), C++ (audio, signal processing), PostgreSQL", page2: true },
       ],
       languagesTitle: "Languages",
       languages: [
@@ -615,7 +615,7 @@ window.CONTENT = {
         { h: "Infrastruktur", t: "Linux seit 2007 (RHEL/Rocky, Ubuntu, Debian, SUSE), Kubernetes (RKE2, Rancher, Fleet, Helm), Harvester, Podman, Docker, Ansible, Packer, OpenTofu (Terraform), GitLab CI/CD, Azure" },
         { h: "Security und Identität", t: "SELinux, Rootless-Container, PKI, OpenBao (Vault), Härtung (BSI, CIS, STIG), Risikoanalyse (BSI 200-3), CVE-Triage, Keycloak, OAuth 2.0, OIDC, SAML, Active Directory, RADIUS, DSGVO, PSD2" },
         { h: "Observability", t: "Prometheus, Alertmanager, Loki, Grafana, Grafana Alloy" },
-        { h: "Software", t: "TypeScript (Vue, React, Node), Python (Django), Java (Spring Boot), PHP (Symfony, Laravel), C++ (Audio, Signalverarbeitung), PostgreSQL" },
+        { h: "Software", t: "TypeScript (Vue, React, Node), Python (Django), Java (Spring Boot), PHP (Symfony, Laravel), C++ (Audio, Signalverarbeitung), PostgreSQL", page2: true },
       ],
       languagesTitle: "Sprachen",
       languages: [
