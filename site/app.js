@@ -45,7 +45,7 @@
       else riseIO.observe(h);
     });
     $$("#lang span").forEach((s) => s.classList.toggle("on", s.dataset.lang === lang));
-    $("#lang").setAttribute("aria-label", t.ui.langSwitch);
+    $("#lang").setAttribute("aria-label", `DE EN, ${t.ui.langSwitch}`); // starts with the visible text (WCAG 2.5.3)
 
     $("#hero-h").innerHTML = t.hero.headline.map((l) => `<span class="ln"><span>${esc(l)}</span></span>`).join("");
     $("#hero-sub").textContent = t.hero.sub;
