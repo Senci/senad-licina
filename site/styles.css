@@ -87,9 +87,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .top__nav a { text-decoration: none; padding: .7rem .5rem; margin: -.7rem -.5rem; }
 .top__nav a:hover { text-decoration: underline; }
 
-.lang { display: inline-flex; border: 1.5px solid var(--ink); margin-block: -.15rem; }
-.lang button { background: none; border: 0; padding: .35rem .6rem; font-weight: 600; font-size: .85rem; }
-.lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.lang { display: inline-flex; border: 1.5px solid var(--ink); margin-block: -.15rem; padding: 0; background: none; color: inherit; cursor: pointer; }
+.lang span { padding: .35rem .6rem; font-weight: 600; font-size: .85rem; transition: background .25s, color .25s; }
+.lang span.on { background: var(--ink); color: var(--paper); }
+.lang:hover span:not(.on) { text-decoration: underline; }
 
 .uvswitch { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; padding: .5rem 0; margin-block: -.3rem; font-weight: 600; font-size: .9rem; }
 .uvswitch__track { width: 2.5rem; height: 1.35rem; border: 1.5px solid var(--ink); border-radius: 99px; position: relative; display: inline-block; transition: background .3s; }
@@ -240,11 +241,12 @@ a:hover > .ico--down .mv, a:focus-visible > .ico--down .mv { transform: translat
 .note--hero { right: 0; top: -1.4rem; position: absolute; color: var(--cool); }
 .hero__inner { position: relative; }
 .note--portrait { left: 30%; top: 74%; transform: rotate(-7deg); color: var(--olive); }
+.note--start { right: 0; bottom: -.5rem; color: var(--olive); transform: rotate(-3deg); }
 .note--stack { right: 0; bottom: -.5rem; color: var(--cool); transform: rotate(3deg); }
 .note--origin { right: 0; bottom: -2.5rem; }
 .note--path { right: var(--pad); top: calc(clamp(5rem, 12vh, 9rem) + 1.5rem); color: var(--cool); transform: rotate(4deg); }
 .note--talk { right: var(--pad); top: 40%; transform: rotate(-7deg); }
-@media (max-width: 1000px) { .note--talk, .note--stack { position: static; display: block; margin-top: 1rem; white-space: normal; } }
+@media (max-width: 1000px) { .note--talk, .note--stack, .note--start { position: static; display: block; margin-top: 1rem; white-space: normal; } }
 /* song couplets: scribbled into the empty space under each section */
 .note--song { left: var(--pad); bottom: .9rem; transform: rotate(-2deg); transform-origin: 0 100%; color: var(--hot); font-size: clamp(1.1rem, 1.7vw, 1.6rem); }
 .note--song[data-song="1"], .note--song[data-song="3"] { transform: rotate(1.5deg); color: var(--cool); }
@@ -326,6 +328,19 @@ section { position: relative; }
 
 /* -------------------------------------------------------------- path */
 .path { padding-block: clamp(5rem, 12vh, 9rem); }
+.start { padding-block: clamp(5rem, 12vh, 9rem) 0; }
+.start__head { position: relative; }
+.start__uses { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); margin-top: clamp(2.5rem, 6vh, 4rem); }
+.use { border-top: 1.5px solid var(--ink); padding-top: 1rem; }
+.use h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); margin-bottom: .5rem; }
+.use p { margin: 0; color: var(--ink-soft); }
+.start__how { margin-top: clamp(2.5rem, 6vh, 4rem); max-width: 46rem; }
+.start__how ol { padding-left: 1.4rem; margin: .8rem 0 0; }
+.start__how li { padding: .35rem 0; font-size: clamp(1.05rem, 1.5vw, 1.25rem); }
+.start__how li::marker { color: var(--olive); font-weight: 700; }
+.start__tools { color: var(--ink-soft); margin-top: 1.2rem; }
+@media (max-width: 1000px) { .start__uses { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .start__uses { grid-template-columns: 1fr; } }
 .timeline { position: relative; margin-top: clamp(2rem, 5vh, 4rem); padding-left: clamp(1.4rem, 3vw, 2.5rem); }
 .timeline::before, .timeline::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--line); }
 .timeline::after { background: var(--olive); transform-origin: top; transform: scaleY(var(--p, 0)); }

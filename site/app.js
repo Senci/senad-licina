@@ -42,7 +42,8 @@
       if (reduced) h.classList.add("in");
       else riseIO.observe(h);
     });
-    $$(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+    $$("#lang span").forEach((s) => s.classList.toggle("on", s.dataset.lang === lang));
+    $("#lang").setAttribute("aria-label", t.ui.langSwitch);
 
     $("#hero-h").innerHTML = t.hero.headline.map((l) => `<span class="ln"><span>${esc(l)}</span></span>`).join("");
     $("#hero-sub").textContent = t.hero.sub;
@@ -87,6 +88,8 @@
     const odd = (o, cls = "") => `<div class="odd ${cls}"><h3>${esc(o.h)}</h3><p>${esc(o.t)}</p></div>`;
     $("#weird-list").innerHTML = (C.meta.showNeuro ? odd(t.weird.neuro, "odd--neuro") : "") + t.weird.items.map((o) => odd(o)).join("");
 
+    $("#start-uses").innerHTML = t.start.items.map((u) => `<div class="use"><h3>${esc(u.h)}</h3><p>${esc(u.t)}</p></div>`).join("");
+    $("#start-steps").innerHTML = t.start.steps.map((s) => `<li>${esc(s)}</li>`).join("");
     $("#talk-list").innerHTML = t.talk.items.map((i) => `<li>${esc(i)}</li>`).join("");
     measureTokens();
     if (sec) setSection(sec, true);
@@ -202,15 +205,13 @@
   $("#uv").addEventListener("click", (e) => setUV(!uv, e));
   $("#uv2").addEventListener("click", (e) => setUV(!uv, e));
 
-  $$(".lang button").forEach((b) =>
-    b.addEventListener("click", () => {
-      lang = b.dataset.lang;
-      const p = new URLSearchParams(location.search);
-      p.set("lang", lang);
-      try { history.replaceState(null, "", "?" + p + location.hash); } catch (_) {}
-      render();
-    })
-  );
+  $("#lang").addEventListener("click", () => {
+    lang = lang === "de" ? "en" : "de";
+    const p = new URLSearchParams(location.search);
+    p.set("lang", lang);
+    try { history.replaceState(null, "", "?" + p + location.hash); } catch (_) {}
+    render();
+  });
 
   /* ------------------------------------------------------------- torch
      In the calm state, holding the mouse button turns the pointer into a UV lamp:
@@ -431,7 +432,7 @@
   const tl = $("#timeline");
   const secEl = $("#sec");
   const yearEl = $("#year");
-  const secs = ["stack", "origin", "path", "weird", "talk"].map((id) => document.getElementById(id));
+  const secs = ["start", "stack", "origin", "path", "weird", "talk"].map((id) => document.getElementById(id));
   function onScroll() {
     // hero: chaos settles into order over the pinned stretch (or the first half screen where it is not pinned)
     if (!reduced) {

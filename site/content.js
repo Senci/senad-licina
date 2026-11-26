@@ -43,6 +43,7 @@ window.CONTENT = {
       print: "Print or save as PDF",
       back: "Back to the website",
       sound: "Sound",
+      langSwitch: "Auf Deutsch umschalten",
       scroll: "Scroll",
       torch: "Hold the mouse button anywhere: blacklight torch",
       foot: "No cookies. No tracking scripts. No framework.",
@@ -73,11 +74,28 @@ window.CONTENT = {
         ] },
       ],
     },
-    sections: { stack: "Stack", origin: "2012", path: "Path", weird: "Weird", talk: "Contact" }, // short names for the top bar
+    sections: { start: "Start", stack: "Stack", origin: "2012", path: "Path", weird: "Weird", talk: "Contact" }, // short names for the top bar
     title: "AI Platform and Infrastructure Lead",
     hero: {
       headline: ["I run AI where", "the cloud isn't", "allowed."],
-      sub: "AI Platform and Infrastructure Lead in Hamburg. I build and operate private AI platforms: language models on our own GPUs, on Kubernetes, behind single sign-on, in networks that never see the internet.",
+      sub: "AI Platform and Infrastructure Lead in Hamburg. I build and operate private AI platforms: language models on our own GPUs, on Kubernetes, behind single sign-on, in networks that never see the internet. And I help companies start small: one use case, standard tools, a result you can measure.",
+    },
+    start: {
+      title: "Start small. Measure. Then decide.",
+      intro: "AI does not have to start with GPU servers. Most companies get the first return from one clear use case on a standard tool they often already pay for. I pick the cheapest setup your data allows.",
+      items: [
+        { h: "Answers from your documents", t: "Handbooks, contracts, product data, the wiki. People ask in plain language and get the passage with its source." },
+        { h: "Mail and tickets", t: "Reply drafts, sorted inboxes, summaries of long threads. People check and send, the model types." },
+        { h: "Meetings and minutes", t: "Transcript, decisions and to-dos from every call, filed where the team already works." },
+        { h: "Quotes and paperwork", t: "Data from PDFs and forms into the ERP, offers compared, documents checked against a list." },
+      ],
+      stepsTitle: "How it goes",
+      steps: [
+        "A workshop: one use case, and the number it has to beat.",
+        "A pilot on a standard tool, with real users, in weeks.",
+        "Scale it if the number moved. Stop it if it did not.",
+      ],
+      tools: "Standard where it fits: Microsoft 365 Copilot, ChatGPT Enterprise, Azure OpenAI or Mistral with EU hosting. Own hardware where it has to be.",
     },
     stack: {
       title: "The stack I run",
@@ -258,6 +276,7 @@ window.CONTENT = {
     talk: {
       title: "Talk to me if",
       items: [
+        "you want to start with AI without turning it into a big project, and want to know which standard tool is enough.",
         "you need language models running on your own hardware, and they must not phone home.",
         "your AI project is stuck between a demo and something compliance will sign.",
         "you want SSO, access control and audit around AI from someone who has built both sides.",
@@ -268,6 +287,7 @@ window.CONTENT = {
     },
     notes: {
       hero: "also: 145 bpm",
+      start: "no GPU rack required",
       portrait: "yes, the shirt is the brand colour",
       stack: "turtles all the way down, but documented",
       origin: "before it was cool. it was never cool.",
@@ -321,6 +341,7 @@ window.CONTENT = {
       print: "Drucken oder als PDF sichern",
       back: "Zurück zur Website",
       sound: "Sound",
+      langSwitch: "Switch to English",
       scroll: "Scrollen",
       torch: "Maustaste irgendwo gedrückt halten: Schwarzlicht-Lampe",
       foot: "Keine Cookies. Keine Tracking-Skripte. Kein Framework.",
@@ -351,11 +372,28 @@ window.CONTENT = {
         ] },
       ],
     },
-    sections: { stack: "Stack", origin: "2012", path: "Weg", weird: "Weird", talk: "Kontakt" },
+    sections: { start: "Einstieg", stack: "Stack", origin: "2012", path: "Weg", weird: "Weird", talk: "Kontakt" },
     title: "AI Platform und Infrastructure Lead",
     hero: {
       headline: ["Ich betreibe KI,", "wo die Cloud", "nicht hin darf."],
-      sub: "AI Platform und Infrastructure Lead in Hamburg. Ich baue und betreibe private KI-Plattformen: Sprachmodelle auf eigenen GPUs, auf Kubernetes, hinter Single Sign-on, in Netzen, die das Internet nie sehen.",
+      sub: "AI Platform und Infrastructure Lead in Hamburg. Ich baue und betreibe private KI-Plattformen: Sprachmodelle auf eigenen GPUs, auf Kubernetes, hinter Single Sign-on, in Netzen, die das Internet nie sehen. Und ich helfe Firmen, klein anzufangen: ein Anwendungsfall, Standardwerkzeuge, ein messbares Ergebnis.",
+    },
+    start: {
+      title: "Klein anfangen. Messen. Dann entscheiden.",
+      intro: "KI muss nicht mit GPU-Servern anfangen. Den ersten Nutzen holen die meisten Firmen aus einem klaren Anwendungsfall mit einem Standardwerkzeug, für das sie oft schon bezahlen. Ich wähle das günstigste Setup, das eure Daten erlauben.",
+      items: [
+        { h: "Antworten aus euren Dokumenten", t: "Handbücher, Verträge, Produktdaten, das Wiki. Mitarbeitende fragen in normaler Sprache und bekommen die Stelle samt Quelle." },
+        { h: "Mails und Tickets", t: "Antwortentwürfe, sortierte Postfächer, Zusammenfassungen langer Verläufe. Menschen prüfen und senden, das Modell tippt." },
+        { h: "Meetings und Protokolle", t: "Mitschrift, Entscheidungen und To-dos aus jedem Termin, abgelegt dort, wo das Team ohnehin arbeitet." },
+        { h: "Angebote und Papierkram", t: "Daten aus PDFs und Formularen ins ERP, Angebote verglichen, Unterlagen gegen eine Checkliste geprüft." },
+      ],
+      stepsTitle: "So läuft es",
+      steps: [
+        "Ein Workshop: ein Anwendungsfall und die Zahl, die er schlagen muss.",
+        "Ein Pilot mit einem Standardwerkzeug und echten Nutzern, in Wochen.",
+        "Ausbauen, wenn sich die Zahl bewegt hat. Beenden, wenn nicht.",
+      ],
+      tools: "Standard, wo es passt: Microsoft 365 Copilot, ChatGPT Enterprise, Azure OpenAI oder Mistral mit EU-Hosting. Eigene Hardware, wo es sein muss.",
     },
     stack: {
       title: "Der Stack, den ich betreibe",
@@ -535,6 +573,7 @@ window.CONTENT = {
     talk: {
       title: "Schreib mir, wenn",
       items: [
+        "ihr mit KI anfangen wollt, ohne ein Großprojekt daraus zu machen, und wissen wollt, welches Standardwerkzeug reicht.",
         "Sprachmodelle auf eurer eigenen Hardware laufen sollen und nicht nach Hause telefonieren dürfen.",
         "euer KI-Projekt zwischen Demo und etwas feststeckt, das die Compliance unterschreibt.",
         "ihr SSO, Zugriffskontrolle und Audit rund um KI braucht, von jemandem, der beide Seiten gebaut hat.",
@@ -545,6 +584,7 @@ window.CONTENT = {
     },
     notes: {
       hero: "außerdem: 145 bpm",
+      start: "ganz ohne GPU-Rack",
       portrait: "ja, das Shirt ist die Markenfarbe",
       stack: "Schildkröten bis ganz unten, aber dokumentiert",
       origin: "bevor es cool war. es war nie cool.",
