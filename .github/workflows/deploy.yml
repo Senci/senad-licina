@@ -1,10 +1,10 @@
-# Builds the site and deploys dist/site/ to the Cloudflare Worker in wrangler.jsonc on every push to master.
+# Builds the site and deploys dist/site/ to the Cloudflare Worker in wrangler.jsonc on every push to main.
 # Setup (secrets): README.md, section Deploy.
 name: Deploy
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

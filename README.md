@@ -4,7 +4,7 @@
 [![CI](https://github.com/Senci/senad-licina/actions/workflows/ci.yml/badge.svg)](https://github.com/Senci/senad-licina/actions/workflows/ci.yml)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Flicina.eu&label=licina.eu)](https://licina.eu)
 [![License: MIT](https://img.shields.io/github/license/Senci/senad-licina)](LICENSE)
-[![Last commit](https://img.shields.io/github/last-commit/Senci/senad-licina)](https://github.com/Senci/senad-licina/commits/master)
+[![Last commit](https://img.shields.io/github/last-commit/Senci/senad-licina)](https://github.com/Senci/senad-licina/commits/main)
 ![No framework](https://img.shields.io/badge/framework-none-6b7d2a)
 [![Built with Bun](https://img.shields.io/badge/built_with-Bun-black?logo=bun)](https://bun.sh)
 
@@ -25,7 +25,8 @@ The site is then on http://127.0.0.1:3000 (`PORT=4000 bun run dev` to change the
 | URL | What |
 |---|---|
 | `/`, `/de` | Website in English or German. On `/` it follows the browser and moves the address to `/de` for German. `?lang=de` still works and is rewritten to `/de`. |
-| `/?uv` | Website with the blacklight already on. |
+| `/?uv` | Website with the blacklight already on. The address follows the switch. |
+| `/?sound` | Blacklight on, and the beat starts with the first click or key press (browsers block audio before that). The address follows the Sound button. |
 | `/cv.html?lang=de` | The CV as a web page, print-ready. |
 
 ## Layout
@@ -96,7 +97,7 @@ A `\n` in a section title forces a line break there.
 - **Security.** The stack diagram has a third cross-cutting entry, the Security bar under all layers (third item in `stack.rails`). It is also in the CV figure, the request trace and the contact list.
 - **Invisible ink.** Everything that only shows under blacklight or in the torch is set in a handwriting font (Caveat): the side notes (`notes` in `content.js`) and five couplets of the Free Software Song (words: Richard Stallman) scribbled under the sections (`meta.song`).
 - **Ask the stack.** A scripted animation. It sends nothing anywhere and says so in its answer.
-- **Sound.** Under blacklight, a Sound button starts a 145 bpm loop synthesized with Web Audio. There is no audio file, and it never starts by itself.
+- **Sound.** Under blacklight, a Sound button starts a 145 bpm loop synthesized with Web Audio. There is no audio file, and it never starts without a click or key press. Its slot in the top bar grows from zero width when the blacklight turns on, so the items left of it glide instead of jumping.
 - **Top bar.** A progress line and the name of the current section.
 - **Reduced motion.** With the system setting on, all animation is off and the hero is not pinned.
 - **Search engines.** `app.js` writes title, description, canonical, link preview tags and schema.org `Person` data per language (`seo` and `meta.url`, `meta.knowsAbout` in `content.js`). `bun run site` bakes both languages into static HTML, so crawlers and link previews see the full text without running JavaScript. `hreflang` pairs `/` and `/de`; `robots.txt` and `sitemap.xml` sit in `site/`. The CV page and PDFs carry `noindex` because they hold the phone number.
@@ -106,7 +107,7 @@ A `\n` in a section title forces a line break there.
 
 The site runs as the Cloudflare Worker `licina` with static assets (`wrangler.jsonc`). Deploy `dist/site/`, not `site/`: only the built copy has the static HTML and `de.html`. The Worker serves `de.html` at `/de`; `site/_headers` sets the response headers.
 
-**Automatic:** every push to `master` runs `.github/workflows/deploy.yml`. It builds on GitHub Actions and runs `wrangler deploy`. It needs two secrets under Settings, Secrets and variables, Actions:
+**Automatic:** every push to `main` runs `.github/workflows/deploy.yml`. It builds on GitHub Actions and runs `wrangler deploy`. It needs two secrets under Settings, Secrets and variables, Actions:
 
 | Secret | Value |
 |---|---|
@@ -121,7 +122,7 @@ Without them the workflow still builds and skips the deploy. Custom domains stay
 
 | What | Where | Does |
 |---|---|---|
-| Deploy | `.github/workflows/deploy.yml` | Every push to `master`: build, deploy `dist/site/` to the Cloudflare Worker. |
+| Deploy | `.github/workflows/deploy.yml` | Every push to `main`: build, deploy `dist/site/` to the Cloudflare Worker. |
 | CI | `.github/workflows/ci.yml` | Every pull request: build, then Lighthouse on `/` and `/de`. Report links are in the job log. |
 | Dependency updates | `.github/dependabot.yml` | Weekly grouped PRs for the bun lockfile and the pinned Actions. CI builds each one; merge by hand. |
 | Security | repository settings | Dependabot alerts and security updates, secret scanning with push protection, CodeQL default setup. |
