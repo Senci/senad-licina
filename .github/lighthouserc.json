@@ -1,0 +1,9 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "dist/site",
+      "url": ["http://localhost/index.html", "http://localhost/de.html"],
+      "numberOfRuns": 1
+    }
+  }
+}

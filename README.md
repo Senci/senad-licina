@@ -1,5 +1,15 @@
 # Senad Ličina: website and CV
 
+[![Deploy](https://github.com/Senci/senad-licina/actions/workflows/deploy.yml/badge.svg)](https://github.com/Senci/senad-licina/actions/workflows/deploy.yml)
+[![CI](https://github.com/Senci/senad-licina/actions/workflows/ci.yml/badge.svg)](https://github.com/Senci/senad-licina/actions/workflows/ci.yml)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Flicina.eu&label=licina.eu)](https://licina.eu)
+[![License: MIT](https://img.shields.io/github/license/Senci/senad-licina)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/Senci/senad-licina)](https://github.com/Senci/senad-licina/commits/master)
+![No framework](https://img.shields.io/badge/framework-none-6b7d2a)
+[![Built with Bun](https://img.shields.io/badge/built_with-Bun-black?logo=bun)](https://bun.sh)
+
+Live at **[licina.eu](https://licina.eu)** (English) and **[licina.eu/de](https://licina.eu/de)** (German).
+
 One content file, two outputs: a motion website and a two-page A4 CV, both in German and English.
 No framework and no libraries in the page. Bun runs the dev server; Playwright renders the CV PDFs and bakes the page into static HTML for search engines.
 
@@ -36,6 +46,7 @@ scripts/
   package.mjs             zips site/ for a Cloudflare Pages upload
   make-favicon.py         regenerates the SL favicons from the Anton font
 dist/                     build output (standalone, site, zip), not tracked
+.github/                  deploy and CI workflows, Lighthouse config, Dependabot
 ```
 
 ## Commands
@@ -107,9 +118,28 @@ Without them the workflow still builds and skips the upload.
 
 **By hand:** `bun run package`, then upload `dist/senad-licina-cloudflare.zip` in the Pages project ("Upload assets").
 
+## Repository automation
+
+| What | Where | Does |
+|---|---|---|
+| Deploy | `.github/workflows/deploy.yml` | Every push to `master`: build, upload `dist/site/` to Cloudflare Pages. |
+| CI | `.github/workflows/ci.yml` | Every pull request: build, then Lighthouse on `/` and `/de`. Report links are in the job log. |
+| Dependency updates | `.github/dependabot.yml` | Weekly grouped PRs for the bun lockfile and the pinned Actions. CI builds each one; merge by hand. |
+| Security | repository settings | Dependabot alerts and security updates, secret scanning with push protection, CodeQL default setup. |
+
 ## Credits
 
 - Fonts: Anton, Fira Sans and Caveat, all under the SIL Open Font License. The licence texts are in `site/assets/fonts/`. Caveat is the 700 weight of the variable font from google/fonts, cut to Latin with `fonttools varLib.instancer` and `pyftsubset --flavor=woff`.
 - Brand icons in the footer: outlines from Simple Icons (CC0).
 - Handwritten lyrics: the Free Software Song, words by Richard Stallman. He and the FSF claim no copyright on it.
 - Everything else, including the portrait and all text: Senad Ličina.
+
+## License
+
+The code (HTML, CSS, JavaScript, scripts) is under the [MIT License](LICENSE). Take it apart, build your own site on it.
+
+Not covered by MIT: the portrait, the CV, and the text in `site/content.js` are mine; all rights reserved. Swap in your own before you publish a fork. The fonts keep their SIL Open Font License.
+
+## Star history
+
+[![Star history chart](https://api.star-history.com/svg?repos=Senci/senad-licina&type=Date)](https://star-history.com/#Senci/senad-licina&Date)
