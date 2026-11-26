@@ -31,7 +31,7 @@ p { margin: 0; }
 .head__img { height: 58mm; width: auto; margin-right: -4mm; display: block; }
 
 .cols { display: grid; grid-template-columns: minmax(0, 1fr) 53mm; gap: 9mm; padding: 8mm var(--m) 0; }
-.page--2 .cols { padding-top: 16mm; }
+.page--2 .cols { padding-top: 10mm; }
 .profile { font-size: 11.2pt; line-height: 1.45; margin-bottom: 7mm; }
 
 .block { margin-bottom: 6.5mm; }

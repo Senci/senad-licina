@@ -234,7 +234,7 @@ window.CONTENT = {
           points: [
             "Built a banking API to the PSD2 standard in Spring Boot.",
             "Moved the team from Jenkins to GitLab CI/CD and built the Kubernetes infrastructure on Azure.",
-            "Raised test coverage across Spring Boot, Nuxt and Vue projects (JUnit, Cypress, Cucumber).",
+            "Raised test coverage (JUnit, Cypress, Cucumber).",
           ],
         },
         {
@@ -243,8 +243,9 @@ window.CONTENT = {
           place: "Hamburg",
           role: "Senior Software Engineer",
           points: [
-            "The team's PSD2 expert: built the bank side (ASPSP) and the client applications that consume banking APIs.",
-            "Modernised the tech stack, maintained CI/CD, trained colleagues and gave talks on new technology (Vue, Express, Koa, Spring Boot).",
+            "PSD2 expert for ahoi: one API to accounts at German banks, whatever data centre or interface (PSD2, HBCI/FinTS) is behind them.",
+            "Implemented the EU and German specs as they came out, the bank connectors per data centre and the public API (OpenAPI, generated clients).",
+            "Modernised the stack and CI/CD, trained colleagues, gave talks.",
           ],
         },
       ],
@@ -536,7 +537,7 @@ window.CONTENT = {
           points: [
             "Banking-API nach PSD2-Standard in Spring Boot entwickelt.",
             "Das Team von Jenkins auf GitLab CI/CD umgestellt und die Kubernetes-Infrastruktur auf Azure aufgebaut.",
-            "Testabdeckung in Spring-Boot-, Nuxt- und Vue-Projekten erhöht (JUnit, Cypress, Cucumber).",
+            "Testabdeckung erhöht (JUnit, Cypress, Cucumber).",
           ],
         },
         {
@@ -545,8 +546,9 @@ window.CONTENT = {
           place: "Hamburg",
           role: "Senior Software Engineer",
           points: [
-            "PSD2-Experte im Team: die Bankseite (ASPSP) und die Client-Anwendungen gebaut, die Banking-APIs nutzen.",
-            "Tech-Stack modernisiert, CI/CD betreut, Kollegen geschult und Vorträge über neue Technologien gehalten (Vue, Express, Koa, Spring Boot).",
+            "PSD2-Experte für ahoi: eine API für Konten bei deutschen Banken, unabhängig von Rechenzentrum und Schnittstelle (PSD2, HBCI/FinTS).",
+            "EU- und deutsche Spezifikationen bei Erscheinen umgesetzt, dazu die Bankanbindung je Rechenzentrum und die öffentliche API (OpenAPI, generierte Clients).",
+            "Stack und CI/CD modernisiert, Kollegen geschult, Vorträge gehalten.",
           ],
         },
       ],
