@@ -12,6 +12,12 @@ const out = path.join(root, "dist", "site");
 fs.rmSync(out, { recursive: true, force: true });
 fs.cpSync(site, out, { recursive: true });
 
+// last content change: page dateModified (structured data) and sitemap lastmod
+const git = Bun.spawnSync(["git", "log", "-1", "--format=%cs", "--", "site"], { cwd: root });
+const modified = git.stdout.toString().trim() || new Date().toISOString().slice(0, 10);
+const sitemap = path.join(out, "sitemap.xml");
+fs.writeFileSync(sitemap, fs.readFileSync(sitemap, "utf8").replaceAll("</loc>", `</loc>\n    <lastmod>${modified}</lastmod>`));
+
 const browser = await chromium.launch();
 for (const [lang, file] of [["en", "index.html"], ["de", "de.html"]]) {
   const page = await browser.newPage({ reducedMotion: "reduce" }); // no intro animation, no scattered dots
@@ -20,7 +26,11 @@ for (const [lang, file] of [["en", "index.html"], ["de", "de.html"]]) {
   await page.goto(pathToFileURL(path.join(site, "index.html")).href + `?lang=${lang}`);
   await page.evaluate(() => document.fonts.ready);
   if (errors.length) throw new Error(`${lang}: ${errors.join("; ")}`);
-  const html = await page.evaluate(() => {
+  const html = await page.evaluate((modified) => {
+    const m = Object.assign(document.createElement("meta"), { name: "last-modified", content: modified });
+    document.querySelector('meta[name="description"]').after(m);
+    const ld = document.getElementById("ld");
+    ld.textContent = JSON.stringify({ ...JSON.parse(ld.textContent), dateModified: modified });
     // drop runtime state so the baked page starts like the source page
     const r = document.documentElement;
     for (const a of ["style", "class", "data-uv"]) r.removeAttribute(a);
@@ -29,7 +39,7 @@ for (const [lang, file] of [["en", "index.html"], ["de", "de.html"]]) {
     document.querySelectorAll(".job.on").forEach((j) => j.classList.remove("on"));
     document.querySelectorAll("canvas").forEach((c) => { c.removeAttribute("width"); c.removeAttribute("height"); });
     return "<!doctype html>\n" + r.outerHTML;
-  });
+  }, modified);
   fs.writeFileSync(path.join(out, file), html);
   console.log("wrote", path.relative(root, path.join(out, file)), (html.length / 1024).toFixed(0) + " KB");
   await page.close();

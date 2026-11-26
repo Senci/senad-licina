@@ -13,7 +13,7 @@ window.CONTENT = {
     url: "https://licina.eu",
     repo: "https://github.com/Senci/senad-licina", // linked from the "About this site" dialog // canonical origin for search engines and link previews; English at /, German at /de
     // search engines: topics for the structured data (schema.org Person.knowsAbout)
-    knowsAbout: ["Artificial intelligence", "Large language models", "AI adoption in small and mid-sized companies", "On-premises AI", "Microsoft 365 Copilot", "Retrieval-augmented generation", "Kubernetes", "Keycloak", "Single sign-on", "IT security", "Observability"],
+    knowsAbout: ["Artificial intelligence", "Large language models", "AI adoption in small and mid-sized companies", "On-premises AI", "Microsoft 365 Copilot", "Retrieval-augmented generation", "LLM inference", "vLLM", "Kubernetes", "GitOps", "Linux", "Infrastructure as code", "Keycloak", "Single sign-on", "IT security", "BSI IT-Grundschutz", "Observability"],
     // profile links in the website footer (icon = a b-<name> symbol in index.html); cv: true also prints the link in the CV header
     links: [
       { label: "LinkedIn", icon: "linkedin", url: "https://www.linkedin.com/in/senad-licina/", cv: true },
@@ -83,7 +83,7 @@ window.CONTENT = {
     title: "AI Platform and Infrastructure Lead",
     seo: {
       title: "Senad Ličina: AI platforms and AI adoption, Hamburg",
-      description: "AI platform and infrastructure lead in Hamburg. AI for mid-sized companies: standard tools like Microsoft 365 Copilot, or private models on your own hardware. Start small, measure, scale.",
+      description: "AI platform and infrastructure lead in Hamburg. AI for mid-sized companies: Microsoft 365 Copilot or private models on your own hardware. Start small, measure.",
     },
     hero: {
       headline: ["I run AI where", "the cloud isn't", "allowed."],
@@ -386,7 +386,7 @@ window.CONTENT = {
     title: "AI Platform und Infrastructure Lead",
     seo: {
       title: "Senad Ličina: KI-Plattformen und KI-Einstieg, Hamburg",
-      description: "AI Platform und Infrastructure Lead in Hamburg. KI für den Mittelstand: Standardwerkzeuge wie Microsoft 365 Copilot oder eigene Modelle auf eigener Hardware. Klein anfangen, messen, ausbauen.",
+      description: "AI Platform und Infrastructure Lead in Hamburg. KI für den Mittelstand: Microsoft 365 Copilot oder eigene Modelle auf eigener Hardware. Klein anfangen, messen.",
     },
     hero: {
       headline: ["Ich betreibe KI,", "wo die Cloud", "nicht hin darf."],

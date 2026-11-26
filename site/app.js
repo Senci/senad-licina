@@ -110,8 +110,8 @@
     set('meta[property="og:locale:alternate"]', lang === "de" ? "en_US" : "de_DE");
     set('meta[property="og:image:alt"]', $(".hero__portrait img").alt);
     set('link[rel="canonical"]', url);
-    $("#ld").textContent = JSON.stringify({
-      "@context": "https://schema.org",
+    const modified = $('meta[name="last-modified"]'); // written by the build (scripts/build-site.mjs)
+    const person = {
       "@type": "Person",
       name: C.meta.name,
       url,
@@ -124,6 +124,15 @@
       knowsAbout: C.meta.knowsAbout,
       knowsLanguage: ["de", "en", "bs", "fr", "es"],
       sameAs: C.meta.links.map((l) => l.url),
+    };
+    // ProfilePage: the page is about one person (Google profile-page structured data)
+    $("#ld").textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      url,
+      inLanguage: lang,
+      ...(modified && { dateModified: modified.content }),
+      mainEntity: person,
     });
   }
   // keep the address bar on the state shown: / or /de over http (?lang= when opened as a file), plus ?uv and ?sound
