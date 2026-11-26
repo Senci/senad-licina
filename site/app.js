@@ -126,9 +126,12 @@
       sameAs: C.meta.links.map((l) => l.url),
     });
   }
-  // keep the address bar on the language shown: / or /de over http, ?lang= when opened as a file
+  // keep the address bar on the state shown: / or /de over http (?lang= when opened as a file), plus ?uv and ?sound
   function syncUrl() {
     const p = new URLSearchParams(location.search);
+    p.delete("uv"); p.delete("sound");
+    if (uv) p.set("uv", "");
+    if (sndOn || sndArmed) p.set("sound", "");
     let target;
     if (/^https?:$/.test(location.protocol)) {
       p.delete("lang");
@@ -137,6 +140,7 @@
       p.set("lang", lang);
       target = "?" + p;
     }
+    target = target.replace(/=(?=&|$)/g, ""); // ?uv, not ?uv=
     try { history.replaceState(null, "", target + location.hash); } catch (_) {}
   }
   const riseIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); riseIO.unobserve(e.target); } }), { threshold: 0.3 });
@@ -230,8 +234,9 @@
       $("#uv").setAttribute("aria-checked", String(on));
       $("#uv2").setAttribute("aria-pressed", String(on));
       $("#uv2 span").textContent = C[lang].weird[on ? "ctaOff" : "cta"];
-      $("#snd").hidden = !on;
-      if (!on) sound(false);
+      $("#snd-slot").inert = !on;
+      if (!on) { sound(false); sndArmed = false; }
+      syncUrl();
       if (reduced) requestAnimationFrame(frame);
       $('meta[name="theme-color"]').content = on ? "#10062A" : "#D9D5D0";
       const ico = $('link[rel="icon"]'); // absent in the standalone build
@@ -318,7 +323,7 @@
      Opt-in, blacklight only: a synthesized 145 bpm kick and rolling bass (Web Audio, no file).
      The dot field kicks on the audio clock while it plays. */
   const BEAT = 60 / 145;
-  let ac = null, out = null, noise = null, sndOn = false, sndTimer = 0, nextBeat = 0, beatNo = 0, due = [];
+  let ac = null, out = null, noise = null, sndOn = false, sndArmed = false, sndTimer = 0, nextBeat = 0, beatNo = 0, due = [];
   function voice(type, t, f0, f1, fDur, peak, dur, filter) {
     const o = ac.createOscillator(), g = ac.createGain();
     o.type = type;
@@ -361,7 +366,9 @@
   function sound(on) {
     if (on === sndOn) return;
     sndOn = on;
+    sndArmed = false;
     $("#snd").setAttribute("aria-pressed", String(on));
+    syncUrl();
     clearInterval(sndTimer);
     if (!on) {
       out.gain.cancelScheduledValues(ac.currentTime);
@@ -524,7 +531,20 @@
   /* --------------------------------------------------------------- go */
   render();
   syncUrl();
-  if (params.has("uv")) setUV(true);
+  if (params.has("uv") || params.has("sound")) setUV(true);
+  // browsers only start audio after a user gesture: a ?sound link starts the beat on the first click or key
+  if (params.has("sound")) {
+    sndArmed = true;
+    syncUrl();
+    const go = (e) => {
+      removeEventListener("pointerdown", go, true);
+      removeEventListener("keydown", go, true);
+      if (!sndArmed || (e.target.closest && e.target.closest("#snd, #uv, #uv2"))) return; // those buttons decide themselves
+      sound(true);
+    };
+    addEventListener("pointerdown", go, true);
+    addEventListener("keydown", go, true);
+  }
   build();
   onScroll();
   document.body.classList.add("intro");

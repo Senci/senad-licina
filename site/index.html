@@ -56,10 +56,12 @@
     <a href="cv.html" id="nav-cv" target="_blank" rel="noopener" data-t="ui.cv">CV</a>
     <a href="#talk" data-t="ui.contact">Contact</a>
     <button type="button" class="lang" id="lang"><span data-lang="de">DE</span><span data-lang="en">EN</span></button>
-    <button type="button" class="snd" id="snd" aria-pressed="false" hidden>
-      <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h2.5L8 3.2v9.6L4.5 10H2z"/><path class="wave" d="M10.8 5.6c1.2 1.3 1.2 3.5 0 4.8M12.9 3.8c2.1 2.3 2.1 6.1 0 8.4"/></svg>
-      <span data-t="ui.sound">Sound</span>
-    </button>
+    <span class="snd-slot" id="snd-slot" inert>
+      <button type="button" class="snd" id="snd" aria-pressed="false">
+        <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h2.5L8 3.2v9.6L4.5 10H2z"/><path class="wave" d="M10.8 5.6c1.2 1.3 1.2 3.5 0 4.8M12.9 3.8c2.1 2.3 2.1 6.1 0 8.4"/></svg>
+        <span data-t="ui.sound">Sound</span>
+      </button>
+    </span>
     <button type="button" class="uvswitch" id="uv" role="switch" aria-checked="false">
       <span class="uvswitch__track" aria-hidden="true"><span class="uvswitch__knob"></span></span>
       <span data-t="ui.blacklight">Blacklight</span>

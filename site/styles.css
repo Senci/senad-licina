@@ -83,7 +83,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* scroll progress */
 .top::after { content: ""; position: absolute; inset: auto 0 0 0; height: 2px; background: var(--olive); transform-origin: left; transform: scaleX(var(--sp, 0)); }
 [data-uv="on"] .top::after { box-shadow: 0 0 12px var(--olive); }
-.top__nav { display: flex; align-items: center; gap: clamp(.7rem, 2vw, 1.6rem); font-size: .95rem; font-weight: 500; }
+.top__nav { --gap: clamp(.7rem, 2vw, 1.6rem); display: flex; align-items: center; gap: var(--gap); font-size: .95rem; font-weight: 500; }
 .top__nav a { text-decoration: none; padding: .7rem .5rem; margin: -.7rem -.5rem; }
 .top__nav a:hover { text-decoration: underline; }
 
@@ -200,8 +200,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @keyframes blink { to { opacity: 0; } }
 
 /* -------------------------------------------------------------- sound */
+/* the sound button only exists under blacklight: its slot grows from zero width, so the items left of it glide instead of jump */
+.snd-slot { display: grid; grid-template-columns: 0fr; margin-left: calc(-1 * var(--gap)); overflow: clip; overflow-clip-margin: 1.2rem; transition: grid-template-columns .5s var(--ease), margin-left .5s var(--ease); }
+.snd { min-width: 0; white-space: nowrap; opacity: 0; transform: scale(.6); transition: opacity .3s, transform .45s var(--ease), background .3s, box-shadow .3s; }
+[data-uv="on"] .snd-slot { grid-template-columns: 1fr; margin-left: 0; }
+[data-uv="on"] .snd { opacity: 1; transform: none; transition-delay: .15s, .15s, 0s, 0s; }
 .snd { display: inline-flex; align-items: center; gap: .4rem; background: none; border: 1.5px solid var(--ink); padding: .3rem .55rem; font-weight: 600; font-size: .85rem; }
-.snd[hidden] { display: none; }
 .snd[aria-pressed="true"] { background: var(--olive); border-color: var(--olive); color: #10062A; box-shadow: 0 0 18px rgba(200, 255, 46, .5); }
 .snd .wave { opacity: .35; }
 .snd[aria-pressed="true"] .wave { opacity: 1; }
