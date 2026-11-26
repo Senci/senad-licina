@@ -13,8 +13,9 @@ fs.rmSync(out, { recursive: true, force: true });
 fs.cpSync(site, out, { recursive: true });
 
 // last content change: page dateModified (structured data) and sitemap lastmod
-const git = Bun.spawnSync(["git", "log", "-1", "--format=%cs", "--", "site"], { cwd: root });
-const modified = git.stdout.toString().trim() || new Date().toISOString().slice(0, 10);
+// full ISO 8601 with timezone: Google rejects a bare date in dateModified
+const git = Bun.spawnSync(["git", "log", "-1", "--format=%cI", "--", "site"], { cwd: root });
+const modified = git.stdout.toString().trim() || new Date().toISOString().replace(/\.\d+Z$/, "Z");
 const sitemap = path.join(out, "sitemap.xml");
 fs.writeFileSync(sitemap, fs.readFileSync(sitemap, "utf8").replaceAll("</loc>", `</loc>\n    <lastmod>${modified}</lastmod>`));
 
