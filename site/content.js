@@ -138,7 +138,7 @@ window.CONTENT = {
           id: "platform",
           name: "AI platform",
           tech: "Open WebUI, RAG, tool calling, MCP, prompt-injection controls",
-          text: "One internal assistant for the whole company. Chat, retrieval over Confluence, Jira and our knowledge bases, and tool use. It names its sources and says so when it found nothing.",
+          text: "One internal assistant for the whole company, with 300+ users. Chat, retrieval over Confluence, Jira and our knowledge bases, and tool use. It names its sources and says so when it found nothing.",
         },
         {
           id: "inference",
@@ -197,7 +197,7 @@ window.CONTENT = {
           place: "Hamburg",
           role: "Tech Lead, AI Platform and Infrastructure",
           points: [
-            "AI lead for the company. I built and run the internal AI platform: chat, retrieval over Confluence, Jira and knowledge bases, and tool use, on models we host ourselves.",
+            "AI lead for the company. I built and run the internal AI platform (300+ users): chat, retrieval over Confluence, Jira and knowledge bases, and tool use, on models we host ourselves.",
             "LLM inference on our own NVIDIA Blackwell GPU servers with vLLM and quantized open-weight models. Engines and quantizations are benchmarked before rollout, throughput is monitored in Grafana.",
             "All of it on-prem and air-gap capable. No SaaS, no cloud APIs. Kubernetes (RKE2 on Harvester), automated with Ansible.",
             "Identity and security: Keycloak single sign-on federated to Active Directory, now extended to network access (Fortinet, RADIUS). SELinux enforcing, rootless containers, our own PKI, secrets in OpenBao, risk analyses to BSI 200-3.",
@@ -440,7 +440,7 @@ window.CONTENT = {
           id: "platform",
           name: "KI-Plattform",
           tech: "Open WebUI, RAG, Tool Calling, MCP, Schutz vor Prompt Injection",
-          text: "Ein interner Assistent für die ganze Firma. Chat, Suche über Confluence, Jira und unsere Wissensdatenbanken, dazu Tools. Er nennt seine Quellen und sagt es, wenn er nichts gefunden hat.",
+          text: "Ein interner Assistent für die ganze Firma, mit über 300 Nutzern. Chat, Suche über Confluence, Jira und unsere Wissensdatenbanken, dazu Tools. Er nennt seine Quellen und sagt es, wenn er nichts gefunden hat.",
         },
         {
           id: "inference",
@@ -499,7 +499,7 @@ window.CONTENT = {
           place: "Hamburg",
           role: "Tech Lead, KI-Plattform und Infrastruktur",
           points: [
-            "KI-Verantwortlicher im Unternehmen. Ich habe die interne KI-Plattform aufgebaut und betreibe sie: Chat, Suche über Confluence, Jira und Wissensdatenbanken sowie Tools, auf selbst gehosteten Modellen.",
+            "KI-Verantwortlicher im Unternehmen. Ich habe die interne KI-Plattform aufgebaut und betreibe sie (über 300 Nutzer): Chat, Suche über Confluence, Jira und Wissensdatenbanken sowie Tools, auf selbst gehosteten Modellen.",
             "LLM-Inferenz auf eigenen NVIDIA-Blackwell-GPU-Servern mit vLLM und quantisierten offenen Modellen. Engines und Quantisierungen werden vor dem Rollout gebenchmarkt, der Durchsatz in Grafana überwacht.",
             "Alles On-Prem und Air-Gap-fähig. Kein SaaS, keine Cloud-APIs. Kubernetes (RKE2 auf Harvester), automatisiert mit Ansible.",
             "Identität und Security: Single Sign-on mit Keycloak und Active-Directory-Föderation, erweitert auf den Netzwerkzugang (Fortinet, RADIUS). SELinux enforcing, Rootless-Container, eigene PKI, Secrets in OpenBao, Risikoanalysen nach BSI 200-3.",
