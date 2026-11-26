@@ -43,10 +43,11 @@ scripts/
   build-pdf.mjs           renders cv.html to PDF in both languages
   build-standalone.mjs    packs the website into one HTML file
   build-site.mjs          copies site/ to dist/site/ with the page baked to static HTML per language
-  package.mjs             zips site/ for a Cloudflare Pages upload
+  package.mjs             zips dist/site/ for a manual upload
   make-favicon.py         regenerates the SL favicons from the Anton font
 dist/                     build output (standalone, site, zip), not tracked
 .github/                  deploy and CI workflows, Lighthouse config, Dependabot
+wrangler.jsonc            the Cloudflare Worker that serves dist/site/
 ```
 
 ## Commands
@@ -59,7 +60,7 @@ dist/                     build output (standalone, site, zip), not tracked
 | `bun run standalone` | Writes `dist/senad-licina-standalone.html`, fonts and portrait inlined. Good as a mail attachment. |
 | `bun run site` | Writes `dist/site/`: `site/` plus the rendered page as static HTML, `index.html` (English) and `de.html` (German). |
 | `bun run build` | `pdf`, `standalone`, then `site`. |
-| `bun run package` | `pdf`, `site`, then zips `dist/site/` to `dist/senad-licina-cloudflare.zip` for a Cloudflare Pages upload. Needs `zip`. |
+| `bun run package` | `pdf`, `site`, then zips `dist/site/` to `dist/senad-licina-cloudflare.zip` for a manual upload in the Cloudflare dashboard. Needs `zip`. |
 
 Without Bun: open `site/cv.html?lang=de` in Chrome and print to PDF (margins: none, background graphics: on).
 
@@ -103,26 +104,24 @@ A `\n` in a section title forces a line break there.
 
 ## Deploy
 
-Deploy `dist/site/`, not `site/`: only the built copy has the static HTML and `de.html`. Cloudflare Pages serves `de.html` at `/de`; `site/_headers` sets the response headers there.
+The site runs as the Cloudflare Worker `licina` with static assets (`wrangler.jsonc`). Deploy `dist/site/`, not `site/`: only the built copy has the static HTML and `de.html`. The Worker serves `de.html` at `/de`; `site/_headers` sets the response headers.
 
-**Automatic:** every push to `master` runs `.github/workflows/deploy.yml`. It builds on GitHub Actions and uploads `dist/site/` with `wrangler pages deploy`. It needs, under Settings, Secrets and variables, Actions:
+**Automatic:** every push to `master` runs `.github/workflows/deploy.yml`. It builds on GitHub Actions and runs `wrangler deploy`. It needs two secrets under Settings, Secrets and variables, Actions:
 
-| Name | Kind | Value |
-|---|---|---|
-| `CLOUDFLARE_API_TOKEN` | secret | API token with the permission Account, Cloudflare Pages, Edit |
-| `CLOUDFLARE_ACCOUNT_ID` | secret | Account ID from the Cloudflare dashboard |
-| `CLOUDFLARE_PROJECT` | variable | Name of the Pages project |
-| `CLOUDFLARE_BRANCH` | variable, optional | Production branch of the Pages project, `main` if unset |
+| Secret | Value |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | API token with the permission Account, Workers Scripts, Edit |
+| `CLOUDFLARE_ACCOUNT_ID` | Account ID from the Cloudflare dashboard |
 
-Without them the workflow still builds and skips the upload.
+Without them the workflow still builds and skips the deploy. Custom domains stay as set in the dashboard.
 
-**By hand:** `bun run package`, then upload `dist/senad-licina-cloudflare.zip` in the Pages project ("Upload assets").
+**By hand:** `bun run site`, then `bunx wrangler deploy` (logs in through the browser).
 
 ## Repository automation
 
 | What | Where | Does |
 |---|---|---|
-| Deploy | `.github/workflows/deploy.yml` | Every push to `master`: build, upload `dist/site/` to Cloudflare Pages. |
+| Deploy | `.github/workflows/deploy.yml` | Every push to `master`: build, deploy `dist/site/` to the Cloudflare Worker. |
 | CI | `.github/workflows/ci.yml` | Every pull request: build, then Lighthouse on `/` and `/de`. Report links are in the job log. |
 | Dependency updates | `.github/dependabot.yml` | Weekly grouped PRs for the bun lockfile and the pinned Actions. CI builds each one; merge by hand. |
 | Security | repository settings | Dependabot alerts and security updates, secret scanning with push protection, CodeQL default setup. |

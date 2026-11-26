@@ -1,4 +1,4 @@
-// Zips dist/site/ (from build-site.mjs) for a Cloudflare Pages direct upload. Usage: bun run package (needs the zip command)
+// Zips dist/site/ (from build-site.mjs) for a manual upload in the Cloudflare dashboard. Usage: bun run package (needs the zip command)
 import fs from "node:fs";
 import path from "node:path";
 

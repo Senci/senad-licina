@@ -1,0 +1,10 @@
+// Cloudflare Worker "licina": serves dist/site/ (from `bun run site`) as static assets.
+// Custom domains stay as configured in the dashboard.
+{
+  "name": "licina",
+  "compatibility_date": "2026-11-26",
+  "assets": {
+    "directory": "dist/site",
+    "html_handling": "auto-trailing-slash"
+  }
+}
