@@ -217,7 +217,7 @@ window.CONTENT = {
           ],
         },
         {
-          period: "2018 – now",
+          period: "2018 – 2025",
           org: "Ličina & Helms",
           place: "Hamburg",
           role: "Senior Software Engineer, freelance",
@@ -519,7 +519,7 @@ window.CONTENT = {
           ],
         },
         {
-          period: "2018 – heute",
+          period: "2018 – 2025",
           org: "Ličina & Helms",
           place: "Hamburg",
           role: "Senior Software Engineer, freiberuflich",
