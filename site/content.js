@@ -10,7 +10,8 @@ window.CONTENT = {
     phone: "+49 151 506 705 19", // shown on the CV only, never on the website
     city: "Hamburg",
     website: "", // e.g. "licina.eu". If set, it is printed on the CV.
-    url: "https://licina.eu", // canonical origin for search engines and link previews; English at /, German at /de
+    url: "https://licina.eu",
+    repo: "https://github.com/Senci/senad-licina", // linked from the "About this site" dialog // canonical origin for search engines and link previews; English at /, German at /de
     // search engines: topics for the structured data (schema.org Person.knowsAbout)
     knowsAbout: ["Artificial intelligence", "Large language models", "AI adoption in small and mid-sized companies", "On-premises AI", "Microsoft 365 Copilot", "Retrieval-augmented generation", "Kubernetes", "Keycloak", "Single sign-on", "IT security", "Observability"],
     // profile links in the website footer (icon = a b-<name> symbol in index.html); cv: true also prints the link in the CV header
@@ -55,9 +56,10 @@ window.CONTENT = {
       link: "About this site",
       title: "About this site",
       close: "Close",
+      source: "Source code on GitHub",
       sections: [
         { h: "Made with", items: [
-          "Hand-written HTML, CSS and JavaScript. No framework, no build step, no libraries in the page.",
+          "Hand-written HTML, CSS and JavaScript. No framework, no libraries in the page.",
           "Bun serves it during development. Playwright prints the CV PDFs from the same content file as this page.",
           "Written together with coding agents (Claude). I decide, they type.",
         ] },
@@ -357,9 +359,10 @@ window.CONTENT = {
       link: "Über diese Seite",
       title: "Über diese Seite",
       close: "Schließen",
+      source: "Quellcode auf GitHub",
       sections: [
         { h: "Gebaut mit", items: [
-          "Handgeschriebenes HTML, CSS und JavaScript. Kein Framework, kein Build-Schritt, keine Bibliotheken in der Seite.",
+          "Handgeschriebenes HTML, CSS und JavaScript. Kein Framework, keine Bibliotheken in der Seite.",
           "Bun liefert sie während der Entwicklung aus. Playwright druckt die Lebenslauf-PDFs aus derselben Inhaltsdatei wie diese Seite.",
           "Zusammen mit Coding Agents (Claude) geschrieben. Ich entscheide, sie tippen.",
         ] },

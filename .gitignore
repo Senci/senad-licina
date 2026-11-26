@@ -5,7 +5,8 @@ node_modules/
 # (site/cv/*.pdf is build output too, but the website links to it, so it is tracked)
 dist/
 
-# local files
+# local files (private notes go in *.local.md)
+*.local.*
 .env
 .env.*
 *.log

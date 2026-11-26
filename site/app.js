@@ -34,7 +34,8 @@
     });
     $$("[data-song]").forEach((el) => { el.innerHTML = C.meta.song[el.dataset.song].map(esc).join("<br>"); }); // esc() output only
     $("#about-h").textContent = t.about.title;
-    $("#about-body").innerHTML = t.about.sections.map((s) => `<h3>${esc(s.h)}</h3><ul>${s.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`).join("");
+    $("#about-body").innerHTML = t.about.sections.map((s) => `<h3>${esc(s.h)}</h3><ul>${s.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`).join("") +
+      `<p class="about__src"><a href="${esc(C.meta.repo)}" rel="noopener">${esc(t.about.source)}</a></p>`;
     // section headings rise word by word when they scroll in
     $$("main h2[data-t]").forEach((h) => {
       h.classList.add("rise");

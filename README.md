@@ -1,7 +1,7 @@
 # Senad Ličina: website and CV
 
 One content file, two outputs: a motion website and a two-page A4 CV, both in German and English.
-No framework and no build step for the site itself. Bun is only used for the dev server and for rendering the PDFs.
+No framework and no libraries in the page. Bun runs the dev server; Playwright renders the CV PDFs and bakes the page into static HTML for search engines.
 
 ## Quick start
 
@@ -92,24 +92,20 @@ A `\n` in a section title forces a line break there.
 
 ## Deploy
 
-Deploy `dist/site/`, not `site/`: only the built copy has the static HTML and `de.html`. For Cloudflare Pages: `bun run package`, then in the dashboard create a Pages project with "Upload assets" and drop in `dist/senad-licina-cloudflare.zip`. Pages serves `de.html` at `/de`. `site/_headers` sets the response headers there.
+Deploy `dist/site/`, not `site/`: only the built copy has the static HTML and `de.html`. Cloudflare Pages serves `de.html` at `/de`; `site/_headers` sets the response headers there.
 
-Before it goes public:
+**Automatic:** every push to `master` runs `.github/workflows/deploy.yml`. It builds on GitHub Actions and uploads `dist/site/` with `wrangler pages deploy`. It needs, under Settings, Secrets and variables, Actions:
 
-- **Impressum.** A public site run from Germany needs one. There is none yet.
-- **Domain.** Set `meta.website`, and make `og:image` in `index.html` an absolute URL, otherwise link previews show no image.
-- **Phone number.** It is in `content.js` and in the PDFs, so it is public as soon as the repository or the site is.
+| Name | Kind | Value |
+|---|---|---|
+| `CLOUDFLARE_API_TOKEN` | secret | API token with the permission Account, Cloudflare Pages, Edit |
+| `CLOUDFLARE_ACCOUNT_ID` | secret | Account ID from the Cloudflare dashboard |
+| `CLOUDFLARE_PROJECT` | variable | Name of the Pages project |
+| `CLOUDFLARE_BRANCH` | variable, optional | Production branch of the Pages project, `main` if unset |
 
-## Open content checks
+Without them the workflow still builds and skips the upload.
 
-Facts that were estimated or carried over from an older CV and are not confirmed yet:
-
-- [ ] Plath start year is set to 2025.
-- [ ] Geoparadise and Ličina & Helms are listed as ongoing.
-- [ ] Sparkassen Innovation Hub is 2016 to 2020. An older draft said 2020 to 2022.
-- [ ] Plath details (hardware, Harvester/RKE2, the internal assistant) may be named publicly.
-- [ ] The thesis is described as single sign-on for "the department's Active Directory".
-- [ ] The page has no platform figures (GPUs, users, tokens per second). Real ones would strengthen the stack section.
+**By hand:** `bun run package`, then upload `dist/senad-licina-cloudflare.zip` in the Pages project ("Upload assets").
 
 ## Credits
 
