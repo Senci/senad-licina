@@ -373,6 +373,9 @@ section { position: relative; }
 .weird__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5vw, 4.5rem) clamp(2rem, 6vw, 6rem); margin-top: clamp(2.5rem, 6vh, 4.5rem); }
 .odd h3 { font-size: clamp(2.2rem, 5vw, 4.4rem); margin-bottom: .6rem; transition: color .4s, text-shadow .4s; }
 .odd p { max-width: 26em; margin: 0; }
+.odd p.odd__link { margin-top: .8rem; }
+.odd__link a { display: inline-flex; align-items: center; gap: .5rem; transition: color .2s; }
+.odd__link a:hover, .odd__link a:focus-visible { color: var(--olive); }
 .odd--neuro { grid-column: 1 / -1; }
 .odd--neuro h3 { font-size: clamp(4rem, 13vw, 12rem); }
 .odd--neuro p { font-size: clamp(1.15rem, 1.7vw, 1.45rem); max-width: 30em; }

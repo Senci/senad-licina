@@ -273,7 +273,7 @@ window.CONTENT = {
         t: "My brain collects patterns, locks on to a problem for hours and refuses vague instructions. Language models need exactly that from whoever steers them.",
       },
       items: [
-        { h: "Psytrance", t: "I produce and DJ it, and I write audio and signal-processing code on the side. Arranging eight minutes at 145 bpm is systems design with a kick drum." },
+        { h: "Psytrance", t: "I produce and DJ it, and I write audio and signal-processing code on the side. Arranging eight minutes at 145 bpm is systems design with a kick drum.", link: { to: "soundcloud", label: "Listen on SoundCloud" } },
         { h: "A Tetris cabinet", t: "Two players, laser-cut, RP2040 and a wall of WS2812B LEDs. I am building it because it should exist." },
         { h: "Jungle ops", t: "I have run servers and networks in the Panamanian rainforest. Your data centre has air conditioning. You will be fine." },
         { h: "Six languages", t: "German, English, Bosnian/Croatian/Serbian, French, Spanish, some Portuguese. Plus the ones with compilers." },
@@ -576,7 +576,7 @@ window.CONTENT = {
         t: "Mein Kopf sammelt Muster, verbeißt sich stundenlang in ein Problem und verweigert vage Ansagen. Genau das brauchen Sprachmodelle von dem, der sie steuert.",
       },
       items: [
-        { h: "Psytrance", t: "Ich produziere und lege auf, und nebenbei programmiere ich Audio und Signalverarbeitung. Acht Minuten bei 145 bpm zu arrangieren ist Systemdesign mit Kickdrum." },
+        { h: "Psytrance", t: "Ich produziere und lege auf, und nebenbei programmiere ich Audio und Signalverarbeitung. Acht Minuten bei 145 bpm zu arrangieren ist Systemdesign mit Kickdrum.", link: { to: "soundcloud", label: "Auf SoundCloud anhören" } },
         { h: "Ein Tetris-Automat", t: "Zwei Spieler, lasergeschnitten, RP2040 und eine Wand aus WS2812B-LEDs. Ich baue ihn, weil es ihn geben sollte." },
         { h: "Dschungel-Ops", t: "Ich habe Server und Netzwerke im Regenwald von Panama betrieben. Dein Rechenzentrum hat eine Klimaanlage. Das wird schon." },
         { h: "Sechs Sprachen", t: "Deutsch, Englisch, Bosnisch/Kroatisch/Serbisch, Französisch, Spanisch, etwas Portugiesisch. Dazu die mit Compiler." },

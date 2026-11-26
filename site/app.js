@@ -87,7 +87,11 @@
          .join("")}</div>`;
     jobs = $$("#timeline .job");
 
-    const odd = (o, cls = "") => `<div class="odd ${cls}"><h3>${esc(o.h)}</h3><p>${esc(o.t)}</p></div>`;
+    const oddLink = (o) => {
+      const l = o.link && C.meta.links.find((x) => x.icon === o.link.to);
+      return l ? `<p class="odd__link"><a href="${esc(l.url)}" target="_blank" rel="me noopener"><svg class="ico ico--brand" viewBox="0 0 24 24" aria-hidden="true"><use href="#b-${esc(l.icon)}"/></svg>${esc(o.link.label)}</a></p>` : "";
+    };
+    const odd = (o, cls = "") => `<div class="odd ${cls}"><h3>${esc(o.h)}</h3><p>${esc(o.t)}</p>${oddLink(o)}</div>`;
     $("#weird-list").innerHTML = (C.meta.showNeuro ? odd(t.weird.neuro, "odd--neuro") : "") + t.weird.items.map((o) => odd(o)).join("");
 
     $("#start-uses").innerHTML = t.start.items.map((u) => `<div class="use"><h3>${esc(u.h)}</h3><p>${esc(u.t)}</p></div>`).join("");
