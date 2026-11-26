@@ -13,7 +13,8 @@
   /* ---------------------------------------------------------- language */
   const params = new URLSearchParams(location.search);
   const pick = (l) => ["de", "en"].find((x) => String(l || "").toLowerCase().startsWith(x));
-  let lang = pick(params.get("lang")) || pick(navigator.language) || "en";
+  const pathLang = /\/de(\.html)?$/.test(location.pathname) ? "de" : null; // English lives at /, German at /de
+  let lang = pick(params.get("lang")) || pathLang || pick(navigator.language) || "en";
   let selected = "platform"; // which part of the stack is open
   let uv = false;
   let sec = null; // section named in the top bar
@@ -25,7 +26,7 @@
   function render() {
     const t = C[lang];
     root.lang = lang;
-    document.title = `${C.meta.name}. ${t.title}, ${C.meta.city}`;
+    renderHead(t);
 
     $$("[data-t]").forEach((el) => {
       const v = get(t, el.dataset.t);
@@ -94,6 +95,48 @@
     measureTokens();
     if (sec) setSection(sec, true);
     onScroll();
+  }
+  // title, description, canonical, link preview and structured data for the current language
+  function renderHead(t) {
+    const url = C.meta.url + (lang === "de" ? "/de" : "/");
+    const set = (sel, v) => { const el = $(sel); if (el) el.setAttribute(el.tagName === "LINK" ? "href" : "content", v); };
+    document.title = t.seo.title;
+    set('meta[name="description"]', t.seo.description);
+    set('meta[property="og:description"]', t.seo.description);
+    set('meta[property="og:title"]', `${C.meta.name}. ${t.hero.headline.join(" ")}`);
+    set('meta[property="og:url"]', url);
+    set('meta[property="og:locale"]', lang === "de" ? "de_DE" : "en_US");
+    set('meta[property="og:locale:alternate"]', lang === "de" ? "en_US" : "de_DE");
+    set('meta[property="og:image:alt"]', $(".hero__portrait img").alt);
+    set('link[rel="canonical"]', url);
+    $("#ld").textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: C.meta.name,
+      url,
+      image: C.meta.url + "/assets/img/headshot.jpg",
+      jobTitle: t.title,
+      description: t.seo.description,
+      email: "mailto:" + C.meta.email,
+      address: { "@type": "PostalAddress", addressLocality: C.meta.city, addressCountry: "DE" },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Universität Hamburg" },
+      knowsAbout: C.meta.knowsAbout,
+      knowsLanguage: ["de", "en", "bs", "fr", "es"],
+      sameAs: C.meta.links.map((l) => l.url),
+    });
+  }
+  // keep the address bar on the language shown: / or /de over http, ?lang= when opened as a file
+  function syncUrl() {
+    const p = new URLSearchParams(location.search);
+    let target;
+    if (/^https?:$/.test(location.protocol)) {
+      p.delete("lang");
+      target = (lang === "de" ? "de" : "./") + (p.size ? "?" + p : "");
+    } else {
+      p.set("lang", lang);
+      target = "?" + p;
+    }
+    try { history.replaceState(null, "", target + location.hash); } catch (_) {}
   }
   const riseIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); riseIO.unobserve(e.target); } }), { threshold: 0.3 });
 
@@ -207,9 +250,7 @@
 
   $("#lang").addEventListener("click", () => {
     lang = lang === "de" ? "en" : "de";
-    const p = new URLSearchParams(location.search);
-    p.set("lang", lang);
-    try { history.replaceState(null, "", "?" + p + location.hash); } catch (_) {}
+    syncUrl();
     render();
   });
 
@@ -481,6 +522,7 @@
 
   /* --------------------------------------------------------------- go */
   render();
+  syncUrl();
   if (params.has("uv")) setUV(true);
   build();
   onScroll();

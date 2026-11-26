@@ -6,7 +6,8 @@ const server = Bun.serve({
   hostname: "127.0.0.1",
   port: Number(process.env.PORT ?? 3000),
   async fetch(req) {
-    const pathname = decodeURIComponent(new URL(req.url).pathname);
+    let pathname = decodeURIComponent(new URL(req.url).pathname);
+    if (/^\/de(\.html)?$/.test(pathname)) pathname = "/index.html"; // the German URL; production serves the baked de.html there
     const file = path.join(root, pathname.endsWith("/") ? pathname + "index.html" : pathname);
     if (!file.startsWith(root + path.sep)) return new Response("Forbidden", { status: 403 });
     const body = Bun.file(file);

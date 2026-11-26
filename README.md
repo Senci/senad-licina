@@ -14,7 +14,7 @@ The site is then on http://127.0.0.1:3000 (`PORT=4000 bun run dev` to change the
 
 | URL | What |
 |---|---|
-| `/?lang=de`, `/?lang=en` | Website in one language. Without `lang` it follows the browser. |
+| `/`, `/de` | Website in English or German. On `/` it follows the browser and moves the address to `/de` for German. `?lang=de` still works and is rewritten to `/de`. |
 | `/?uv` | Website with the blacklight already on. |
 | `/cv.html?lang=de` | The CV as a web page, print-ready. |
 
@@ -32,9 +32,10 @@ scripts/
   serve.mjs               static dev server for site/
   build-pdf.mjs           renders cv.html to PDF in both languages
   build-standalone.mjs    packs the website into one HTML file
+  build-site.mjs          copies site/ to dist/site/ with the page baked to static HTML per language
   package.mjs             zips site/ for a Cloudflare Pages upload
   make-favicon.py         regenerates the SL favicons from the Anton font
-dist/                     output of `bun run standalone`, not tracked
+dist/                     build output (standalone, site, zip), not tracked
 ```
 
 ## Commands
@@ -45,8 +46,9 @@ dist/                     output of `bun run standalone`, not tracked
 | `bun run setup` | Downloads the headless Chromium that `pdf` needs. Once, and again after a Playwright update. |
 | `bun run pdf` | Writes `site/cv/Senad_Licina_CV_{DE,EN}.pdf`. |
 | `bun run standalone` | Writes `dist/senad-licina-standalone.html`, fonts and portrait inlined. Good as a mail attachment. |
-| `bun run build` | `pdf`, then `standalone`. |
-| `bun run package` | `pdf`, then zips `site/` to `dist/senad-licina-cloudflare.zip` for a Cloudflare Pages upload. Needs `zip`. |
+| `bun run site` | Writes `dist/site/`: `site/` plus the rendered page as static HTML, `index.html` (English) and `de.html` (German). |
+| `bun run build` | `pdf`, `standalone`, then `site`. |
+| `bun run package` | `pdf`, `site`, then zips `dist/site/` to `dist/senad-licina-cloudflare.zip` for a Cloudflare Pages upload. Needs `zip`. |
 
 Without Bun: open `site/cv.html?lang=de` in Chrome and print to PDF (margins: none, background graphics: on).
 
@@ -85,11 +87,12 @@ A `\n` in a section title forces a line break there.
 - **Sound.** Under blacklight, a Sound button starts a 145 bpm loop synthesized with Web Audio. There is no audio file, and it never starts by itself.
 - **Top bar.** A progress line and the name of the current section.
 - **Reduced motion.** With the system setting on, all animation is off and the hero is not pinned.
+- **Search engines.** `app.js` writes title, description, canonical, link preview tags and schema.org `Person` data per language (`seo` and `meta.url`, `meta.knowsAbout` in `content.js`). `bun run site` bakes both languages into static HTML, so crawlers and link previews see the full text without running JavaScript. `hreflang` pairs `/` and `/de`; `robots.txt` and `sitemap.xml` sit in `site/`. The CV page and PDFs carry `noindex` because they hold the phone number.
 - **No cookies, no tracking scripts, no external requests.** Fonts and icons are served from `site/`. The footer says so, and its "About this site" dialog lists what the page is made with, the credits, and the hosting (`about` in `content.js`). If an analytics script is ever added, both texts must change.
 
 ## Deploy
 
-`site/` is static, so any web server works. For Cloudflare Pages: `bun run package`, then in the dashboard create a Pages project with "Upload assets" and drop in `dist/senad-licina-cloudflare.zip`. `site/_headers` sets the response headers there.
+Deploy `dist/site/`, not `site/`: only the built copy has the static HTML and `de.html`. For Cloudflare Pages: `bun run package`, then in the dashboard create a Pages project with "Upload assets" and drop in `dist/senad-licina-cloudflare.zip`. Pages serves `de.html` at `/de`. `site/_headers` sets the response headers there.
 
 Before it goes public:
 

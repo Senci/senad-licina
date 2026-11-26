@@ -10,6 +10,9 @@ window.CONTENT = {
     phone: "+49 151 506 705 19", // shown on the CV only, never on the website
     city: "Hamburg",
     website: "", // e.g. "licina.eu". If set, it is printed on the CV.
+    url: "https://licina.eu", // canonical origin for search engines and link previews; English at /, German at /de
+    // search engines: topics for the structured data (schema.org Person.knowsAbout)
+    knowsAbout: ["Artificial intelligence", "Large language models", "AI adoption in small and mid-sized companies", "On-premises AI", "Microsoft 365 Copilot", "Retrieval-augmented generation", "Kubernetes", "Keycloak", "Single sign-on", "IT security", "Observability"],
     // profile links in the website footer (icon = a b-<name> symbol in index.html); cv: true also prints the link in the CV header
     links: [
       { label: "LinkedIn", icon: "linkedin", url: "https://www.linkedin.com/in/senad-licina/", cv: true },
@@ -76,6 +79,10 @@ window.CONTENT = {
     },
     sections: { start: "Start", stack: "Stack", origin: "2012", path: "Path", weird: "Weird", talk: "Contact" }, // short names for the top bar
     title: "AI Platform and Infrastructure Lead",
+    seo: {
+      title: "Senad Ličina: AI platforms and AI adoption, Hamburg",
+      description: "AI platform and infrastructure lead in Hamburg. AI for mid-sized companies: standard tools like Microsoft 365 Copilot, or private models on your own hardware. Start small, measure, scale.",
+    },
     hero: {
       headline: ["I run AI where", "the cloud isn't", "allowed."],
       sub: "AI Platform and Infrastructure Lead in Hamburg. I build and operate private AI platforms: language models on our own GPUs, on Kubernetes, behind single sign-on, in networks that never see the internet. And I help companies start small: one use case, standard tools, a result you can measure.",
@@ -374,6 +381,10 @@ window.CONTENT = {
     },
     sections: { start: "Einstieg", stack: "Stack", origin: "2012", path: "Weg", weird: "Weird", talk: "Kontakt" },
     title: "AI Platform und Infrastructure Lead",
+    seo: {
+      title: "Senad Ličina: KI-Plattformen und KI-Einstieg, Hamburg",
+      description: "AI Platform und Infrastructure Lead in Hamburg. KI für den Mittelstand: Standardwerkzeuge wie Microsoft 365 Copilot oder eigene Modelle auf eigener Hardware. Klein anfangen, messen, ausbauen.",
+    },
     hero: {
       headline: ["Ich betreibe KI,", "wo die Cloud", "nicht hin darf."],
       sub: "AI Platform und Infrastructure Lead in Hamburg. Ich baue und betreibe private KI-Plattformen: Sprachmodelle auf eigenen GPUs, auf Kubernetes, hinter Single Sign-on, in Netzen, die das Internet nie sehen. Und ich helfe Firmen, klein anzufangen: ein Anwendungsfall, Standardwerkzeuge, ein messbares Ergebnis.",
