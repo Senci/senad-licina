@@ -262,7 +262,7 @@ window.CONTENT = {
       title: "Education",
       items: [
         { period: "2012 – 2016", title: "M.Sc. Intelligent Adaptive Systems", org: "Universität Hamburg, international programme", note: "Neural networks, machine learning, robotics, big data" },
-        { period: "2007 – 2013", title: "B.Sc. Informatik", org: "Universität Hamburg", note: "Thesis: oauth-infrz, OAuth 2.0 single sign-on for the department's Active Directory" },
+        { period: "2007 – 2014", title: "B.Sc. Informatik", org: "Universität Hamburg", note: "Thesis: oauth-infrz, OAuth 2.0 single sign-on for the department's Active Directory" },
       ],
     },
     weird: {
@@ -565,7 +565,7 @@ window.CONTENT = {
       title: "Ausbildung",
       items: [
         { period: "2012 – 2016", title: "M.Sc. Intelligent Adaptive Systems", org: "Universität Hamburg, internationaler Studiengang", note: "Neuronale Netze, maschinelles Lernen, Robotik, Big Data" },
-        { period: "2007 – 2013", title: "B.Sc. Informatik", org: "Universität Hamburg", note: "Abschlussarbeit: oauth-infrz, OAuth-2.0-Single-Sign-on für das Active Directory des Fachbereichs" },
+        { period: "2007 – 2014", title: "B.Sc. Informatik", org: "Universität Hamburg", note: "Abschlussarbeit: oauth-infrz, OAuth-2.0-Single-Sign-on für das Active Directory des Fachbereichs" },
       ],
     },
     weird: {
